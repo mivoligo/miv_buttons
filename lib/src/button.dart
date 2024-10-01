@@ -112,45 +112,47 @@ class _ButtonState extends State<Button> {
       onTapCancel: () => setState(() {
         isPressed = false;
       }),
-      child: Transform.translate(
-        offset:
-            isPressed ? Offset(0, (widget.elevation ?? 8) - 2) : Offset.zero,
-        child: Container(
-          padding: EdgeInsets.symmetric(
-            horizontal: widget.paddingHorizontal ?? 8,
-            vertical: widget.paddingVertical ?? 8,
-          ),
-          decoration: BoxDecoration(
-            // color of the button's surface
-            color: widget.backgroundColor ?? const Color(0xFFEF4444),
-            borderRadius:
-                _borderRadius(Shape.roundedRectangle, widget.borderRadius),
-            shape: _boxShape(widget.shape),
-            boxShadow: [
-              // black blurry shadow
-              BoxShadow(
-                color: const Color(0xEE222222),
-                offset: isPressed
-                    ? const Offset(0, 2)
-                    : Offset(0, widget.elevation ?? 8),
-                blurRadius: isPressed ? 2 : (widget.elevation ?? 8) + 4,
-                blurStyle: BlurStyle.outer,
+      child: Column(
+        children: [
+          SizedBox(height: isPressed ? widget.elevation : 0),
+          Container(
+            padding: EdgeInsets.only(
+              bottom: isPressed ? 0 : (widget.elevation ?? 8),
+            ),
+            decoration: BoxDecoration(
+              color: widget.backgroundColor != null
+                  ? HSLColor.fromColor(widget.backgroundColor!)
+                      .withLightness(0.3)
+                      .toColor()
+                  : const Color(0xFF991B1B),
+              borderRadius:
+                  _borderRadius(Shape.roundedRectangle, widget.borderRadius),
+            ),
+            child: Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: widget.paddingHorizontal ?? 8,
+                vertical: widget.paddingVertical ?? 8,
               ),
-              // side of the button
-              BoxShadow(
-                color: widget.backgroundColor != null
-                    ? HSLColor.fromColor(widget.backgroundColor!)
-                        .withLightness(0.3)
-                        .toColor()
-                    : const Color(0xFF991B1B),
-                offset: isPressed
-                    ? const Offset(0, 2)
-                    : Offset(0, widget.elevation ?? 8),
+              decoration: BoxDecoration(
+                color: widget.backgroundColor ?? const Color(0xFFEF4444),
+                borderRadius:
+                    _borderRadius(Shape.roundedRectangle, widget.borderRadius),
+                boxShadow: [
+                  // black blurry shadow
+                  BoxShadow(
+                    color: const Color(0xEE222222),
+                    offset: isPressed
+                        ? const Offset(0, 0)
+                        : Offset(0, widget.elevation ?? 8),
+                    blurRadius: isPressed ? 2 : (widget.elevation ?? 8) + 4,
+                    blurStyle: BlurStyle.outer,
+                  ),
+                ],
               ),
-            ],
+              child: widget.child,
+            ),
           ),
-          child: widget.child,
-        ),
+        ],
       ),
     );
   }
