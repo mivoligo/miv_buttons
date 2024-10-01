@@ -81,13 +81,17 @@ class _ButtonWithLabelState extends State<_ButtonWithLabel> {
             initialValue: label,
           ),
           vGap16,
-          PropertyBackgroundColor(
+          PropertyColorChange(
+            propertyName: 'backgroundColor',
+            colors: backgroundColors,
             onColorChange: (color) => setState(() {
               backgroundColor = color;
             }),
           ),
           vGap16,
-          PropertyForegroundColor(
+          PropertyColorChange(
+            propertyName: 'foregroundColor',
+            colors: labelColors,
             onColorChange: (color) => setState(() {
               foregroundColor = color;
             }),

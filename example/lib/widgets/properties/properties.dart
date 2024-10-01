@@ -1,4 +1,3 @@
-export 'property_background_color.dart';
-export 'property_foreground_color.dart';
 export 'property_label.dart';
 export 'property_value_change.dart';
+export 'property_color_change.dart';
