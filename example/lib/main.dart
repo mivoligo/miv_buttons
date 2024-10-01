@@ -93,18 +93,20 @@ class _ButtonWithLabelState extends State<_ButtonWithLabel> {
             }),
           ),
           vGap16,
-          PropertyBorderRadius(
-            onRadiusChange: (value) {
+          PropertyValueChange(
+            propertyName: 'borderRadius',
+            initialValue: borderRadius,
+            onValueChanged: (value) {
               setState(() {
                 borderRadius = value;
               });
             },
-            borderRadius: borderRadius,
           ),
           vGap16,
-          PropertyPadding(
+          PropertyValueChange(
             propertyName: 'paddingHorizontal',
             initialValue: paddingHorizontal,
+            maxValue: 64,
             onValueChanged: (value) {
               setState(() {
                 paddingHorizontal = value;
@@ -112,9 +114,10 @@ class _ButtonWithLabelState extends State<_ButtonWithLabel> {
             },
           ),
           vGap16,
-          PropertyPadding(
+          PropertyValueChange(
             propertyName: 'paddingVertical',
             initialValue: paddingVertical,
+            maxValue: 64,
             onValueChanged: (value) {
               setState(() {
                 paddingVertical = value;
@@ -122,9 +125,11 @@ class _ButtonWithLabelState extends State<_ButtonWithLabel> {
             },
           ),
           vGap16,
-          PropertyElevation(
-            initialElevation: elevation,
-            onElevationChanged: (value) {
+          PropertyValueChange(
+            propertyName: 'elevation',
+            initialValue: elevation,
+            maxValue: 24,
+            onValueChanged: (value) {
               setState(() {
                 elevation = value;
               });

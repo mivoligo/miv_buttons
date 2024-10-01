@@ -6,10 +6,14 @@ class ValueChanger extends StatefulWidget {
     super.key,
     required this.onValueChanged,
     required this.initialValue,
+    required this.maxValue,
+    required this.minValue,
   });
 
   final ValueChanged<double> onValueChanged;
   final double initialValue;
+  final double maxValue;
+  final double minValue;
 
   @override
   State<ValueChanger> createState() => _ValueChangerState();
@@ -31,7 +35,7 @@ class _ValueChangerState extends State<ValueChanger> {
       children: [
         Button.icon(
           onClick: () {
-            if (value > 0) {
+            if (value > widget.minValue) {
               setState(() {
                 value--;
                 widget.onValueChanged(value);
@@ -53,7 +57,7 @@ class _ValueChangerState extends State<ValueChanger> {
         const SizedBox(width: 16),
         Button.icon(
           onClick: () {
-            if (value < 50) {
+            if (value < widget.maxValue) {
               setState(() {
                 value++;
                 widget.onValueChanged(value);
