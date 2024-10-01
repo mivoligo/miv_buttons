@@ -113,6 +113,7 @@ class _ButtonState extends State<Button> {
         isPressed = false;
       }),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(height: isPressed ? widget.elevation : 0),
           Container(

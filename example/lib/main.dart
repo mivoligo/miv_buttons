@@ -59,15 +59,21 @@ class _ButtonWithLabelState extends State<_ButtonWithLabel> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Button.label(
-          onClick: () {},
-          label: label,
-          backgroundColor: backgroundColor,
-          labelColor: foregroundColor,
-          borderRadius: borderRadius,
-          paddingHorizontal: paddingHorizontal,
-          paddingVertical: paddingVertical,
-          elevation: elevation,
+        ConstrainedBox(
+          constraints: const BoxConstraints(minHeight: 100),
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: Button.label(
+              onClick: () {},
+              label: label,
+              backgroundColor: backgroundColor,
+              labelColor: foregroundColor,
+              borderRadius: borderRadius,
+              paddingHorizontal: paddingHorizontal,
+              paddingVertical: paddingVertical,
+              elevation: elevation,
+            ),
+          ),
         ),
         Expanded(
           child: SingleChildScrollView(
