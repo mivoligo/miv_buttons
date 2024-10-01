@@ -29,8 +29,10 @@ class Button extends StatefulWidget {
     Shape? shape,
     Color? iconColor,
     Color? backgroundColor,
+    Key? key,
   }) {
     return Button._(
+      key: key,
       onClick: onClick,
       shape: shape,
       backgroundColor: backgroundColor,
@@ -49,8 +51,10 @@ class Button extends StatefulWidget {
     Color? backgroundColor,
     Color? foregroundColor,
     double? borderRadius,
+    Key? key,
   }) {
     return Button._(
+      key: key,
       onClick: onClick,
       shape: shape,
       backgroundColor: backgroundColor,
@@ -66,8 +70,10 @@ class Button extends StatefulWidget {
     required VoidCallback? onClick,
     required Widget child,
     Shape? shape,
+    Key? key,
   }) {
     return Button._(
+      key: key,
       onClick: onClick,
       shape: shape,
       child: child,
@@ -101,7 +107,8 @@ class _ButtonState extends State<Button> {
           decoration: BoxDecoration(
             // color of the button's surface
             color: widget.backgroundColor ?? const Color(0xFFEF4444),
-            borderRadius: _borderRadius(Shape.roundedRectangle, widget.borderRadius),
+            borderRadius:
+                _borderRadius(Shape.roundedRectangle, widget.borderRadius),
             shape: _boxShape(widget.shape),
             boxShadow: [
               // black blurry shadow
@@ -138,9 +145,9 @@ BorderRadius? _borderRadius(Shape? shape, double? radius) {
 }
 
 BoxShape _boxShape(Shape? shape) {
-  return switch(shape) {
+  return switch (shape) {
     Shape.roundedRectangle => BoxShape.rectangle,
-  Shape.circle => BoxShape.circle,
-  _ =>  BoxShape.rectangle,
+    Shape.circle => BoxShape.circle,
+    _ => BoxShape.rectangle,
   };
 }
