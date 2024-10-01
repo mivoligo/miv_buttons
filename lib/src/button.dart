@@ -18,6 +18,7 @@ class Button extends StatefulWidget {
     this.horizontalPadding,
     this.verticalPadding,
     this.elevation,
+    this.pressedElevation,
   });
 
   final VoidCallback? onClick;
@@ -28,6 +29,7 @@ class Button extends StatefulWidget {
   final double? horizontalPadding;
   final double? verticalPadding;
   final double? elevation;
+  final double? pressedElevation;
 
   factory Button.icon({
     required VoidCallback? onClick,
@@ -44,7 +46,7 @@ class Button extends StatefulWidget {
       backgroundColor: backgroundColor,
       child: Icon(
         icon,
-        color: iconColor,
+        color: iconColor ?? const Color(0xFFFEFEFE),
       ),
     );
   }
@@ -60,6 +62,7 @@ class Button extends StatefulWidget {
     double? horizontalPadding,
     double? verticalPadding,
     double? elevation,
+    double? pressedElevation,
     Key? key,
   }) {
     return Button._(
@@ -71,9 +74,12 @@ class Button extends StatefulWidget {
       horizontalPadding: horizontalPadding,
       verticalPadding: verticalPadding,
       elevation: elevation,
+      pressedElevation: pressedElevation,
       child: Text(
         label,
-        style: labelStyle ?? const TextStyle().copyWith(color: labelColor),
+        style: labelStyle ??
+            const TextStyle(color: Color(0xFFFEFEFE))
+                .copyWith(color: labelColor),
       ),
     );
   }
@@ -115,17 +121,19 @@ class _ButtonState extends State<Button> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SizedBox(height: isPressed ? widget.elevation : 0),
+          SizedBox(height: isPressed ? (widget.elevation ?? 8) : 0),
           Container(
             padding: EdgeInsets.only(
-              bottom: isPressed ? 0 : (widget.elevation ?? 8),
+              bottom: isPressed
+                  ? (widget.pressedElevation ?? 0)
+                  : (widget.elevation ?? 8),
             ),
             decoration: BoxDecoration(
               color: widget.backgroundColor != null
                   ? HSLColor.fromColor(widget.backgroundColor!)
-                      .withLightness(0.3)
+                      // .withLightness(0.3)
                       .toColor()
-                  : const Color(0xFF991B1B),
+                  : const Color(0xFF9C27B0),
               borderRadius:
                   _borderRadius(Shape.roundedRectangle, widget.borderRadius),
             ),
@@ -135,18 +143,20 @@ class _ButtonState extends State<Button> {
                 vertical: widget.verticalPadding ?? 8,
               ),
               decoration: BoxDecoration(
-                color: widget.backgroundColor ?? const Color(0xFFEF4444),
+                color: widget.backgroundColor ?? const Color(0xFF9C27B0),
                 borderRadius:
                     _borderRadius(Shape.roundedRectangle, widget.borderRadius),
                 boxShadow: [
                   // black blurry shadow
                   BoxShadow(
-                    color: const Color(0xEE222222),
+                    color: const Color(0xDD222222),
                     offset: isPressed
-                        ? const Offset(0, 0)
+                        ? Offset(0, widget.pressedElevation ?? 2)
                         : Offset(0, widget.elevation ?? 8),
-                    blurRadius: isPressed ? 2 : (widget.elevation ?? 8) + 4,
-                    blurStyle: BlurStyle.outer,
+                    blurRadius: isPressed
+                        ? (widget.pressedElevation ?? 2)
+                        : (widget.elevation ?? 8) + 4,
+                    blurStyle: BlurStyle.normal,
                   ),
                 ],
               ),

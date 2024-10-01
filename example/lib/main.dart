@@ -54,6 +54,7 @@ class _ButtonWithLabelState extends State<_ButtonWithLabel> {
   double horizontalPadding = 12;
   double verticalPadding = 8;
   double elevation = 6;
+  double pressedElevation = 2;
 
   @override
   Widget build(BuildContext context) {
@@ -72,6 +73,7 @@ class _ButtonWithLabelState extends State<_ButtonWithLabel> {
               horizontalPadding: horizontalPadding,
               verticalPadding: verticalPadding,
               elevation: elevation,
+              pressedElevation: pressedElevation,
             ),
           ),
         ),
@@ -144,6 +146,17 @@ class _ButtonWithLabelState extends State<_ButtonWithLabel> {
                     onValueChanged: (value) {
                       setState(() {
                         elevation = value;
+                      });
+                    },
+                  ),
+                  const Divider(height: 16),
+                  PropertyValueChange(
+                    propertyName: 'pressedElevation',
+                    initialValue: pressedElevation,
+                    maxValue: 24,
+                    onValueChanged: (value) {
+                      setState(() {
+                        pressedElevation = value;
                       });
                     },
                   ),
