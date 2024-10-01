@@ -8,35 +8,18 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: DemoPage(),
+      home: const DemoPage(),
     );
   }
 }
-
 
 class DemoPage extends StatelessWidget {
   const DemoPage({super.key});
@@ -44,102 +27,195 @@ class DemoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Demo page'),),
-      body: Column(
+      appBar: AppBar(
+        title: const Text('Demo page'),
+      ),
+      body: const _ButtonWithLabel(),
+    );
+  }
+}
+
+class _ButtonWithLabel extends StatefulWidget {
+  const _ButtonWithLabel();
+
+  @override
+  State<_ButtonWithLabel> createState() => _ButtonWithLabelState();
+}
+
+class _ButtonWithLabelState extends State<_ButtonWithLabel> {
+  String label = 'press me';
+  Color backgroundColor = Colors.blue;
+  Color foregroundColor = Colors.white;
+  TextStyle textStyle = const TextStyle(color: Colors.white, fontSize: 16);
+  double borderRadius = 8;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Column(
         children: [
-          ElevatedButton(onPressed: (){}, child: Text('data'))
+          Button.label(
+            onClick: () {},
+            label: label,
+            backgroundColor: backgroundColor,
+            foregroundColor: foregroundColor,
+            borderRadius: borderRadius,
+          ),
+          const SizedBox(height: 24),
+          PropertyLabel(
+            onTextChange: (value) => setState(() {
+              label = value;
+            }),
+            initialValue: label,
+          ),
+          const SizedBox(height: 8),
+          PropertyBackgroundColor(
+            onColorChange: (color) => setState(() {
+              backgroundColor = color;
+            }),
+          ),
+          const SizedBox(height: 8),
+          PropertyBorderRadius(
+            onRadiusChange: (value) {
+              setState(() {
+                borderRadius = value;
+              });
+            },
+            borderRadius: borderRadius,
+          ),
         ],
       ),
     );
   }
 }
 
+class PropertyRow extends StatelessWidget {
+  const PropertyRow({
+    super.key,
+    required this.propertyName,
+    required this.propertyWidget,
+  });
 
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
+  final String propertyName;
+  final Widget propertyWidget;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Text(propertyName),
+        const SizedBox(width: 16),
+        Expanded(child: propertyWidget),
+      ],
+    );
+  }
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class PropertyLabel extends StatelessWidget {
+  const PropertyLabel({
+    super.key,
+    required this.onTextChange,
+    required this.initialValue,
+  });
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
+  final String initialValue;
+  final ValueChanged<String> onTextChange;
+
+  @override
+  Widget build(BuildContext context) {
+    return PropertyRow(
+      propertyName: 'label',
+      propertyWidget: TextFormField(
+        decoration: const InputDecoration(filled: true),
+        initialValue: initialValue,
+        onChanged: (value) => onTextChange(value),
+      ),
+    );
+  }
+}
+
+class PropertyBackgroundColor extends StatelessWidget {
+  const PropertyBackgroundColor({super.key, required this.onColorChange});
+
+  final ValueChanged<Color> onColorChange;
+
+  @override
+  Widget build(BuildContext context) {
+    return PropertyRow(
+      propertyName: 'backgroundColor',
+      propertyWidget: Wrap(
+        children: Colors.primaries
+            .map(
+              (color) => InkWell(
+                onTap: () => onColorChange(color),
+                child: Container(
+                  width: 48,
+                  height: 48,
+                  color: color,
+                ),
+              ),
+            )
+            .toList(growable: false),
+      ),
+    );
+  }
+}
+
+class PropertyBorderRadius extends StatefulWidget {
+  const PropertyBorderRadius({
+    super.key,
+    required this.onRadiusChange,
+    required this.borderRadius,
+  });
+
+  final ValueChanged onRadiusChange;
+  final double borderRadius;
+
+  @override
+  State<PropertyBorderRadius> createState() => _PropertyBorderRadiusState();
+}
+
+class _PropertyBorderRadiusState extends State<PropertyBorderRadius> {
+  late double borderRadius;
+
+  @override
+  void initState() {
+    super.initState();
+    borderRadius = widget.borderRadius;
   }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+    return PropertyRow(
+      propertyName: 'borderRadius',
+      propertyWidget: Row(
+        children: [
+          Button.icon(
+            onClick: () {
+              if (borderRadius > 0) {
+                setState(() {
+                  borderRadius--;
+                  widget.onRadiusChange(borderRadius);
+                });
+              }
+            },
+            icon: Icons.remove,
+          ),
+          Text(borderRadius.toString()),
+          Button.icon(
+            onClick: () {
+              if (borderRadius < 100) {
+                setState(() {
+                  borderRadius++;
+                  widget.onRadiusChange(borderRadius);
+                });
+              }
+            },
+            icon: Icons.add,
+          ),
+        ],
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
