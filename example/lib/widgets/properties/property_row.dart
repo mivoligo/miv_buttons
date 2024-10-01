@@ -12,15 +12,20 @@ class PropertyRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Text(
-          propertyName,
-          style: const TextStyle(color: Colors.black, fontSize: 18),
-        ),
-        const SizedBox(width: 16),
-        Expanded(child: propertyWidget),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: Row(
+        children: [
+          Expanded(
+            child: Text(
+              propertyName,
+              style: const TextStyle(color: Colors.black, fontSize: 18),
+            ),
+          ),
+          const SizedBox(width: 16),
+          Expanded(child: propertyWidget),
+        ],
+      ),
     );
   }
 }

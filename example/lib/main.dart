@@ -3,8 +3,6 @@ import 'package:miv_buttons/miv_buttons.dart';
 
 import 'widgets/properties/properties.dart';
 
-const vGap16 = SizedBox(height: 16);
-
 void main() {
   runApp(const MyApp());
 }
@@ -59,88 +57,97 @@ class _ButtonWithLabelState extends State<_ButtonWithLabel> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        children: [
-          Button.label(
-            onClick: () {},
-            label: label,
-            backgroundColor: backgroundColor,
-            labelColor: foregroundColor,
-            borderRadius: borderRadius,
-            paddingHorizontal: paddingHorizontal,
-            paddingVertical: paddingVertical,
-            elevation: elevation,
+    return Column(
+      children: [
+        Button.label(
+          onClick: () {},
+          label: label,
+          backgroundColor: backgroundColor,
+          labelColor: foregroundColor,
+          borderRadius: borderRadius,
+          paddingHorizontal: paddingHorizontal,
+          paddingVertical: paddingVertical,
+          elevation: elevation,
+        ),
+        Expanded(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                children: [
+                  const SizedBox(height: 48),
+                  PropertyLabel(
+                    onTextChange: (value) => setState(() {
+                      label = value;
+                    }),
+                    initialValue: label,
+                  ),
+                  const Divider(height: 16),
+                  PropertyColorChange(
+                    propertyName: 'backgroundColor',
+                    colors: backgroundColors,
+                    onColorChange: (color) => setState(() {
+                      backgroundColor = color;
+                    }),
+                  ),
+                  const Divider(height: 16),
+                  PropertyColorChange(
+                    propertyName: 'labelColor',
+                    colors: labelColors,
+                    onColorChange: (color) => setState(() {
+                      foregroundColor = color;
+                    }),
+                  ),
+                  const Divider(height: 16),
+                  PropertyValueChange(
+                    propertyName: 'borderRadius',
+                    initialValue: borderRadius,
+                    onValueChanged: (value) {
+                      setState(() {
+                        borderRadius = value;
+                      });
+                    },
+                  ),
+                  const Divider(height: 16),
+                  PropertyValueChange(
+                    propertyName: 'paddingHorizontal',
+                    initialValue: paddingHorizontal,
+                    maxValue: 64,
+                    onValueChanged: (value) {
+                      setState(() {
+                        paddingHorizontal = value;
+                      });
+                    },
+                  ),
+                  const Divider(height: 16),
+                  PropertyValueChange(
+                    propertyName: 'paddingVertical',
+                    initialValue: paddingVertical,
+                    maxValue: 64,
+                    onValueChanged: (value) {
+                      setState(() {
+                        paddingVertical = value;
+                      });
+                    },
+                  ),
+                  const Divider(height: 16),
+                  PropertyValueChange(
+                    propertyName: 'elevation',
+                    initialValue: elevation,
+                    maxValue: 24,
+                    onValueChanged: (value) {
+                      setState(() {
+                        elevation = value;
+                      });
+                    },
+                  ),
+                  const SizedBox(height: 48),
+                ],
+              ),
+            ),
           ),
-          const SizedBox(height: 48),
-          PropertyLabel(
-            onTextChange: (value) => setState(() {
-              label = value;
-            }),
-            initialValue: label,
-          ),
-          vGap16,
-          PropertyColorChange(
-            propertyName: 'backgroundColor',
-            colors: backgroundColors,
-            onColorChange: (color) => setState(() {
-              backgroundColor = color;
-            }),
-          ),
-          vGap16,
-          PropertyColorChange(
-            propertyName: 'labelColor',
-            colors: labelColors,
-            onColorChange: (color) => setState(() {
-              foregroundColor = color;
-            }),
-          ),
-          vGap16,
-          PropertyValueChange(
-            propertyName: 'borderRadius',
-            initialValue: borderRadius,
-            onValueChanged: (value) {
-              setState(() {
-                borderRadius = value;
-              });
-            },
-          ),
-          vGap16,
-          PropertyValueChange(
-            propertyName: 'paddingHorizontal',
-            initialValue: paddingHorizontal,
-            maxValue: 64,
-            onValueChanged: (value) {
-              setState(() {
-                paddingHorizontal = value;
-              });
-            },
-          ),
-          vGap16,
-          PropertyValueChange(
-            propertyName: 'paddingVertical',
-            initialValue: paddingVertical,
-            maxValue: 64,
-            onValueChanged: (value) {
-              setState(() {
-                paddingVertical = value;
-              });
-            },
-          ),
-          vGap16,
-          PropertyValueChange(
-            propertyName: 'elevation',
-            initialValue: elevation,
-            maxValue: 24,
-            onValueChanged: (value) {
-              setState(() {
-                elevation = value;
-              });
-            },
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
