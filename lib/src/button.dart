@@ -37,6 +37,11 @@ class Button extends StatefulWidget {
     Shape? shape,
     Color? iconColor,
     Color? backgroundColor,
+    double? borderRadius,
+    double? horizontalPadding,
+    double? verticalPadding,
+    double? elevation,
+    double? pressedElevation,
     Key? key,
   }) {
     return Button._(
@@ -44,6 +49,11 @@ class Button extends StatefulWidget {
       onClick: onClick,
       shape: shape,
       backgroundColor: backgroundColor,
+      borderRadius: borderRadius,
+      horizontalPadding: horizontalPadding,
+      verticalPadding: verticalPadding,
+      elevation: elevation,
+      pressedElevation: pressedElevation,
       child: Icon(
         icon,
         color: iconColor ?? const Color(0xFFFEFEFE),
