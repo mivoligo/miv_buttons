@@ -15,8 +15,8 @@ class Button extends StatefulWidget {
     this.backgroundColor,
     this.shape,
     this.borderRadius,
-    this.paddingHorizontal,
-    this.paddingVertical,
+    this.horizontalPadding,
+    this.verticalPadding,
     this.elevation,
   });
 
@@ -25,8 +25,8 @@ class Button extends StatefulWidget {
   final Color? backgroundColor;
   final Shape? shape;
   final double? borderRadius;
-  final double? paddingHorizontal;
-  final double? paddingVertical;
+  final double? horizontalPadding;
+  final double? verticalPadding;
   final double? elevation;
 
   factory Button.icon({
@@ -57,8 +57,8 @@ class Button extends StatefulWidget {
     Color? backgroundColor,
     Color? labelColor,
     double? borderRadius,
-    double? paddingHorizontal,
-    double? paddingVertical,
+    double? horizontalPadding,
+    double? verticalPadding,
     double? elevation,
     Key? key,
   }) {
@@ -68,8 +68,8 @@ class Button extends StatefulWidget {
       shape: shape,
       backgroundColor: backgroundColor,
       borderRadius: borderRadius,
-      paddingHorizontal: paddingHorizontal,
-      paddingVertical: paddingVertical,
+      horizontalPadding: horizontalPadding,
+      verticalPadding: verticalPadding,
       elevation: elevation,
       child: Text(
         label,
@@ -131,8 +131,8 @@ class _ButtonState extends State<Button> {
             ),
             child: Container(
               padding: EdgeInsets.symmetric(
-                horizontal: widget.paddingHorizontal ?? 8,
-                vertical: widget.paddingVertical ?? 8,
+                horizontal: widget.horizontalPadding ?? 8,
+                vertical: widget.verticalPadding ?? 8,
               ),
               decoration: BoxDecoration(
                 color: widget.backgroundColor ?? const Color(0xFFEF4444),

@@ -51,8 +51,8 @@ class _ButtonWithLabelState extends State<_ButtonWithLabel> {
   Color foregroundColor = Colors.white;
   TextStyle textStyle = const TextStyle(color: Colors.white, fontSize: 16);
   double borderRadius = 6;
-  double paddingHorizontal = 12;
-  double paddingVertical = 8;
+  double horizontalPadding = 12;
+  double verticalPadding = 8;
   double elevation = 6;
 
   @override
@@ -69,8 +69,8 @@ class _ButtonWithLabelState extends State<_ButtonWithLabel> {
               backgroundColor: backgroundColor,
               labelColor: foregroundColor,
               borderRadius: borderRadius,
-              paddingHorizontal: paddingHorizontal,
-              paddingVertical: paddingVertical,
+              horizontalPadding: horizontalPadding,
+              verticalPadding: verticalPadding,
               elevation: elevation,
             ),
           ),
@@ -116,23 +116,23 @@ class _ButtonWithLabelState extends State<_ButtonWithLabel> {
                   ),
                   const Divider(height: 16),
                   PropertyValueChange(
-                    propertyName: 'paddingHorizontal',
-                    initialValue: paddingHorizontal,
+                    propertyName: 'horizontalPadding',
+                    initialValue: horizontalPadding,
                     maxValue: 64,
                     onValueChanged: (value) {
                       setState(() {
-                        paddingHorizontal = value;
+                        horizontalPadding = value;
                       });
                     },
                   ),
                   const Divider(height: 16),
                   PropertyValueChange(
-                    propertyName: 'paddingVertical',
-                    initialValue: paddingVertical,
+                    propertyName: 'verticalPadding',
+                    initialValue: verticalPadding,
                     maxValue: 64,
                     onValueChanged: (value) {
                       setState(() {
-                        paddingVertical = value;
+                        verticalPadding = value;
                       });
                     },
                   ),
