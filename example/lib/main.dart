@@ -27,6 +27,7 @@ class DemoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey.shade200,
       appBar: AppBar(
         title: const Text('Demo page'),
       ),
@@ -76,6 +77,12 @@ class _ButtonWithLabelState extends State<_ButtonWithLabel> {
             }),
           ),
           const SizedBox(height: 8),
+          PropertyForegroundColor(
+            onColorChange: (color) => setState(() {
+              foregroundColor = color;
+            }),
+          ),
+          const SizedBox(height: 8),
           PropertyBorderRadius(
             onRadiusChange: (value) {
               setState(() {
@@ -104,7 +111,10 @@ class PropertyRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(propertyName),
+        Text(
+          propertyName,
+          style: const TextStyle(color: Colors.black, fontSize: 18),
+        ),
         const SizedBox(width: 16),
         Expanded(child: propertyWidget),
       ],
@@ -146,6 +156,42 @@ class PropertyBackgroundColor extends StatelessWidget {
       propertyName: 'backgroundColor',
       propertyWidget: Wrap(
         children: Colors.primaries
+            .map(
+              (color) => InkWell(
+                onTap: () => onColorChange(color),
+                child: Container(
+                  width: 48,
+                  height: 48,
+                  color: color,
+                ),
+              ),
+            )
+            .toList(growable: false),
+      ),
+    );
+  }
+}
+
+class PropertyForegroundColor extends StatelessWidget {
+  const PropertyForegroundColor({super.key, required this.onColorChange});
+
+  final ValueChanged<Color> onColorChange;
+
+  @override
+  Widget build(BuildContext context) {
+    return PropertyRow(
+      propertyName: 'foregroundColor',
+      propertyWidget: Wrap(
+        children: [
+          Colors.white,
+          Colors.black,
+          Colors.red,
+          Colors.orange,
+          Colors.yellow,
+          Colors.green,
+          Colors.blue,
+          Colors.purple,
+        ]
             .map(
               (color) => InkWell(
                 onTap: () => onColorChange(color),
