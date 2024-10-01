@@ -31,6 +31,7 @@ class _PropertyBorderRadiusState extends State<PropertyBorderRadius> {
     return PropertyRow(
       propertyName: 'borderRadius',
       propertyWidget: Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Button.icon(
             onClick: () {
@@ -43,10 +44,21 @@ class _PropertyBorderRadiusState extends State<PropertyBorderRadius> {
             },
             icon: Icons.remove,
           ),
-          Text(borderRadius.toString()),
+          const SizedBox(width: 16),
+          SizedBox(
+            width: 36,
+            child: Center(
+              child: Text(
+                borderRadius.toStringAsFixed(0),
+                style:
+                    const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
+          const SizedBox(width: 16),
           Button.icon(
             onClick: () {
-              if (borderRadius < 100) {
+              if (borderRadius < 50) {
                 setState(() {
                   borderRadius++;
                   widget.onRadiusChange(borderRadius);
