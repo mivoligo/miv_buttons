@@ -55,7 +55,7 @@ class Button extends StatefulWidget {
     Shape? shape,
     TextStyle? labelStyle,
     Color? backgroundColor,
-    Color? foregroundColor,
+    Color? labelColor,
     double? borderRadius,
     double? paddingHorizontal,
     double? paddingVertical,
@@ -73,7 +73,7 @@ class Button extends StatefulWidget {
       elevation: elevation,
       child: Text(
         label,
-        style: labelStyle ?? const TextStyle().copyWith(color: foregroundColor),
+        style: labelStyle ?? const TextStyle().copyWith(color: labelColor),
       ),
     );
   }
