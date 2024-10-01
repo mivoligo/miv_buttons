@@ -55,6 +55,7 @@ class _ButtonWithLabelState extends State<_ButtonWithLabel> {
   double borderRadius = 6;
   double paddingHorizontal = 12;
   double paddingVertical = 8;
+  double elevation = 6;
 
   @override
   Widget build(BuildContext context) {
@@ -70,8 +71,9 @@ class _ButtonWithLabelState extends State<_ButtonWithLabel> {
             borderRadius: borderRadius,
             paddingHorizontal: paddingHorizontal,
             paddingVertical: paddingVertical,
+            elevation: elevation,
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 48),
           PropertyLabel(
             onTextChange: (value) => setState(() {
               label = value;
@@ -116,6 +118,15 @@ class _ButtonWithLabelState extends State<_ButtonWithLabel> {
             onValueChanged: (value) {
               setState(() {
                 paddingVertical = value;
+              });
+            },
+          ),
+          vGap16,
+          PropertyElevation(
+            initialElevation: elevation,
+            onElevationChanged: (value) {
+              setState(() {
+                elevation = value;
               });
             },
           ),

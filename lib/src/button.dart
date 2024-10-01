@@ -17,6 +17,7 @@ class Button extends StatefulWidget {
     this.borderRadius,
     this.paddingHorizontal,
     this.paddingVertical,
+    this.elevation,
   });
 
   final VoidCallback? onClick;
@@ -26,6 +27,7 @@ class Button extends StatefulWidget {
   final double? borderRadius;
   final double? paddingHorizontal;
   final double? paddingVertical;
+  final double? elevation;
 
   factory Button.icon({
     required VoidCallback? onClick,
@@ -57,6 +59,7 @@ class Button extends StatefulWidget {
     double? borderRadius,
     double? paddingHorizontal,
     double? paddingVertical,
+    double? elevation,
     Key? key,
   }) {
     return Button._(
@@ -67,6 +70,7 @@ class Button extends StatefulWidget {
       borderRadius: borderRadius,
       paddingHorizontal: paddingHorizontal,
       paddingVertical: paddingVertical,
+      elevation: elevation,
       child: Text(
         label,
         style: labelStyle ?? const TextStyle().copyWith(color: foregroundColor),
@@ -109,7 +113,8 @@ class _ButtonState extends State<Button> {
         isPressed = false;
       }),
       child: Transform.translate(
-        offset: isPressed ? const Offset(0, 6) : Offset.zero,
+        offset:
+            isPressed ? Offset(0, (widget.elevation ?? 8) - 2) : Offset.zero,
         child: Container(
           padding: EdgeInsets.symmetric(
             horizontal: widget.paddingHorizontal ?? 8,
@@ -125,8 +130,10 @@ class _ButtonState extends State<Button> {
               // black blurry shadow
               BoxShadow(
                 color: const Color(0xEE222222),
-                offset: isPressed ? const Offset(0, 2) : const Offset(0, 8),
-                blurRadius: isPressed ? 2 : 12,
+                offset: isPressed
+                    ? const Offset(0, 2)
+                    : Offset(0, widget.elevation ?? 8),
+                blurRadius: isPressed ? 2 : (widget.elevation ?? 8) + 4,
                 blurStyle: BlurStyle.outer,
               ),
               // side of the button
@@ -136,7 +143,9 @@ class _ButtonState extends State<Button> {
                         .withLightness(0.3)
                         .toColor()
                     : const Color(0xFF991B1B),
-                offset: isPressed ? const Offset(0, 2) : const Offset(0, 8),
+                offset: isPressed
+                    ? const Offset(0, 2)
+                    : Offset(0, widget.elevation ?? 8),
               ),
             ],
           ),
