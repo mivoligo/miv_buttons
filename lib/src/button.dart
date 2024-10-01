@@ -15,6 +15,8 @@ class Button extends StatefulWidget {
     this.backgroundColor,
     this.shape,
     this.borderRadius,
+    this.paddingHorizontal,
+    this.paddingVertical,
   });
 
   final VoidCallback? onClick;
@@ -22,6 +24,8 @@ class Button extends StatefulWidget {
   final Color? backgroundColor;
   final Shape? shape;
   final double? borderRadius;
+  final double? paddingHorizontal;
+  final double? paddingVertical;
 
   factory Button.icon({
     required VoidCallback? onClick,
@@ -51,6 +55,8 @@ class Button extends StatefulWidget {
     Color? backgroundColor,
     Color? foregroundColor,
     double? borderRadius,
+    double? paddingHorizontal,
+    double? paddingVertical,
     Key? key,
   }) {
     return Button._(
@@ -59,6 +65,8 @@ class Button extends StatefulWidget {
       shape: shape,
       backgroundColor: backgroundColor,
       borderRadius: borderRadius,
+      paddingHorizontal: paddingHorizontal,
+      paddingVertical: paddingVertical,
       child: Text(
         label,
         style: labelStyle ?? const TextStyle().copyWith(color: foregroundColor),
@@ -103,7 +111,9 @@ class _ButtonState extends State<Button> {
       child: Transform.translate(
         offset: isPressed ? const Offset(0, 6) : Offset.zero,
         child: Container(
-          padding: const EdgeInsets.all(8),
+          padding: EdgeInsets.symmetric(
+              horizontal: widget.paddingHorizontal ?? 8,
+              vertical: widget.paddingVertical ?? 8),
           decoration: BoxDecoration(
             // color of the button's surface
             color: widget.backgroundColor ?? const Color(0xFFEF4444),

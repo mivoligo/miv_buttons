@@ -3,6 +3,8 @@ import 'package:miv_buttons/miv_buttons.dart';
 
 import 'widgets/properties/properties.dart';
 
+const vGap16 = SizedBox(height: 16);
+
 void main() {
   runApp(const MyApp());
 }
@@ -50,7 +52,9 @@ class _ButtonWithLabelState extends State<_ButtonWithLabel> {
   Color backgroundColor = Colors.blue;
   Color foregroundColor = Colors.white;
   TextStyle textStyle = const TextStyle(color: Colors.white, fontSize: 16);
-  double borderRadius = 8;
+  double borderRadius = 6;
+  double paddingHorizontal = 12;
+  double paddingVertical = 8;
 
   @override
   Widget build(BuildContext context) {
@@ -64,6 +68,8 @@ class _ButtonWithLabelState extends State<_ButtonWithLabel> {
             backgroundColor: backgroundColor,
             foregroundColor: foregroundColor,
             borderRadius: borderRadius,
+            paddingHorizontal: paddingHorizontal,
+            paddingVertical: paddingVertical,
           ),
           const SizedBox(height: 24),
           PropertyLabel(
@@ -72,19 +78,19 @@ class _ButtonWithLabelState extends State<_ButtonWithLabel> {
             }),
             initialValue: label,
           ),
-          const SizedBox(height: 8),
+          vGap16,
           PropertyBackgroundColor(
             onColorChange: (color) => setState(() {
               backgroundColor = color;
             }),
           ),
-          const SizedBox(height: 8),
+          vGap16,
           PropertyForegroundColor(
             onColorChange: (color) => setState(() {
               foregroundColor = color;
             }),
           ),
-          const SizedBox(height: 8),
+          vGap16,
           PropertyBorderRadius(
             onRadiusChange: (value) {
               setState(() {
@@ -92,6 +98,26 @@ class _ButtonWithLabelState extends State<_ButtonWithLabel> {
               });
             },
             borderRadius: borderRadius,
+          ),
+          vGap16,
+          PropertyPadding(
+            propertyName: 'paddingHorizontal',
+            initialValue: paddingHorizontal,
+            onValueChanged: (value) {
+              setState(() {
+                paddingHorizontal = value;
+              });
+            },
+          ),
+          vGap16,
+          PropertyPadding(
+            propertyName: 'paddingVertical',
+            initialValue: paddingVertical,
+            onValueChanged: (value) {
+              setState(() {
+                paddingVertical = value;
+              });
+            },
           ),
         ],
       ),
