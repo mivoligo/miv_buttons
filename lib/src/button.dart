@@ -112,8 +112,9 @@ class _ButtonState extends State<Button> {
         offset: isPressed ? const Offset(0, 6) : Offset.zero,
         child: Container(
           padding: EdgeInsets.symmetric(
-              horizontal: widget.paddingHorizontal ?? 8,
-              vertical: widget.paddingVertical ?? 8),
+            horizontal: widget.paddingHorizontal ?? 8,
+            vertical: widget.paddingVertical ?? 8,
+          ),
           decoration: BoxDecoration(
             // color of the button's surface
             color: widget.backgroundColor ?? const Color(0xFFEF4444),
@@ -123,10 +124,11 @@ class _ButtonState extends State<Button> {
             boxShadow: [
               // black blurry shadow
               BoxShadow(
-                  color: const Color(0xEE222222),
-                  offset: isPressed ? const Offset(0, 2) : const Offset(0, 8),
-                  blurRadius: isPressed ? 2 : 12,
-                  blurStyle: BlurStyle.outer),
+                color: const Color(0xEE222222),
+                offset: isPressed ? const Offset(0, 2) : const Offset(0, 8),
+                blurRadius: isPressed ? 2 : 12,
+                blurStyle: BlurStyle.outer,
+              ),
               // side of the button
               BoxShadow(
                 color: widget.backgroundColor != null
