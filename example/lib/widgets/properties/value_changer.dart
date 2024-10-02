@@ -31,7 +31,6 @@ class _ValueChangerState extends State<ValueChanger> {
   @override
   Widget build(BuildContext context) {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Button.icon(
           onClick: () {

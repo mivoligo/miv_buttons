@@ -26,9 +26,8 @@ class _ButtonWithIcon extends StatefulWidget {
 class _ButtonWithIconState extends State<_ButtonWithIcon> {
   IconData icon = Icons.fingerprint;
   Color backgroundColor = Colors.blue;
-  Color foregroundColor = Colors.white;
-  TextStyle textStyle = const TextStyle(color: Colors.white, fontSize: 16);
-  double borderRadius = 6;
+  Color iconColor = Colors.white;
+  double borderRadius = 8;
   double horizontalPadding = 12;
   double verticalPadding = 8;
   double elevation = 6;
@@ -46,7 +45,7 @@ class _ButtonWithIconState extends State<_ButtonWithIcon> {
               onClick: () {},
               icon: icon,
               backgroundColor: backgroundColor,
-              iconColor: foregroundColor,
+              iconColor: iconColor,
               borderRadius: borderRadius,
               horizontalPadding: horizontalPadding,
               verticalPadding: verticalPadding,
@@ -55,6 +54,7 @@ class _ButtonWithIconState extends State<_ButtonWithIcon> {
             ),
           ),
         ),
+        const SizedBox(height: 24),
         Expanded(
           child: SingleChildScrollView(
             child: Padding(
@@ -80,7 +80,7 @@ class _ButtonWithIconState extends State<_ButtonWithIcon> {
                     propertyName: 'iconColor',
                     colors: labelColors,
                     onColorChange: (color) => setState(() {
-                      foregroundColor = color;
+                      iconColor = color;
                     }),
                   ),
                   const Divider(height: 16),

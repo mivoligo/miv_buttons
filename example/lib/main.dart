@@ -3,8 +3,6 @@ import 'package:example/pages/button_label_page.dart';
 import 'package:flutter/material.dart';
 import 'package:miv_buttons/miv_buttons.dart';
 
-import 'widgets/properties/properties.dart';
-
 void main() {
   runApp(const MyApp());
 }
@@ -34,63 +32,74 @@ class DemoPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Demo page'),
       ),
-      body: Column(
-        children: [
-          Text('click selected button to find out more about its properties'),
-          Row(
-            children: [
-              Text('Button.label()'),
-              Button.label(
-                onClick: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return ButtonLabelPage();
-                      },
-                    ),
-                  );
-                },
-                label: 'PRESS ME!',
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Text('Button.icon()'),
-              Button.icon(
-                onClick: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return ButtonIconPage();
-                      },
-                    ),
-                  );
-                },
-                icon: Icons.fingerprint,
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Text('Button.widget()'),
-              Button.widget(
-                onClick: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return ButtonLabelPage();
-                      },
-                    ),
-                  );
-                },
-                child: Row(
-                  children: [Icon(Icons.fingerprint), Text('PRESS ME!')],
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: [
+            Text('click selected button to find out more about its properties'),
+            Column(
+              children: [
+                Button.label(
+                  onClick: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return ButtonLabelPage();
+                        },
+                      ),
+                    );
+                  },
+                  label: 'PRESS ME!',
+                  backgroundColor: Colors.redAccent,
                 ),
-              ),
-            ],
-          ),
-        ],
+                SizedBox(height: 8),
+                Text('Button.label()'),
+              ],
+            ),
+            Divider(height: 24),
+            Column(
+              children: [
+                Button.icon(
+                  onClick: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return ButtonIconPage();
+                        },
+                      ),
+                    );
+                  },
+                  icon: Icons.fingerprint,
+                  backgroundColor: Colors.green,
+                ),
+                SizedBox(height: 8),
+                Text('Button.icon()'),
+              ],
+            ),
+            Divider(height: 24),
+            Column(
+              children: [
+                Button.widget(
+                  onClick: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return ButtonLabelPage();
+                        },
+                      ),
+                    );
+                  },
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [Icon(Icons.fingerprint), Text('PRESS ME!')],
+                  ),
+                ),
+                SizedBox(height: 8),
+                Text('Button.widget()'),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

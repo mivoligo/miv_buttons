@@ -26,9 +26,8 @@ class _ButtonWithLabel extends StatefulWidget {
 class _ButtonWithLabelState extends State<_ButtonWithLabel> {
   String label = 'press me';
   Color backgroundColor = Colors.blue;
-  Color foregroundColor = Colors.white;
-  TextStyle textStyle = const TextStyle(color: Colors.white, fontSize: 16);
-  double borderRadius = 6;
+  Color labelColor = Colors.white;
+  double borderRadius = 8;
   double horizontalPadding = 12;
   double verticalPadding = 8;
   double elevation = 6;
@@ -46,7 +45,7 @@ class _ButtonWithLabelState extends State<_ButtonWithLabel> {
               onClick: () {},
               label: label,
               backgroundColor: backgroundColor,
-              labelColor: foregroundColor,
+              labelColor: labelColor,
               borderRadius: borderRadius,
               horizontalPadding: horizontalPadding,
               verticalPadding: verticalPadding,
@@ -55,6 +54,7 @@ class _ButtonWithLabelState extends State<_ButtonWithLabel> {
             ),
           ),
         ),
+        const SizedBox(height: 24),
         Expanded(
           child: SingleChildScrollView(
             child: Padding(
@@ -81,7 +81,7 @@ class _ButtonWithLabelState extends State<_ButtonWithLabel> {
                     propertyName: 'labelColor',
                     colors: labelColors,
                     onColorChange: (color) => setState(() {
-                      foregroundColor = color;
+                      labelColor = color;
                     }),
                   ),
                   const Divider(height: 16),
