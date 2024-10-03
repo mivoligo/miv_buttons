@@ -110,6 +110,93 @@ class Button extends StatefulWidget {
     );
   }
 
+  factory Button.iconLabel({
+    required VoidCallback? onClick,
+    required IconData icon,
+    required String label,
+    bool isHorizontal = true,
+    double? gap,
+    Shape? shape,
+    TextStyle? labelStyle,
+    Color? backgroundColor,
+    Color? foregroundColor,
+    double? borderRadius,
+    double? horizontalPadding,
+    double? verticalPadding,
+    double? elevation,
+    double? pressedElevation,
+  }) {
+    return Button._(
+      onClick: onClick,
+      shape: shape,
+      backgroundColor: backgroundColor,
+      borderRadius: borderRadius,
+      horizontalPadding: horizontalPadding,
+      verticalPadding: verticalPadding,
+      elevation: elevation,
+      pressedElevation: pressedElevation,
+      child: Flex(
+        direction: isHorizontal ? Axis.horizontal : Axis.vertical,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, color: foregroundColor),
+          if (isHorizontal)
+            SizedBox(width: gap ?? kLabelIconGap)
+          else
+            SizedBox(height: gap ?? kLabelIconGap),
+          Text(
+            label,
+            style: labelStyle ??
+                const TextStyle().copyWith(color: foregroundColor),
+          ),
+        ],
+      ),
+    );
+  }
+  factory Button.labelIcon({
+    required VoidCallback? onClick,
+    required IconData icon,
+    required String label,
+    bool isHorizontal = true,
+    double? gap,
+    Shape? shape,
+    TextStyle? labelStyle,
+    Color? backgroundColor,
+    Color? foregroundColor,
+    double? borderRadius,
+    double? horizontalPadding,
+    double? verticalPadding,
+    double? elevation,
+    double? pressedElevation,
+  }) {
+    return Button._(
+      onClick: onClick,
+      shape: shape,
+      backgroundColor: backgroundColor,
+      borderRadius: borderRadius,
+      horizontalPadding: horizontalPadding,
+      verticalPadding: verticalPadding,
+      elevation: elevation,
+      pressedElevation: pressedElevation,
+      child: Flex(
+        direction: isHorizontal ? Axis.horizontal : Axis.vertical,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            label,
+            style: labelStyle ??
+                const TextStyle().copyWith(color: foregroundColor),
+          ),
+          if (isHorizontal)
+            SizedBox(width: gap ?? kLabelIconGap)
+          else
+            SizedBox(height: gap ?? kLabelIconGap),
+          Icon(icon, color: foregroundColor),
+        ],
+      ),
+    );
+  }
+
   factory Button.widget({
     required VoidCallback? onClick,
     required Widget child,
@@ -204,7 +291,8 @@ class _ButtonState extends State<Button> {
 
 BorderRadius? _borderRadius(Shape? shape, double? radius) {
   return switch (shape) {
-    Shape.roundedRectangle => BorderRadius.all(Radius.circular(radius ?? kBorderRadius)),
+    Shape.roundedRectangle =>
+      BorderRadius.all(Radius.circular(radius ?? kBorderRadius)),
     Shape.stadium || Shape.circle => null,
     Shape.rectangle => BorderRadius.zero,
     _ => const BorderRadius.all(Radius.circular(kBorderRadius)),

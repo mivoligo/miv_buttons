@@ -1,7 +1,7 @@
-import 'package:example/pages/button_icon_page.dart';
-import 'package:example/pages/button_label_page.dart';
 import 'package:flutter/material.dart';
 import 'package:miv_buttons/miv_buttons.dart';
+
+import 'pages/pages.dart';
 
 void main() {
   runApp(const MyApp());
@@ -77,25 +77,63 @@ class DemoPage extends StatelessWidget {
               ],
             ),
             Divider(height: 24),
+            Column(children: [
+              Button.widget(
+                onClick: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return ButtonLabelPage();
+                      },
+                    ),
+                  );
+                },
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [Icon(Icons.fingerprint), Text('PRESS ME!')],
+                ),
+              ),
+              SizedBox(height: 8),
+              Text('Button.widget()'),
+            ]),
+            Divider(height: 24),
             Column(
               children: [
-                Button.widget(
+                Button.iconLabel(
                   onClick: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) {
-                          return ButtonLabelPage();
+                          return ButtonIconLabelPage();
                         },
                       ),
                     );
                   },
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [Icon(Icons.fingerprint), Text('PRESS ME!')],
-                  ),
+                  icon: Icons.fingerprint,
+                  label: 'PRESS ME',
                 ),
                 SizedBox(height: 8),
-                Text('Button.widget()'),
+                Text('Button.iconLabel'),
+              ],
+            ),
+            Divider(height: 24),
+            Column(
+              children: [
+                Button.labelIcon(
+                  onClick: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return ButtonLabelIconPage();
+                        },
+                      ),
+                    );
+                  },
+                  icon: Icons.fingerprint,
+                  label: 'PRESS ME',
+                ),
+                SizedBox(height: 8),
+                Text('Button.labelIcon'),
               ],
             ),
           ],

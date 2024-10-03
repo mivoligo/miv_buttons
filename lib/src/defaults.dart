@@ -8,3 +8,4 @@ const kHorizontalPadding = 12.0;
 const kVerticalPadding = 8.0;
 const kElevation = 6.0;
 const kPressedElevation = 2.0;
+const kLabelIconGap = 8.0;
