@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:miv_buttons/src/defaults.dart';
 
 enum Shape {
   circle,
@@ -19,7 +20,22 @@ class Button extends StatefulWidget {
     this.verticalPadding,
     this.elevation,
     this.pressedElevation,
-  });
+  })  : assert(
+          horizontalPadding == null || horizontalPadding >= 0,
+          'horizontalPadding cannot be negative',
+        ),
+        assert(
+          verticalPadding == null || verticalPadding >= 0,
+          'verticalPadding cannot be negative',
+        ),
+        assert(
+          elevation == null || elevation >= 0,
+          'elevation cannot be negative',
+        ),
+        assert(
+          pressedElevation == null || pressedElevation >= 0,
+          'pressedElevation cannot be negative',
+        );
 
   final VoidCallback? onClick;
   final Widget child;
@@ -56,7 +72,7 @@ class Button extends StatefulWidget {
       pressedElevation: pressedElevation,
       child: Icon(
         icon,
-        color: iconColor ?? const Color(0xFFFEFEFE),
+        color: iconColor ?? kForegroundColor,
       ),
     );
   }
@@ -88,7 +104,7 @@ class Button extends StatefulWidget {
       child: Text(
         label,
         style: labelStyle ??
-            const TextStyle(color: Color(0xFFFEFEFE))
+            const TextStyle(color: kForegroundColor)
                 .copyWith(color: labelColor),
       ),
     );
@@ -131,42 +147,49 @@ class _ButtonState extends State<Button> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SizedBox(height: isPressed ? (widget.elevation ?? 8) : 0),
+          SizedBox(
+            height: isPressed
+                ? (widget.elevation ?? kElevation)
+                : (widget.pressedElevation ?? kPressedElevation),
+          ),
           Container(
             padding: EdgeInsets.only(
               bottom: isPressed
-                  ? (widget.pressedElevation ?? 0)
-                  : (widget.elevation ?? 8),
+                  ? (widget.pressedElevation ?? kPressedElevation)
+                  : (widget.elevation ?? kElevation),
             ),
             decoration: BoxDecoration(
-              color: widget.backgroundColor != null
-                  ? HSLColor.fromColor(widget.backgroundColor!)
-                      // .withLightness(0.3)
-                      .toColor()
-                  : const Color(0xFF9C27B0),
+              color: HSLColor.fromColor(
+                widget.backgroundColor != null
+                    ? widget.backgroundColor!
+                    : kBackgroundColor,
+              ).withLightness(0.3).toColor(),
               borderRadius:
                   _borderRadius(Shape.roundedRectangle, widget.borderRadius),
             ),
             child: Container(
               padding: EdgeInsets.symmetric(
-                horizontal: widget.horizontalPadding ?? 8,
-                vertical: widget.verticalPadding ?? 8,
+                horizontal: widget.horizontalPadding ?? kHorizontalPadding,
+                vertical: widget.verticalPadding ?? kVerticalPadding,
               ),
               decoration: BoxDecoration(
-                color: widget.backgroundColor ?? const Color(0xFF9C27B0),
+                color: widget.backgroundColor ?? kBackgroundColor,
                 borderRadius:
                     _borderRadius(Shape.roundedRectangle, widget.borderRadius),
                 boxShadow: [
                   // black blurry shadow
                   BoxShadow(
-                    color: const Color(0xDD222222),
+                    color: kShadowColor,
                     offset: isPressed
-                        ? Offset(0, widget.pressedElevation ?? 2)
-                        : Offset(0, widget.elevation ?? 8),
+                        ? Offset(
+                            0,
+                            widget.pressedElevation ?? kPressedElevation,
+                          )
+                        : Offset(0, widget.elevation ?? kElevation),
                     blurRadius: isPressed
-                        ? (widget.pressedElevation ?? 2)
-                        : (widget.elevation ?? 8) + 4,
-                    blurStyle: BlurStyle.normal,
+                        ? (widget.pressedElevation ?? kPressedElevation)
+                        : (widget.elevation ?? kElevation),
+                    blurStyle: BlurStyle.outer,
                   ),
                 ],
               ),
@@ -181,17 +204,17 @@ class _ButtonState extends State<Button> {
 
 BorderRadius? _borderRadius(Shape? shape, double? radius) {
   return switch (shape) {
-    Shape.roundedRectangle => BorderRadius.all(Radius.circular(radius ?? 8)),
+    Shape.roundedRectangle => BorderRadius.all(Radius.circular(radius ?? kBorderRadius)),
     Shape.stadium || Shape.circle => null,
     Shape.rectangle => BorderRadius.zero,
-    _ => const BorderRadius.all(Radius.circular(8)),
+    _ => const BorderRadius.all(Radius.circular(kBorderRadius)),
   };
 }
 
-BoxShape _boxShape(Shape? shape) {
-  return switch (shape) {
-    Shape.roundedRectangle => BoxShape.rectangle,
-    Shape.circle => BoxShape.circle,
-    _ => BoxShape.rectangle,
-  };
-}
+// BoxShape _boxShape(Shape? shape) {
+//   return switch (shape) {
+//     Shape.roundedRectangle => BoxShape.rectangle,
+//     Shape.circle => BoxShape.circle,
+//     _ => BoxShape.rectangle,
+//   };
+// }
