@@ -25,7 +25,7 @@ class _ButtonWithIcon extends StatefulWidget {
 
 class _ButtonWithIconState extends State<_ButtonWithIcon> {
   IconData icon = Icons.fingerprint;
-  Color backgroundColor = Colors.blue;
+  Color backgroundColor = Colors.green;
   Color iconColor = Colors.white;
   double borderRadius = 8;
   double horizontalPadding = 12;

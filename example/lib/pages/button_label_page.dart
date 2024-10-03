@@ -24,8 +24,8 @@ class _ButtonWithLabel extends StatefulWidget {
 }
 
 class _ButtonWithLabelState extends State<_ButtonWithLabel> {
-  String label = 'press me';
-  Color backgroundColor = Colors.blue;
+  String label = 'PRESS ME!';
+  Color backgroundColor = Colors.redAccent;
   Color labelColor = Colors.white;
   double borderRadius = 8;
   double horizontalPadding = 12;
