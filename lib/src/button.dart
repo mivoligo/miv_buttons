@@ -9,11 +9,11 @@ enum Shape {
 }
 
 class Button extends StatefulWidget {
-  const Button._({
+  const Button({
     super.key,
     required this.onClick,
     required this.child,
-    this.backgroundColor,
+    this.color,
     this.shape,
     this.borderRadius,
     this.horizontalPadding,
@@ -37,14 +37,66 @@ class Button extends StatefulWidget {
           'pressedElevation cannot be negative',
         );
 
+  /// The callback function that is triggered when the button is clicked.
+  ///
+  /// If `null`, the button will be disabled and will not respond to any tap
+  /// or click events. When provided, this function will be called
+  /// whenever the button is pressed.
+  ///
+  /// Example:
+  /// ```dart
+  /// Button(
+  ///   onClick: () {
+  ///     print('Button pressed!');
+  ///   },
+  /// );
+  /// ```
+  ///
+  /// See also: [VoidCallback] for more information on the function type.
   final VoidCallback? onClick;
+
+  /// The widget which is inside the button.
+  ///
+  /// It could be any widget, for example [Text], [Icon], [Row]
   final Widget child;
-  final Color? backgroundColor;
+
+  /// The color of the button.
+  ///
+  /// Defines the color of the button, applied it's surface.
+  /// If `null`, the default color ([kColor]) will be used.
+  final Color? color;
   final Shape? shape;
+
+  /// The border radius of the button.
+  ///
+  /// Determines the roundness of the corners of the button in pixels.
+  /// If `null`, the default border radius ([kBorderRadius]) will be applied.
   final double? borderRadius;
+
+  /// The horizontal padding inside the button.
+  ///
+  /// Defines the amount of horizontal padding between the content (like text or icon)
+  /// and the edges of the button.
+  /// If `null`, the default horizontal padding ([kHorizontalPadding]) will be applied.
   final double? horizontalPadding;
+
+  /// The vertical padding inside the button.
+  ///
+  /// Defines the amount of vertical padding between the content  (like text or icon)
+  /// and the edges of the button.
+  /// If `null`, the default vertical padding ([kVerticalPadding]) will be applied.
   final double? verticalPadding;
+
+  /// The elevation of the button.
+  ///
+  /// Specifies the elevation of the button, making it appear raised above the surface.
+  /// If `null`, the default elevation ([kElevation]) for the button will be applied.
   final double? elevation;
+
+  /// The elevation of the button when pressed.
+  ///
+  /// Specifies the elevation of the button, making it appear raised above the surface.
+  /// If `null`, the default pressed elevation ([kPressedElevation]) for the button will be applied.
   final double? pressedElevation;
 
   factory Button.icon({
@@ -52,7 +104,7 @@ class Button extends StatefulWidget {
     required IconData icon,
     Shape? shape,
     Color? iconColor,
-    Color? backgroundColor,
+    Color? color,
     double? borderRadius,
     double? horizontalPadding,
     double? verticalPadding,
@@ -60,11 +112,11 @@ class Button extends StatefulWidget {
     double? pressedElevation,
     Key? key,
   }) {
-    return Button._(
+    return Button(
       key: key,
       onClick: onClick,
       shape: shape,
-      backgroundColor: backgroundColor,
+      color: color,
       borderRadius: borderRadius,
       horizontalPadding: horizontalPadding,
       verticalPadding: verticalPadding,
@@ -82,7 +134,7 @@ class Button extends StatefulWidget {
     required String label,
     Shape? shape,
     TextStyle? labelStyle,
-    Color? backgroundColor,
+    Color? color,
     Color? labelColor,
     double? borderRadius,
     double? horizontalPadding,
@@ -91,11 +143,11 @@ class Button extends StatefulWidget {
     double? pressedElevation,
     Key? key,
   }) {
-    return Button._(
+    return Button(
       key: key,
       onClick: onClick,
       shape: shape,
-      backgroundColor: backgroundColor,
+      color: color,
       borderRadius: borderRadius,
       horizontalPadding: horizontalPadding,
       verticalPadding: verticalPadding,
@@ -118,7 +170,7 @@ class Button extends StatefulWidget {
     double? gap,
     Shape? shape,
     TextStyle? labelStyle,
-    Color? backgroundColor,
+    Color? color,
     Color? foregroundColor,
     double? borderRadius,
     double? horizontalPadding,
@@ -126,10 +178,10 @@ class Button extends StatefulWidget {
     double? elevation,
     double? pressedElevation,
   }) {
-    return Button._(
+    return Button(
       onClick: onClick,
       shape: shape,
-      backgroundColor: backgroundColor,
+      color: color,
       borderRadius: borderRadius,
       horizontalPadding: horizontalPadding,
       verticalPadding: verticalPadding,
@@ -161,7 +213,7 @@ class Button extends StatefulWidget {
     double? gap,
     Shape? shape,
     TextStyle? labelStyle,
-    Color? backgroundColor,
+    Color? color,
     Color? foregroundColor,
     double? borderRadius,
     double? horizontalPadding,
@@ -169,10 +221,10 @@ class Button extends StatefulWidget {
     double? elevation,
     double? pressedElevation,
   }) {
-    return Button._(
+    return Button(
       onClick: onClick,
       shape: shape,
-      backgroundColor: backgroundColor,
+      color: color,
       borderRadius: borderRadius,
       horizontalPadding: horizontalPadding,
       verticalPadding: verticalPadding,
@@ -194,20 +246,6 @@ class Button extends StatefulWidget {
           Icon(icon, color: foregroundColor),
         ],
       ),
-    );
-  }
-
-  factory Button.widget({
-    required VoidCallback? onClick,
-    required Widget child,
-    Shape? shape,
-    Key? key,
-  }) {
-    return Button._(
-      key: key,
-      onClick: onClick,
-      shape: shape,
-      child: child,
     );
   }
 
@@ -247,9 +285,7 @@ class _ButtonState extends State<Button> {
             ),
             decoration: BoxDecoration(
               color: HSLColor.fromColor(
-                widget.backgroundColor != null
-                    ? widget.backgroundColor!
-                    : kBackgroundColor,
+                widget.color != null ? widget.color! : kColor,
               ).withLightness(0.3).toColor(),
               borderRadius:
                   _borderRadius(Shape.roundedRectangle, widget.borderRadius),
@@ -260,7 +296,7 @@ class _ButtonState extends State<Button> {
                 vertical: widget.verticalPadding ?? kVerticalPadding,
               ),
               decoration: BoxDecoration(
-                color: widget.backgroundColor ?? kBackgroundColor,
+                color: widget.color ?? kColor,
                 borderRadius:
                     _borderRadius(Shape.roundedRectangle, widget.borderRadius),
                 boxShadow: [

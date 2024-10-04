@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-const kBackgroundColor = Color(0xFF2196F3);
+const kColor = Color(0xFF2196F3);
 const kForegroundColor = Color(0xFFFFFFFF);
 const kShadowColor = Color(0xDD222222);
 const kBorderRadius = 8.0;

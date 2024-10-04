@@ -55,7 +55,7 @@ class DemoPage extends StatelessWidget {
                       );
                     },
                     label: 'PRESS ME!',
-                    backgroundColor: Colors.redAccent,
+                    color: Colors.redAccent,
                   ),
                   const SizedBox(height: 8),
                   const Text('Button.label()'),
@@ -75,7 +75,7 @@ class DemoPage extends StatelessWidget {
                       );
                     },
                     icon: Icons.fingerprint,
-                    backgroundColor: Colors.green,
+                    color: Colors.green,
                   ),
                   const SizedBox(height: 8),
                   const Text('Button.icon()'),
@@ -96,7 +96,7 @@ class DemoPage extends StatelessWidget {
                     },
                     icon: Icons.fingerprint,
                     label: 'PRESS ME',
-                    backgroundColor: Colors.amber,
+                    color: Colors.amber,
                   ),
                   const SizedBox(height: 8),
                   const Text('Button.iconLabel()'),

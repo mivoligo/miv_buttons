@@ -25,7 +25,7 @@ class _ButtonWithIcon extends StatefulWidget {
 
 class _ButtonWithIconState extends State<_ButtonWithIcon> {
   IconData icon = Icons.fingerprint;
-  Color backgroundColor = Colors.green;
+  Color color = Colors.green;
   Color iconColor = Colors.white;
   double borderRadius = 8;
   double horizontalPadding = 12;
@@ -44,7 +44,7 @@ class _ButtonWithIconState extends State<_ButtonWithIcon> {
             child: Button.icon(
               onClick: () {},
               icon: icon,
-              backgroundColor: backgroundColor,
+              color: color,
               iconColor: iconColor,
               borderRadius: borderRadius,
               horizontalPadding: horizontalPadding,
@@ -69,18 +69,18 @@ class _ButtonWithIconState extends State<_ButtonWithIcon> {
                   ),
                   const Divider(height: 16),
                   PropertyColorChange(
-                    propertyName: 'backgroundColor',
+                    propertyName: 'color',
                     colors: backgroundColors,
-                    onColorChange: (color) => setState(() {
-                      backgroundColor = color;
+                    onColorChange: (value) => setState(() {
+                      color = value;
                     }),
                   ),
                   const Divider(height: 16),
                   PropertyColorChange(
                     propertyName: 'iconColor',
                     colors: labelColors,
-                    onColorChange: (color) => setState(() {
-                      iconColor = color;
+                    onColorChange: (value) => setState(() {
+                      iconColor = value;
                     }),
                   ),
                   const Divider(height: 16),

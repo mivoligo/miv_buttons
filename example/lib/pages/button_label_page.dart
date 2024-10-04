@@ -25,7 +25,7 @@ class _ButtonWithLabel extends StatefulWidget {
 
 class _ButtonWithLabelState extends State<_ButtonWithLabel> {
   String label = 'PRESS ME!';
-  Color backgroundColor = Colors.redAccent;
+  Color color = Colors.redAccent;
   Color labelColor = Colors.white;
   double borderRadius = 8;
   double horizontalPadding = 12;
@@ -44,7 +44,7 @@ class _ButtonWithLabelState extends State<_ButtonWithLabel> {
             child: Button.label(
               onClick: () {},
               label: label,
-              backgroundColor: backgroundColor,
+              color: color,
               labelColor: labelColor,
               borderRadius: borderRadius,
               horizontalPadding: horizontalPadding,
@@ -70,18 +70,18 @@ class _ButtonWithLabelState extends State<_ButtonWithLabel> {
                   ),
                   const Divider(height: 16),
                   PropertyColorChange(
-                    propertyName: 'backgroundColor',
+                    propertyName: 'color',
                     colors: backgroundColors,
-                    onColorChange: (color) => setState(() {
-                      backgroundColor = color;
+                    onColorChange: (value) => setState(() {
+                      color = value;
                     }),
                   ),
                   const Divider(height: 16),
                   PropertyColorChange(
                     propertyName: 'labelColor',
                     colors: labelColors,
-                    onColorChange: (color) => setState(() {
-                      labelColor = color;
+                    onColorChange: (value) => setState(() {
+                      labelColor = value;
                     }),
                   ),
                   const Divider(height: 16),
