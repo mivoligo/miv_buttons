@@ -26,8 +26,8 @@ class _ButtonWithIconLabel extends StatefulWidget {
 class _ButtonWithIconLabelState extends State<_ButtonWithIconLabel> {
   String label = 'PRESS ME!';
   IconData icon = Icons.fingerprint;
-  Color backgroundColor = Colors.green;
-  Color foregroundColor = Colors.white;
+  Color backgroundColor = Colors.amber;
+  Color foregroundColor = Colors.black;
   double borderRadius = 8;
   double horizontalPadding = 12;
   double verticalPadding = 8;

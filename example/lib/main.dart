@@ -30,113 +30,101 @@ class DemoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Demo page'),
+        title: const Text('Demo'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            Text('click selected button to find out more about its properties'),
-            Column(
-              children: [
-                Button.label(
-                  onClick: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return ButtonLabelPage();
-                        },
-                      ),
-                    );
-                  },
-                  label: 'PRESS ME!',
-                  backgroundColor: Colors.redAccent,
-                ),
-                SizedBox(height: 8),
-                Text('Button.label()'),
-              ],
-            ),
-            Divider(height: 24),
-            Column(
-              children: [
-                Button.icon(
-                  onClick: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return ButtonIconPage();
-                        },
-                      ),
-                    );
-                  },
-                  icon: Icons.fingerprint,
-                  backgroundColor: Colors.green,
-                ),
-                SizedBox(height: 8),
-                Text('Button.icon()'),
-              ],
-            ),
-            Divider(height: 24),
-            Column(children: [
-              Button.widget(
-                onClick: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return ButtonLabelPage();
-                      },
-                    ),
-                  );
-                },
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [Icon(Icons.fingerprint), Text('PRESS ME!')],
-                ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: [
+              const Text(
+                'Click a button to play with it\'s main properties',
+                style: TextStyle(fontSize: 18),
               ),
-              SizedBox(height: 8),
-              Text('Button.widget()'),
-            ]),
-            Divider(height: 24),
-            Column(
-              children: [
-                Button.iconLabel(
-                  onClick: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return ButtonIconLabelPage();
-                        },
-                      ),
-                    );
-                  },
-                  icon: Icons.fingerprint,
-                  label: 'PRESS ME',
-                ),
-                SizedBox(height: 8),
-                Text('Button.iconLabel'),
-              ],
-            ),
-            Divider(height: 24),
-            Column(
-              children: [
-                Button.labelIcon(
-                  onClick: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return ButtonLabelIconPage();
-                        },
-                      ),
-                    );
-                  },
-                  icon: Icons.fingerprint,
-                  label: 'PRESS ME',
-                ),
-                SizedBox(height: 8),
-                Text('Button.labelIcon'),
-              ],
-            ),
-          ],
+              const SizedBox(height: 48),
+              Column(
+                children: [
+                  Button.label(
+                    onClick: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return const ButtonLabelPage();
+                          },
+                        ),
+                      );
+                    },
+                    label: 'PRESS ME!',
+                    backgroundColor: Colors.redAccent,
+                  ),
+                  const SizedBox(height: 8),
+                  const Text('Button.label()'),
+                ],
+              ),
+              const Divider(height: 24),
+              Column(
+                children: [
+                  Button.icon(
+                    onClick: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return const ButtonIconPage();
+                          },
+                        ),
+                      );
+                    },
+                    icon: Icons.fingerprint,
+                    backgroundColor: Colors.green,
+                  ),
+                  const SizedBox(height: 8),
+                  const Text('Button.icon()'),
+                ],
+              ),
+              const Divider(height: 24),
+              Column(
+                children: [
+                  Button.iconLabel(
+                    onClick: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return const ButtonIconLabelPage();
+                          },
+                        ),
+                      );
+                    },
+                    icon: Icons.fingerprint,
+                    label: 'PRESS ME',
+                    backgroundColor: Colors.amber,
+                  ),
+                  const SizedBox(height: 8),
+                  const Text('Button.iconLabel()'),
+                ],
+              ),
+              const Divider(height: 24),
+              Column(
+                children: [
+                  Button.labelIcon(
+                    onClick: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return const ButtonLabelIconPage();
+                          },
+                        ),
+                      );
+                    },
+                    icon: Icons.fingerprint,
+                    label: 'PRESS ME',
+                    foregroundColor: Colors.white,
+                  ),
+                  const SizedBox(height: 8),
+                  const Text('Button.labelIcon()'),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
