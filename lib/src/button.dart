@@ -1,20 +1,12 @@
 import 'package:flutter/widgets.dart';
 import 'package:miv_buttons/src/defaults.dart';
 
-enum Shape {
-  circle,
-  roundedRectangle,
-  stadium,
-  rectangle,
-}
-
 class Button extends StatefulWidget {
   const Button({
     super.key,
     required this.onClick,
     required this.child,
     this.color,
-    this.shape,
     this.borderRadius,
     this.horizontalPadding,
     this.verticalPadding,
@@ -65,7 +57,6 @@ class Button extends StatefulWidget {
   /// Defines the color of the button, applied it's surface.
   /// If `null`, the default color ([kColor]) will be used.
   final Color? color;
-  final Shape? shape;
 
   /// The border radius of the button.
   ///
@@ -102,7 +93,6 @@ class Button extends StatefulWidget {
   factory Button.icon({
     required VoidCallback? onClick,
     required IconData icon,
-    Shape? shape,
     Color? iconColor,
     Color? color,
     double? borderRadius,
@@ -115,7 +105,6 @@ class Button extends StatefulWidget {
     return Button(
       key: key,
       onClick: onClick,
-      shape: shape,
       color: color,
       borderRadius: borderRadius,
       horizontalPadding: horizontalPadding,
@@ -132,7 +121,6 @@ class Button extends StatefulWidget {
   factory Button.label({
     required VoidCallback? onClick,
     required String label,
-    Shape? shape,
     TextStyle? labelStyle,
     Color? color,
     Color? labelColor,
@@ -146,7 +134,6 @@ class Button extends StatefulWidget {
     return Button(
       key: key,
       onClick: onClick,
-      shape: shape,
       color: color,
       borderRadius: borderRadius,
       horizontalPadding: horizontalPadding,
@@ -168,7 +155,6 @@ class Button extends StatefulWidget {
     required String label,
     bool isHorizontal = true,
     double? gap,
-    Shape? shape,
     TextStyle? labelStyle,
     Color? color,
     Color? foregroundColor,
@@ -180,7 +166,6 @@ class Button extends StatefulWidget {
   }) {
     return Button(
       onClick: onClick,
-      shape: shape,
       color: color,
       borderRadius: borderRadius,
       horizontalPadding: horizontalPadding,
@@ -211,7 +196,6 @@ class Button extends StatefulWidget {
     required String label,
     bool isHorizontal = true,
     double? gap,
-    Shape? shape,
     TextStyle? labelStyle,
     Color? color,
     Color? foregroundColor,
@@ -223,7 +207,6 @@ class Button extends StatefulWidget {
   }) {
     return Button(
       onClick: onClick,
-      shape: shape,
       color: color,
       borderRadius: borderRadius,
       horizontalPadding: horizontalPadding,
@@ -296,7 +279,7 @@ class _ButtonState extends State<Button> {
                 widget.color != null ? widget.color! : kColor,
               ).withLightness(0.3).toColor(),
               borderRadius:
-                  _borderRadius(Shape.roundedRectangle, widget.borderRadius),
+                  BorderRadius.circular(widget.borderRadius ?? kBorderRadius),
             ),
             child: Container(
               padding: EdgeInsets.symmetric(
@@ -306,9 +289,8 @@ class _ButtonState extends State<Button> {
               decoration: BoxDecoration(
                 color: widget.color ?? kColor,
                 borderRadius:
-                    _borderRadius(Shape.roundedRectangle, widget.borderRadius),
+                    BorderRadius.circular(widget.borderRadius ?? kBorderRadius),
                 boxShadow: [
-                  // black blurry shadow
                   BoxShadow(
                     color: kShadowColor,
                     offset: isPressed
@@ -332,21 +314,3 @@ class _ButtonState extends State<Button> {
     );
   }
 }
-
-BorderRadius? _borderRadius(Shape? shape, double? radius) {
-  return switch (shape) {
-    Shape.roundedRectangle =>
-      BorderRadius.all(Radius.circular(radius ?? kBorderRadius)),
-    Shape.stadium || Shape.circle => null,
-    Shape.rectangle => BorderRadius.zero,
-    _ => const BorderRadius.all(Radius.circular(kBorderRadius)),
-  };
-}
-
-// BoxShape _boxShape(Shape? shape) {
-//   return switch (shape) {
-//     Shape.roundedRectangle => BoxShape.rectangle,
-//     Shape.circle => BoxShape.circle,
-//     _ => BoxShape.rectangle,
-//   };
-// }
