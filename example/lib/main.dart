@@ -123,6 +123,38 @@ class DemoPage extends StatelessWidget {
                   const Text('Button.labelIcon()'),
                 ],
               ),
+              const Divider(height: 24),
+              Column(
+                children: [
+                  Button(
+                    onClick: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return const ButtonPage();
+                          },
+                        ),
+                      );
+                    },
+                    color: Colors.lightGreen,
+                    child: const Column(
+                      children: [
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(Icons.sunny),
+                            Icon(Icons.access_alarms),
+                          ],
+                        ),
+                        Text('PRESS ME!'),
+                        Icon(Icons.add),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  const Text('Button()'),
+                ],
+              ),
             ],
           ),
         ),

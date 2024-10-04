@@ -3,38 +3,46 @@ import 'package:miv_buttons/miv_buttons.dart';
 
 import '../widgets/properties/properties.dart';
 
-class ButtonLabelIconPage extends StatelessWidget {
-  const ButtonLabelIconPage({super.key});
+class ButtonPage extends StatelessWidget {
+  const ButtonPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Button.iconLabel')),
-      body: const _ButtonWithLabelIcon(),
+      appBar: AppBar(title: const Text('Button')),
+      body: const _Button(),
       backgroundColor: Colors.grey.shade200,
     );
   }
 }
 
-class _ButtonWithLabelIcon extends StatefulWidget {
-  const _ButtonWithLabelIcon();
+class _Button extends StatefulWidget {
+  const _Button();
 
   @override
-  State<_ButtonWithLabelIcon> createState() => _ButtonWithLabelIconState();
+  State<_Button> createState() => _ButtonState();
 }
 
-class _ButtonWithLabelIconState extends State<_ButtonWithLabelIcon> {
-  String label = 'PRESS ME!';
-  IconData icon = Icons.fingerprint;
-  Color color = Colors.blue;
-  Color foregroundColor = Colors.white;
+class _ButtonState extends State<_Button> {
+  Color color = Colors.lightGreen;
   double borderRadius = 8;
   double horizontalPadding = 12;
   double verticalPadding = 8;
   double elevation = 6;
   double pressedElevation = 2;
-  bool isHorizontal = true;
-  double gap = 8;
+  Widget child = const Column(
+    children: [
+      Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.sunny),
+          Icon(Icons.access_alarms),
+        ],
+      ),
+      Text('PRESS ME!'),
+      Icon(Icons.add),
+    ],
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -44,19 +52,15 @@ class _ButtonWithLabelIconState extends State<_ButtonWithLabelIcon> {
           constraints: const BoxConstraints(minHeight: 100),
           child: Align(
             alignment: Alignment.bottomCenter,
-            child: Button.labelIcon(
+            child: Button(
               onClick: () {},
-              icon: icon,
-              label: label,
-              isHorizontal: isHorizontal,
-              gap: gap,
               color: color,
-              foregroundColor: foregroundColor,
               borderRadius: borderRadius,
               horizontalPadding: horizontalPadding,
               verticalPadding: verticalPadding,
               elevation: elevation,
               pressedElevation: pressedElevation,
+              child: child,
             ),
           ),
         ),
@@ -68,26 +72,6 @@ class _ButtonWithLabelIconState extends State<_ButtonWithLabelIcon> {
               child: Column(
                 children: [
                   const SizedBox(height: 48),
-                  PropertyLabel(
-                    onTextChange: (value) => setState(() {
-                      label = value;
-                    }),
-                    initialValue: label,
-                  ),
-                  const Divider(height: 16),
-                  PropertyIcon(
-                    onIconChange: (iconData) => setState(() {
-                      icon = iconData;
-                    }),
-                  ),
-                  const Divider(height: 16),
-                  PropertyBool(
-                    propertyName: 'isHorizontal',
-                    defaultValue: isHorizontal,
-                    onChanged: (value) => setState(() {
-                      isHorizontal = value;
-                    }),
-                  ),
                   const Divider(height: 16),
                   PropertyColorChange(
                     propertyName: 'color',
@@ -95,24 +79,6 @@ class _ButtonWithLabelIconState extends State<_ButtonWithLabelIcon> {
                     onColorChange: (value) => setState(() {
                       color = value;
                     }),
-                  ),
-                  const Divider(height: 16),
-                  PropertyColorChange(
-                    propertyName: 'foregroundColor',
-                    colors: labelColors,
-                    onColorChange: (value) => setState(() {
-                      foregroundColor = value;
-                    }),
-                  ),
-                  const Divider(height: 16),
-                  PropertyValueChange(
-                    propertyName: 'gap',
-                    initialValue: gap,
-                    onValueChanged: (value) {
-                      setState(() {
-                        gap = value;
-                      });
-                    },
                   ),
                   const Divider(height: 16),
                   PropertyValueChange(
