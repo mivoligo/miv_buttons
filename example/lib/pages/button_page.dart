@@ -72,6 +72,11 @@ class _ButtonState extends State<_Button> {
               child: Column(
                 children: [
                   const SizedBox(height: 48),
+                  PropertyChild(
+                    onValueChange: (value) => setState(() {
+                      child = value;
+                    }),
+                  ),
                   const Divider(height: 16),
                   PropertyColorChange(
                     propertyName: 'color',
