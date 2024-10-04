@@ -258,17 +258,25 @@ class _ButtonState extends State<Button> {
 
   @override
   Widget build(BuildContext context) {
+    bool isDisabled = widget.onClick == null;
+
     return GestureDetector(
       onTap: widget.onClick,
-      onTapDown: (_) => setState(() {
-        isPressed = true;
-      }),
-      onTapUp: (_) => setState(() {
-        isPressed = false;
-      }),
-      onTapCancel: () => setState(() {
-        isPressed = false;
-      }),
+      onTapDown: isDisabled
+          ? null
+          : (_) => setState(() {
+                isPressed = true;
+              }),
+      onTapUp: isDisabled
+          ? null
+          : (_) => setState(() {
+                isPressed = false;
+              }),
+      onTapCancel: isDisabled
+          ? null
+          : () => setState(() {
+                isPressed = false;
+              }),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
