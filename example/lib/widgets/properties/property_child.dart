@@ -46,9 +46,21 @@ const widgets = <Widget>[
   Row(
     mainAxisSize: MainAxisSize.min,
     children: [
-      Icon(Icons.adb, color: Colors.indigo,),
-      Text('text here', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold,),),
-      Icon(Icons.flutter_dash, color: Colors.redAccent,),
+      Icon(
+        Icons.adb,
+        color: Colors.indigo,
+      ),
+      Text(
+        'text here',
+        style: TextStyle(
+          fontSize: 24,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      Icon(
+        Icons.flutter_dash,
+        color: Colors.redAccent,
+      ),
     ],
   ),
   Image(
