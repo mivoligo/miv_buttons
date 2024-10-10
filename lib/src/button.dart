@@ -1,6 +1,40 @@
 import 'package:flutter/widgets.dart';
 import 'package:miv_buttons/src/defaults.dart';
 
+/// A customizable button widget with padding, elevation, color and other options.
+///
+/// This button widget is flexible and allows for easy customization of layout, colors, padding, and elevations.
+/// It also provides a callback for handling tap or click events. The button also accepts a custom widget
+/// as its child content.
+///
+/// Properties:
+///
+/// * [onClick]: The callback function triggered when the button is pressed. If `null`, the button is disabled and will not respond to tap or click events.
+/// * [child]: The widget displayed inside the button. Typically used to display text, icons, or other UI elements.
+/// * [color]: The color of the button. If `null`, the default color ([0xFF2196F3]) will be used.
+/// * [borderRadius]: The border radius of the button, defining the roundness of its corners. If `null`, the default border radius ([8.0]) will be used.
+/// * [horizontalPadding]: The horizontal padding inside the button between its content (icon and label) and its edges. If `null`, the default horizontal padding ([12.0]) will be applied.
+/// * [verticalPadding]: The vertical padding inside the button between its content and its edges. If `null`, the default vertical padding ([8.0]) will be applied.
+/// * [elevation]: The elevation of the button, making it appear raised above the surface. If `null`, the default elevation ([6.0]) will be applied.
+/// * [pressedElevation]: The elevation of the button when pressed. If `null`, the default pressed elevation ([2.0]) will be used.
+///
+/// Example usage:
+///
+/// ```dart
+/// Button(
+///   onClick: () {
+///     print('Button pressed');
+///   },
+///   child: Text('Click me'),
+///   color: Colors.blue,
+///   iconColor: Colors.white,
+///   borderRadius: 12.0,
+///   horizontalPadding: 16.0,
+///   verticalPadding: 12.0,
+///   elevation: 8.0,
+///   pressedElevation: 0.0,
+/// );
+/// ```
 class Button extends StatefulWidget {
   const Button({
     super.key,
@@ -29,6 +63,40 @@ class Button extends StatefulWidget {
           'pressedElevation cannot be negative',
         );
 
+  /// A customizable button widget with an icon.
+  ///
+  /// This button widget is flexible and allows for easy customization of layout, colors, padding, and elevations.
+  /// It also provides a callback for handling tap or click events.
+  ///
+  /// Properties:
+  ///
+  /// * [onClick]: The callback function triggered when the button is pressed. If `null`, the button is disabled and will not respond to tap or click events.
+  /// * [icon]: The icon displayed on the button. This is required and should be an `IconData` object.
+  /// * [color]: The color of the button. If `null`, the default color ([0xFF2196F3]) will be used.
+  /// * [iconColor]: The color applied to the icon. If `null`, the default icon color ([0xFFFFFFFF]) will be used.
+  /// * [borderRadius]: The border radius of the button, defining the roundness of its corners. If `null`, the default border radius ([8.0]) will be used.
+  /// * [horizontalPadding]: The horizontal padding inside the button between its content (icon and label) and its edges. If `null`, the default horizontal padding ([12.0]) will be applied.
+  /// * [verticalPadding]: The vertical padding inside the button between its content and its edges. If `null`, the default vertical padding ([8.0]) will be applied.
+  /// * [elevation]: The elevation of the button, making it appear raised above the surface. If `null`, the default elevation ([6.0]) will be applied.
+  /// * [pressedElevation]: The elevation of the button when pressed. If `null`, the default pressed elevation ([2.0]) will be used.
+  ///
+  /// Example usage:
+  ///
+  /// ```dart
+  /// Button.icon(
+  ///   onClick: () {
+  ///     print('Button pressed');
+  ///   },
+  ///   icon: Icons.add,
+  ///   color: Colors.blue,
+  ///   iconColor: Colors.white,
+  ///   borderRadius: 12.0,
+  ///   horizontalPadding: 16.0,
+  ///   verticalPadding: 12.0,
+  ///   elevation: 8.0,
+  ///   pressedElevation: 0.0,
+  /// );
+  /// ```
   factory Button.icon({
     required VoidCallback? onClick,
     required IconData icon,
@@ -57,6 +125,42 @@ class Button extends StatefulWidget {
     );
   }
 
+  /// A customizable button widget with a label.
+  ///
+  /// This button widget is flexible and allows for easy customization of layout, colors, padding, and elevations.
+  /// It also provides a callback for handling tap or click events.
+  ///
+  /// Properties:
+  ///
+  /// * [onClick]: The callback function triggered when the button is pressed. If `null`, the button is disabled and will not respond to tap or click events.
+  /// * [label]: The text label displayed on the button. This is required and should be a string.
+  /// * [labelStyle]: The text style applied to the label. If `null`, the default text style will be used.
+  /// * [color]: The color of the button. If `null`, the default color ([0xFF2196F3]) will be used.
+  /// * [labelColor]: The color applied to the label. The color of the label could also be changed by setting the color in [labelStyle].  If `null`, the default foreground color ([0xFFFFFFFF]) will be used.
+  /// * [borderRadius]: The border radius of the button, defining the roundness of its corners. If `null`, the default border radius ([8.0]) will be used.
+  /// * [horizontalPadding]: The horizontal padding inside the button between its content (icon and label) and its edges. If `null`, the default horizontal padding ([12.0]) will be applied.
+  /// * [verticalPadding]: The vertical padding inside the button between its content and its edges. If `null`, the default vertical padding ([8.0]) will be applied.
+  /// * [elevation]: The elevation of the button, making it appear raised above the surface. If `null`, the default elevation ([6.0]) will be applied.
+  /// * [pressedElevation]: The elevation of the button when pressed. If `null`, the default pressed elevation ([2.0]) will be used.
+  ///
+  /// Example usage:
+  ///
+  /// ```dart
+  /// Button.label(
+  ///   onClick: () {
+  ///     print('Button pressed');
+  ///   },
+  ///   label: 'Add',
+  ///   labelStyle: TextStyle(fontSize: 16, color: Colors.white),
+  ///   color: Colors.blue,
+  ///   labelColor: Colors.white,
+  ///   borderRadius: 12.0,
+  ///   horizontalPadding: 16.0,
+  ///   verticalPadding: 12.0,
+  ///   elevation: 8.0,
+  ///   pressedElevation: 0.0,
+  /// );
+  /// ```
   factory Button.label({
     required VoidCallback? onClick,
     required String label,
@@ -88,6 +192,49 @@ class Button extends StatefulWidget {
     );
   }
 
+  /// A customizable button widget with an icon and a label (in this order), supporting vertical or horizontal layout.
+  ///
+  /// This button widget is flexible and allows for easy customization of layout, colors, padding, and elevations.
+  /// It also provides a callback for handling tap or click events.
+  ///
+  /// Properties:
+  ///
+  /// * [onClick]: The callback function triggered when the button is pressed. If `null`, the button is disabled and will not respond to tap or click events.
+  /// * [icon]: The icon displayed on the button. This is required and should be an `IconData` object.
+  /// * [label]: The text label displayed next to (or under) the icon. This is required and should be a string.
+  /// * [isHorizontal]: Determines the layout direction of the icon and the label. If `true` (default), the icon and the label are arranged horizontally; if `false`, they are arranged vertically.
+  /// * [gap]: The space between the icon and the label. If `null`, the default gap ([8.0]) will be used.
+  /// * [labelStyle]: The text style applied to the label. If `null`, the default text style will be used.
+  /// * [color]: The color of the button. If `null`, the default color ([0xFF2196F3]) will be used.
+  /// * [foregroundColor]: The color applied to the icon and label. The color of the label could also be changed by setting the color in [labelStyle].  If `null`, the default foreground color ([0xFFFFFFFF]) will be used.
+  /// * [borderRadius]: The border radius of the button, defining the roundness of its corners. If `null`, the default border radius ([8.0]) will be used.
+  /// * [horizontalPadding]: The horizontal padding inside the button between its content (icon and label) and its edges. If `null`, the default horizontal padding ([12.0]) will be applied.
+  /// * [verticalPadding]: The vertical padding inside the button between its content and its edges. If `null`, the default vertical padding ([8.0]) will be applied.
+  /// * [elevation]: The elevation of the button, making it appear raised above the surface. If `null`, the default elevation ([6.0]) will be applied.
+  /// * [pressedElevation]: The elevation of the button when pressed. If `null`, the default pressed elevation ([2.0]) will be used.
+  ///
+  /// Example usage:
+  ///
+  /// ```dart
+  /// Button.iconLabel(
+  ///   onClick: () {
+  ///     print('Button pressed');
+  ///   },
+  ///   icon: Icons.add,
+  ///   label: 'Add',
+  ///   isHorizontal: true,
+  ///   gap: 8.0,
+  ///   labelStyle: TextStyle(fontSize: 16, color: Colors.white),
+  ///   color: Colors.blue,
+  ///   foregroundColor: Colors.white,
+  ///   borderRadius: 12.0,
+  ///   horizontalPadding: 16.0,
+  ///   verticalPadding: 12.0,
+  ///   elevation: 8.0,
+  ///   pressedElevation: 0.0,
+  /// );
+  /// ```
+  /// Check also [Button.labelIcon] widget, which displays the icon on the right to (or under) the label.
   factory Button.iconLabel({
     required VoidCallback? onClick,
     required IconData icon,
@@ -130,6 +277,49 @@ class Button extends StatefulWidget {
     );
   }
 
+  /// A customizable button widget with a label and an icon (in this order), supporting vertical or horizontal layout.
+  ///
+  /// This button widget is flexible and allows for easy customization of layout, colors, padding, and elevations.
+  /// It also provides a callback for handling tap or click events.
+  ///
+  /// Properties:
+  ///
+  /// * [onClick]: The callback function triggered when the button is pressed. If `null`, the button is disabled and will not respond to tap or click events.
+  /// * [icon]: The icon displayed on the button. This is required and should be an `IconData` object.
+  /// * [label]: The text label displayed next to (or over) the icon. This is required and should be a string.
+  /// * [isHorizontal]: Determines the layout direction of the label and the icon. If `true` (default), the label and the icon are arranged horizontally; if `false`, they are arranged vertically.
+  /// * [gap]: The space between the icon and the label. If `null`, the default gap ([8.0]) will be used.
+  /// * [labelStyle]: The text style applied to the label. If `null`, the default text style will be used.
+  /// * [color]: The color of the button. If `null`, the default color ([0xFF2196F3]) will be used.
+  /// * [foregroundColor]: The color applied to the icon and label. The color of the label could also be changed by setting the color in [labelStyle].  If `null`, the default foreground color ([0xFFFFFFFF]) will be used.
+  /// * [borderRadius]: The border radius of the button, defining the roundness of its corners. If `null`, the default border radius ([8.0]) will be used.
+  /// * [horizontalPadding]: The horizontal padding inside the button between its content (icon and label) and its edges. If `null`, the default horizontal padding ([12.0]) will be applied.
+  /// * [verticalPadding]: The vertical padding inside the button between its content and its edges. If `null`, the default vertical padding ([8.0]) will be applied.
+  /// * [elevation]: The elevation of the button, making it appear raised above the surface. If `null`, the default elevation ([6.0]) will be applied.
+  /// * [pressedElevation]: The elevation of the button when pressed. If `null`, the default pressed elevation ([2.0]) will be used.
+  ///
+  /// Example usage:
+  ///
+  /// ```dart
+  /// Button.labelIcon(
+  ///   onClick: () {
+  ///     print('Button pressed');
+  ///   },
+  ///   icon: Icons.add,
+  ///   label: 'Add',
+  ///   isHorizontal: true,
+  ///   gap: 8.0,
+  ///   labelStyle: TextStyle(fontSize: 16, color: Colors.white),
+  ///   color: Colors.blue,
+  ///   foregroundColor: Colors.white,
+  ///   borderRadius: 12.0,
+  ///   horizontalPadding: 16.0,
+  ///   verticalPadding: 12.0,
+  ///   elevation: 8.0,
+  ///   pressedElevation: 0.0,
+  /// );
+  /// ```
+  /// Check also [Button.iconLabel] widget which displays the icon on the left to (or over) the label.
   factory Button.labelIcon({
     required VoidCallback? onClick,
     required IconData icon,
@@ -197,40 +387,40 @@ class Button extends StatefulWidget {
 
   /// The color of the button.
   ///
-  /// Defines the color of the button, applied it's surface.
-  /// If `null`, the default color ([kColor]) will be used.
+  /// Defines the color of the button, applied to it's surface.
+  /// If `null`, the default color ([0xFF2196F3]) will be used.
   final Color? color;
 
   /// The border radius of the button.
-  ///
-  /// Determines the roundness of the corners of the button in pixels.
-  /// If `null`, the default border radius ([kBorderRadius]) will be applied.
+  /// {@macro kTemplate}
+  /// Determines the roundness of the corners of the button.
+  /// If `null`, the default border radius ([8.0]) will be applied.
   final double? borderRadius;
 
   /// The horizontal padding inside the button.
   ///
   /// Defines the amount of horizontal padding between the content (like text or icon)
   /// and the edges of the button.
-  /// If `null`, the default horizontal padding ([kHorizontalPadding]) will be applied.
+  /// If `null`, the default horizontal padding ([12.0]) will be applied.
   final double? horizontalPadding;
 
   /// The vertical padding inside the button.
   ///
   /// Defines the amount of vertical padding between the content  (like text or icon)
   /// and the edges of the button.
-  /// If `null`, the default vertical padding ([kVerticalPadding]) will be applied.
+  /// If `null`, the default vertical padding ([8.0]) will be applied.
   final double? verticalPadding;
 
   /// The elevation of the button.
   ///
   /// Specifies the elevation of the button, making it appear raised above the surface.
-  /// If `null`, the default elevation ([kElevation]) for the button will be applied.
+  /// If `null`, the default elevation ([6.0]) for the button will be applied.
   final double? elevation;
 
   /// The elevation of the button when pressed.
   ///
   /// Specifies the elevation of the button, making it appear raised above the surface.
-  /// If `null`, the default pressed elevation ([kPressedElevation]) for the button will be applied.
+  /// If `null`, the default pressed elevation ([2.0]) for the button will be applied.
   final double? pressedElevation;
 
   @override
