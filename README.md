@@ -17,6 +17,8 @@ and the Flutter guide for
 styling, and elevation. This widget allows you to create highly customizable buttons with various
 design options such as padding, elevation, background colors, border radius, and more.
 
+![Buttons in action](assets/gifs/buttons-in-action.gif)
+
 ## Features
 
 - **Customizable Design**: Easily configure the button's color, padding, and border radius.
@@ -151,46 +153,46 @@ Button.labelIcon(
 The `Button` widget in **miv_buttons** comes with several properties that you can tweak to fit your
 UI needs. Here are the properties you can set for the `Button` and all the named constructors:
 
-| Property            | Type            | Default            | Description                                                                               |
-|---------------------|-----------------|--------------------|-------------------------------------------------------------------------------------------|
-| `onClick`           | `VoidCallback?` | -                  | The callback triggered when the button is pressed. If `null`, the button is disabled.     |
-| `color`             | `Color?`        | `0xFF2196F3`(blue) | The background color of the button.                                                       |
-| `borderRadius`      | `double?`       | `8.0`              | The border radius for rounding the corners of the button.                                 |
-| `horizontalPadding` | `double?`       | `12.0`             | Defines the horizontal padding between the button's content and its edges.                |
-| `verticalPadding`   | `double?`       | `8.0`              | Defines the vertical padding between the button's content and its edges.                  |
-| `elevation`         | `double?`       | `6.0`              | The elevation (shadow) of the button when in its default state.                           |
-| `pressedElevation`  | `double?`       | `2.0`              | The elevation of the button when pressed or tapped. This creates a dynamic shadow effect. |
+| Property            | Type            | Default            | Description                                                                                        |
+|---------------------|-----------------|--------------------|----------------------------------------------------------------------------------------------------|
+| `onClick`           | `VoidCallback?` | -                  | The callback triggered when the button is pressed. If `null`, the button is disabled. **Required** |
+| `color`             | `Color?`        | `0xFF2196F3`(blue) | The background color of the button.                                                                |
+| `borderRadius`      | `double?`       | `8.0`              | The border radius for rounding the corners of the button.                                          |
+| `horizontalPadding` | `double?`       | `12.0`             | Defines the horizontal padding between the button's content and its edges.                         |
+| `verticalPadding`   | `double?`       | `8.0`              | Defines the vertical padding between the button's content and its edges.                           |
+| `elevation`         | `double?`       | `6.0`              | The elevation of the button when in its default state.                                             |
+| `pressedElevation`  | `double?`       | `2.0`              | The elevation of the button when pressed.                                                          |
 
 Additional properties specific to `Button()` constructor:
 
-| Property            | Type            | Default            | Description                                                                               |
-|---------------------|-----------------|--------------------|-------------------------------------------------------------------------------------------|
-| `child`             | `Widget`        | -                  | The content of the button, typically text, icons, or any widget.                          |
+| Property            | Type            | Default            | Description                                                                |
+|---------------------|-----------------|--------------------|----------------------------------------------------------------------------|
+| `child`             | `Widget`        | -                  | The content of the button, typically text, icons, or any widget. Required. |
 
 
 Additional properties specific for `Button.label()` constructor:
 
-| Property     | Type         | Default             | Description                                                          |
-|--------------|--------------|---------------------|----------------------------------------------------------------------|
-| `label`      | `String`     | -                   | The text label displayed on the button. This is required parameter.  |
-| `labelColor` | `Color?`     | `0xFFFFFFFF`(white) | The color applied to the label. You can override it in `labelStyle`. |
-| `labelStyle` | `TextStyle?` | -                   | The text style applied to the label.                                 |
+| Property     | Type         | Default             | Description                                                            |
+|--------------|--------------|---------------------|------------------------------------------------------------------------|
+| `label`      | `String`     | -                   | The text label displayed on the button. **Required**.                  |
+| `labelColor` | `Color?`     | `0xFFFFFFFF`(white) | The color applied to the label. You can override it in `labelStyle`.   |
+| `labelStyle` | `TextStyle?` | -                   | The text style applied to the label.                                   |
 
 
 Additional properties specific for `Button.icon()` constructor:
 
-| Property     | Type         | Default             | Description                                                   |
-|--------------|--------------|---------------------|---------------------------------------------------------------|
-| `icon`       | `IconData`   | -                   | The icon displayed on the button. This is required parameter. |
-| `iconColor`  | `Color?`     | `0xFFFFFFFF`(white) | The color applied to the icon.                                |
+| Property     | Type         | Default             | Description                                     |
+|--------------|--------------|---------------------|-------------------------------------------------|
+| `icon`       | `IconData`   | -                   | The icon displayed on the button. **Required**. |
+| `iconColor`  | `Color?`     | `0xFFFFFFFF`(white) | The color applied to the icon.                  |
 
 
 Additional properties specific for `Button.iconLabel()` and `Button.labelIcon()` constructors:
 
 | Property          | Type         | Default             | Description                                                                                                                                                                 |
 |-------------------|--------------|---------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `icon`            | `IconData`   | -                   | The icon displayed on the button. This is required parameter.                                                                                                               |
-| `label`           | `String`     | -                   | The text label displayed on the button. This is required parameter.                                                                                                         |
+| `icon`            | `IconData`   | -                   | The icon displayed on the button. **Required**.                                                                                                                             |
+| `label`           | `String`     | -                   | The text label displayed on the button. **Required**.                                                                                                                       |
 | `foregroundColor` | `Color?`     | `0xFFFFFFFF`(white) | The color applied to the icon and the label. You can override label color in `lableStyle`                                                                                   |
 | `labelStyle`      | `TextStyle?` | -                   | The text style applied to the label.                                                                                                                                        |
 | `isHorizontal`    | `bool?`      | `true`              | Determines the layout direction of the icon and the label. If `true` (default), the icon and the label are arranged horizontally; if `false`, they are arranged vertically. |
