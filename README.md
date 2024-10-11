@@ -149,18 +149,54 @@ Button.labelIcon(
 ### Customization Options
 
 The `Button` widget in **miv_buttons** comes with several properties that you can tweak to fit your
-UI needs:
+UI needs. Here are the properties you can set for the `Button` and all the named constructors:
 
 | Property            | Type            | Default            | Description                                                                               |
 |---------------------|-----------------|--------------------|-------------------------------------------------------------------------------------------|
 | `onClick`           | `VoidCallback?` | -                  | The callback triggered when the button is pressed. If `null`, the button is disabled.     |
-| `child`             | `Widget`        | -                  | The content of the button, typically text, icons, or any widget.                          |
 | `color`             | `Color?`        | `0xFF2196F3`(blue) | The background color of the button.                                                       |
 | `borderRadius`      | `double?`       | `8.0`              | The border radius for rounding the corners of the button.                                 |
 | `horizontalPadding` | `double?`       | `12.0`             | Defines the horizontal padding between the button's content and its edges.                |
 | `verticalPadding`   | `double?`       | `8.0`              | Defines the vertical padding between the button's content and its edges.                  |
 | `elevation`         | `double?`       | `6.0`              | The elevation (shadow) of the button when in its default state.                           |
 | `pressedElevation`  | `double?`       | `2.0`              | The elevation of the button when pressed or tapped. This creates a dynamic shadow effect. |
+
+Additional properties specific to `Button()` constructor:
+
+| Property            | Type            | Default            | Description                                                                               |
+|---------------------|-----------------|--------------------|-------------------------------------------------------------------------------------------|
+| `child`             | `Widget`        | -                  | The content of the button, typically text, icons, or any widget.                          |
+
+
+Additional properties specific for `Button.label()` constructor:
+
+| Property     | Type         | Default             | Description                                                          |
+|--------------|--------------|---------------------|----------------------------------------------------------------------|
+| `label`      | `String`     | -                   | The text label displayed on the button. This is required parameter.  |
+| `labelColor` | `Color?`     | `0xFFFFFFFF`(white) | The color applied to the label. You can override it in `labelStyle`. |
+| `labelStyle` | `TextStyle?` | -                   | The text style applied to the label.                                 |
+
+
+Additional properties specific for `Button.icon()` constructor:
+
+| Property     | Type         | Default             | Description                                                   |
+|--------------|--------------|---------------------|---------------------------------------------------------------|
+| `icon`       | `IconData`   | -                   | The icon displayed on the button. This is required parameter. |
+| `iconColor`  | `Color?`     | `0xFFFFFFFF`(white) | The color applied to the icon.                                |
+
+
+Additional properties specific for `Button.iconLabel()` and `Button.labelIcon()` constructors:
+
+| Property          | Type         | Default             | Description                                                                                                                                                                 |
+|-------------------|--------------|---------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `icon`            | `IconData`   | -                   | The icon displayed on the button. This is required parameter.                                                                                                               |
+| `label`           | `String`     | -                   | The text label displayed on the button. This is required parameter.                                                                                                         |
+| `foregroundColor` | `Color?`     | `0xFFFFFFFF`(white) | The color applied to the icon and the label. You can override label color in `lableStyle`                                                                                   |
+| `labelStyle`      | `TextStyle?` | -                   | The text style applied to the label.                                                                                                                                        |
+| `isHorizontal`    | `bool?`      | `true`              | Determines the layout direction of the icon and the label. If `true` (default), the icon and the label are arranged horizontally; if `false`, they are arranged vertically. |
+| `gap`             | `double?`    | `8.0`               | The space between the icon and the label.                                                                                                                                   |
+
+
 
 ### Example
 
@@ -197,8 +233,8 @@ class MyApp extends StatelessWidget {
             borderRadius: 12.0,
             horizontalPadding: 20.0,
             verticalPadding: 14.0,
-            elevation: 5.0,
-            pressedElevation: 10.0,
+            elevation: 12.0,
+            pressedElevation: 4.0,
           ),
         ),
       ),
@@ -211,7 +247,3 @@ class MyApp extends StatelessWidget {
 
 Contributions are welcome! If you have ideas or improvements, feel free to submit a pull request or
 open an issue.
-
-### License
-
-This package is available under the MIT License.
