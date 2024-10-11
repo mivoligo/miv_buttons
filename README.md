@@ -63,8 +63,8 @@ class MyHomePage extends StatelessWidget {
           borderRadius: 8.0,
           horizontalPadding: 16.0,
           verticalPadding: 12.0,
-          elevation: 4.0,
-          pressedElevation: 8.0,
+          elevation: 6.0,
+          pressedElevation: 2.0,
         ),
       ),
     );
@@ -76,16 +76,16 @@ class MyHomePage extends StatelessWidget {
 
 The `Button` widget in **miv_buttons** comes with several properties that you can tweak to fit your UI needs:
 
-| Property             | Type            | Default   | Description                                                                                                                                               |
-|----------------------|-----------------|-----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `onClick`            | `VoidCallback?` | `null`    | The callback triggered when the button is pressed. If `null`, the button is disabled.                                                                      |
-| `child`              | `Widget`        | -         | The content of the button, typically text, icons, or any widget.                                                                                           |
-| `color`              | `Color?`        | `null`    | The background color of the button. If `null`, a default background color is applied.                                                                      |
-| `borderRadius`       | `double?`       | `null`    | The border radius for rounding the corners of the button. If `null`, default radius is used.                                                               |
-| `horizontalPadding`  | `double?`       | `null`    | Defines the horizontal padding between the button's content and its edges. If `null`, default padding is applied.                                           |
-| `verticalPadding`    | `double?`       | `null`    | Defines the vertical padding between the button's content and its edges. If `null`, default padding is applied.                                             |
-| `elevation`          | `double?`       | `null`    | The elevation (shadow) of the button when in its default state. If `null`, the default elevation is applied.                                                |
-| `pressedElevation`   | `double?`       | `null`    | The elevation of the button when pressed or tapped. This creates a dynamic shadow effect. If `null`, default pressed elevation is used.                     |
+| Property             | Type            | Default                              | Description                                                                                                                                               |
+|----------------------|-----------------|--------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `onClick`            | `VoidCallback?` | -                                    | The callback triggered when the button is pressed. If `null`, the button is disabled.                                                                      |
+| `child`              | `Widget`        | -                                    | The content of the button, typically text, icons, or any widget.                                                                                           |
+| `color`              | `Color?`        | `0xFF2196F3`$${\color{red}RED}$$     | The background color of the button. If `null`, a default background color is applied.                                                                      |
+| `borderRadius`       | `double?`       | `8.0`       $${\color{#ff0000}RED}$$ | The border radius for rounding the corners of the button. If `null`, default radius is used.                                                               |
+| `horizontalPadding`  | `double?`       | `12.0`                               | Defines the horizontal padding between the button's content and its edges. If `null`, default padding is applied.                                           |
+| `verticalPadding`    | `double?`       | `8.0`                                | Defines the vertical padding between the button's content and its edges. If `null`, default padding is applied.                                             |
+| `elevation`          | `double?`       | `6.0`                                | The elevation (shadow) of the button when in its default state. If `null`, the default elevation is applied.                                                |
+| `pressedElevation`   | `double?`       | `2.0`                                | The elevation of the button when pressed or tapped. This creates a dynamic shadow effect. If `null`, default pressed elevation is used.                     |
 
 ### Example
 
