@@ -165,12 +165,12 @@ UI needs. Here are the properties you can set for the `Button` and all the named
 
 Additional properties specific to `Button()` constructor:
 
-| Property            | Type            | Default            | Description                                                                |
-|---------------------|-----------------|--------------------|----------------------------------------------------------------------------|
-| `child`             | `Widget`        | -                  | The content of the button, typically text, icons, or any widget. Required. |
+| Property            | Type            | Default            | Description                                                                    |
+|---------------------|-----------------|--------------------|--------------------------------------------------------------------------------|
+| `child`             | `Widget`        | -                  | The content of the button, typically text, icons, or any widget. **Required**. |
 
 
-Additional properties specific for `Button.label()` constructor:
+Additional properties specific to `Button.label()` constructor:
 
 | Property     | Type         | Default             | Description                                                            |
 |--------------|--------------|---------------------|------------------------------------------------------------------------|
@@ -179,7 +179,7 @@ Additional properties specific for `Button.label()` constructor:
 | `labelStyle` | `TextStyle?` | -                   | The text style applied to the label.                                   |
 
 
-Additional properties specific for `Button.icon()` constructor:
+Additional properties specific to `Button.icon()` constructor:
 
 | Property     | Type         | Default             | Description                                     |
 |--------------|--------------|---------------------|-------------------------------------------------|
@@ -187,7 +187,7 @@ Additional properties specific for `Button.icon()` constructor:
 | `iconColor`  | `Color?`     | `0xFFFFFFFF`(white) | The color applied to the icon.                  |
 
 
-Additional properties specific for `Button.iconLabel()` and `Button.labelIcon()` constructors:
+Additional properties specific to `Button.iconLabel()` and `Button.labelIcon()` constructors:
 
 | Property          | Type         | Default             | Description                                                                                                                                                                 |
 |-------------------|--------------|---------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -247,5 +247,4 @@ class MyApp extends StatelessWidget {
 
 ### Contributing
 
-Contributions are welcome! If you have ideas or improvements, feel free to submit a pull request or
-open an issue.
+Contributions are welcome! If you have ideas or improvements, feel free to open an issue.
