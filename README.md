@@ -74,6 +74,8 @@ and `Button.labelIcon()`
 This constructor creates a button with a text label. It is useful when you need a simple text-based
 button.
 
+![Button.label example](assets/screenshots/button-label.png)
+
 ```dart
 Button.label(
   onClick: () {
@@ -89,6 +91,8 @@ Button.label(
 
 This constructor is designed to create a button that features an icon. It is perfect for use cases
 where a simple visual button is required without text labels.
+
+![Button.icon example](assets/screenshots/button-icon.png)
 
 ```dart
 Button.icon(
@@ -107,14 +111,18 @@ This constructor is designed to create a button that includes both an icon and a
 icon is on the left of the label if `isHorizontal` is `true` (default). When you set `isHorizontal`
 to `false`, the icon will appear over the label.
 
+![Button.iconLabel example](assets/screenshots/button-icon-label.png)
+
 ```dart
 Button.iconLabel(
   onClick: () {
-    print('Icon button pressed');
+    print('Button pressed');
   },
-  icon: Icons.thumb_up,
-  color: Colors.orange,
-  iconColor: Colors.black,
+  icon: Icons.face,
+  label: 'Log out',
+  color: Colors.redAccent,
+  foregroundColor: Colors.white,
+  gap: 12.0,
 )
 ```
 
@@ -124,14 +132,17 @@ Similarly to the previous one, this constructor is designed to create a button t
 label is on the left of the icon if `isHorizontal` is `true` (default). When you set `isHorizontal`
 to `false`, the label will appear over the icon.
 
+![Button.labelIcon example](assets/screenshots/button-label-icon.png)
+
 ```dart
 Button.labelIcon(
   onClick: () {
-    print('Icon button pressed');
+    print('Button pressed');
   },
-  icon: Icons.thumb_up,
-  color: Colors.orange,
-  iconColor: Colors.black,
+  icon: Icons.arrow_forward,
+  label: 'Continue',
+  color: Colors.indigo,
+  foregroundColor: Colors.white,
 )
 ```
 
