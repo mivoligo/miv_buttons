@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:miv_buttons/miv_buttons.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'pages/pages.dart';
 
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'miv_buttons demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
@@ -31,6 +32,25 @@ class DemoPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Demo'),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Button.labelIcon(
+              onClick: () async {
+                if (!await launchUrl(
+                  Uri.parse('https://github.com/mivoligo/miv_buttons'),
+                )) {
+                  throw Exception('Could not open the page');
+                }
+              },
+              icon: Icons.open_in_new,
+              label: 'Project Website',
+              foregroundColor: Colors.white,
+              elevation: 2,
+              pressedElevation: 0,
+            ),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
