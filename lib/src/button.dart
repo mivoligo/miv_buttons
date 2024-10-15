@@ -452,7 +452,7 @@ class _ButtonState extends State<Button> {
                 isPressed = false;
               }),
       child: CustomPaint(
-        painter: ButtonPainter(
+        painter: _ButtonPainter(
           borderRadius: widget.borderRadius ?? kBorderRadius,
           elevation: widget.elevation ?? kElevation,
           pressedElevation: widget.pressedElevation ?? kPressedElevation,
@@ -482,9 +482,8 @@ class _ButtonState extends State<Button> {
   }
 }
 
-class ButtonPainter extends CustomPainter {
-  ButtonPainter({
-    super.repaint,
+class _ButtonPainter extends CustomPainter {
+  _ButtonPainter({
     required this.borderRadius,
     required this.elevation,
     required this.pressedElevation,
@@ -501,7 +500,7 @@ class ButtonPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     const sideDarkerColor = Color(0x45222222);
-    const shadowColor = Color(0xff222222);
+    const shadowColor = kShadowColor;
 
     final surfaceRect = Rect.fromLTWH(
       0,
@@ -548,7 +547,7 @@ class ButtonPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant ButtonPainter oldDelegate) {
+  bool shouldRepaint(covariant _ButtonPainter oldDelegate) {
     return oldDelegate.isPressed != isPressed ||
         oldDelegate.color != color ||
         oldDelegate.borderRadius != borderRadius ||
