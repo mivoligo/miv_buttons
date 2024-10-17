@@ -17,6 +17,8 @@ and the Flutter guide for
 styling, and elevation. This widget allows you to create highly customizable buttons with various
 design options such as padding, elevation, background colors, border radius, and more.
 
+[**Check the example online**](https://mivoligo.github.io/miv_buttons_example/)
+
 ![Buttons in action](assets/gifs/buttons-in-action.gif)
 
 ## Features
@@ -181,10 +183,11 @@ Additional properties specific to `Button.label()` constructor:
 
 Additional properties specific to `Button.icon()` constructor:
 
-| Property     | Type         | Default             | Description                                     |
-|--------------|--------------|---------------------|-------------------------------------------------|
-| `icon`       | `IconData`   | -                   | The icon displayed on the button. **Required**. |
-| `iconColor`  | `Color?`     | `0xFFFFFFFF`(white) | The color applied to the icon.                  |
+| Property    | Type       | Default             | Description                                     |
+|-------------|------------|---------------------|-------------------------------------------------|
+| `icon`      | `IconData` | -                   | The icon displayed on the button. **Required**. |
+| `iconColor` | `Color?`   | `0xFFFFFFFF`(white) | The color applied to the icon.                  |
+| `iconSize`  | `double?`  | `20.0`              | The size of the icon.                           |
 
 
 Additional properties specific to `Button.iconLabel()` and `Button.labelIcon()` constructors:
@@ -192,6 +195,7 @@ Additional properties specific to `Button.iconLabel()` and `Button.labelIcon()` 
 | Property          | Type         | Default             | Description                                                                                                                                                                 |
 |-------------------|--------------|---------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `icon`            | `IconData`   | -                   | The icon displayed on the button. **Required**.                                                                                                                             |
+| `iconSize`        | `double?`    | `20.0`              | The size of the icon.                                                                                                                                                       |
 | `label`           | `String`     | -                   | The text label displayed on the button. **Required**.                                                                                                                       |
 | `foregroundColor` | `Color?`     | `0xFFFFFFFF`(white) | The color applied to the icon and the label. You can override label color in `lableStyle`                                                                                   |
 | `labelStyle`      | `TextStyle?` | -                   | The text style applied to the label.                                                                                                                                        |
