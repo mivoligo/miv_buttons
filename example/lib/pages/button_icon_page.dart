@@ -27,6 +27,7 @@ class _ButtonWithIconState extends State<_ButtonWithIcon> {
   IconData icon = Icons.fingerprint;
   Color color = Colors.green;
   Color iconColor = Colors.white;
+  double iconSize = 20;
   double borderRadius = 8;
   double horizontalPadding = 12;
   double verticalPadding = 8;
@@ -44,6 +45,7 @@ class _ButtonWithIconState extends State<_ButtonWithIcon> {
             child: Button.icon(
               onClick: () {},
               icon: icon,
+              iconSize: iconSize,
               color: color,
               iconColor: iconColor,
               borderRadius: borderRadius,
@@ -82,6 +84,16 @@ class _ButtonWithIconState extends State<_ButtonWithIcon> {
                     onColorChange: (value) => setState(() {
                       iconColor = value;
                     }),
+                  ),
+                  const Divider(height: 16),
+                  PropertyValueChange(
+                    propertyName: 'iconSize',
+                    initialValue: iconSize,
+                    onValueChanged: (value) {
+                      setState(() {
+                        iconSize = value;
+                      });
+                    },
                   ),
                   const Divider(height: 16),
                   PropertyValueChange(

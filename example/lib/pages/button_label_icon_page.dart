@@ -26,6 +26,7 @@ class _ButtonWithLabelIcon extends StatefulWidget {
 class _ButtonWithLabelIconState extends State<_ButtonWithLabelIcon> {
   String label = 'PRESS ME!';
   IconData icon = Icons.fingerprint;
+  double iconSize = 20;
   Color color = Colors.blue;
   Color foregroundColor = Colors.white;
   double borderRadius = 8;
@@ -47,6 +48,7 @@ class _ButtonWithLabelIconState extends State<_ButtonWithLabelIcon> {
             child: Button.labelIcon(
               onClick: () {},
               icon: icon,
+              iconSize: iconSize,
               label: label,
               isHorizontal: isHorizontal,
               gap: gap,
@@ -111,6 +113,16 @@ class _ButtonWithLabelIconState extends State<_ButtonWithLabelIcon> {
                     onValueChanged: (value) {
                       setState(() {
                         gap = value;
+                      });
+                    },
+                  ),
+                  const Divider(height: 16),
+                  PropertyValueChange(
+                    propertyName: 'iconSize',
+                    initialValue: iconSize,
+                    onValueChanged: (value) {
+                      setState(() {
+                        iconSize = value;
                       });
                     },
                   ),

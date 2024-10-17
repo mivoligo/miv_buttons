@@ -72,6 +72,7 @@ class Button extends StatefulWidget {
   ///
   /// * [onClick]: The callback function triggered when the button is pressed. If `null`, the button is disabled and will not respond to tap or click events.
   /// * [icon]: The icon displayed on the button. This is required and should be an `IconData` object.
+  /// * [iconSize]: The size of the icon. If `null`, the default size ([20.0]) will be used.
   /// * [color]: The color of the button. If `null`, the default color ([0xFF2196F3]) will be used.
   /// * [iconColor]: The color applied to the icon. If `null`, the default icon color ([0xFFFFFFFF]) will be used.
   /// * [borderRadius]: The border radius of the button, defining the roundness of its corners. If `null`, the default border radius ([8.0]) will be used.
@@ -88,6 +89,7 @@ class Button extends StatefulWidget {
   ///     print('Button pressed');
   ///   },
   ///   icon: Icons.add,
+  ///   iconSize: 16.0,
   ///   color: Colors.blue,
   ///   iconColor: Colors.white,
   ///   borderRadius: 12.0,
@@ -101,6 +103,7 @@ class Button extends StatefulWidget {
     required VoidCallback? onClick,
     required IconData icon,
     Color? iconColor,
+    double? iconSize,
     Color? color,
     double? borderRadius,
     double? horizontalPadding,
@@ -121,6 +124,7 @@ class Button extends StatefulWidget {
       child: Icon(
         icon,
         color: iconColor ?? kForegroundColor,
+        size: iconSize ?? kIconSize,
       ),
     );
   }
@@ -201,6 +205,7 @@ class Button extends StatefulWidget {
   ///
   /// * [onClick]: The callback function triggered when the button is pressed. If `null`, the button is disabled and will not respond to tap or click events.
   /// * [icon]: The icon displayed on the button. This is required and should be an `IconData` object.
+  /// * [iconSize]: The size of the icon. If `null`, the default size ([20.0]) will be used.
   /// * [label]: The text label displayed next to (or under) the icon. This is required and should be a string.
   /// * [isHorizontal]: Determines the layout direction of the icon and the label. If `true` (default), the icon and the label are arranged horizontally; if `false`, they are arranged vertically.
   /// * [gap]: The space between the icon and the label. If `null`, the default gap ([8.0]) will be used.
@@ -221,6 +226,7 @@ class Button extends StatefulWidget {
   ///     print('Button pressed');
   ///   },
   ///   icon: Icons.add,
+  ///   iconSize: 16.0,
   ///   label: 'Add',
   ///   isHorizontal: true,
   ///   gap: 8.0,
@@ -240,6 +246,7 @@ class Button extends StatefulWidget {
     required IconData icon,
     required String label,
     bool isHorizontal = true,
+    double? iconSize,
     double? gap,
     TextStyle? labelStyle,
     Color? color,
@@ -262,7 +269,11 @@ class Button extends StatefulWidget {
         direction: isHorizontal ? Axis.horizontal : Axis.vertical,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, color: foregroundColor),
+          Icon(
+            icon,
+            color: foregroundColor,
+            size: iconSize ?? kIconSize,
+          ),
           if (isHorizontal)
             SizedBox(width: gap ?? kLabelIconGap)
           else
@@ -286,6 +297,7 @@ class Button extends StatefulWidget {
   ///
   /// * [onClick]: The callback function triggered when the button is pressed. If `null`, the button is disabled and will not respond to tap or click events.
   /// * [icon]: The icon displayed on the button. This is required and should be an `IconData` object.
+  /// * [iconSize]: The size of the icon. If `null`, the default size ([20.0]) will be used.
   /// * [label]: The text label displayed next to (or over) the icon. This is required and should be a string.
   /// * [isHorizontal]: Determines the layout direction of the label and the icon. If `true` (default), the label and the icon are arranged horizontally; if `false`, they are arranged vertically.
   /// * [gap]: The space between the icon and the label. If `null`, the default gap ([8.0]) will be used.
@@ -306,6 +318,7 @@ class Button extends StatefulWidget {
   ///     print('Button pressed');
   ///   },
   ///   icon: Icons.add,
+  ///   iconSize: 16.0,
   ///   label: 'Add',
   ///   isHorizontal: true,
   ///   gap: 8.0,
@@ -325,6 +338,7 @@ class Button extends StatefulWidget {
     required IconData icon,
     required String label,
     bool isHorizontal = true,
+    double? iconSize,
     double? gap,
     TextStyle? labelStyle,
     Color? color,
@@ -356,7 +370,11 @@ class Button extends StatefulWidget {
             SizedBox(width: gap ?? kLabelIconGap)
           else
             SizedBox(height: gap ?? kLabelIconGap),
-          Icon(icon, color: foregroundColor),
+          Icon(
+            icon,
+            color: foregroundColor,
+            size: iconSize ?? kIconSize,
+          ),
         ],
       ),
     );
