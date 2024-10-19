@@ -59,6 +59,7 @@ class _ButtonWithLabelIconState extends State<_ButtonWithLabelIcon> {
               verticalPadding: verticalPadding,
               elevation: elevation,
               pressedElevation: pressedElevation,
+              semanticLabel: 'An example button with a label and an icon',
             ),
           ),
         ),

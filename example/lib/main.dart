@@ -31,7 +31,7 @@ class DemoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Demo'),
+        title: const Text('miv_buttons examples'),
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -76,6 +76,7 @@ class DemoPage extends StatelessWidget {
                     },
                     label: 'PRESS ME!',
                     color: Colors.redAccent,
+                    semanticLabel: 'open the example for Button.label',
                   ),
                   const SizedBox(height: 8),
                   const Text('Button.label()'),
@@ -96,6 +97,7 @@ class DemoPage extends StatelessWidget {
                     },
                     icon: Icons.fingerprint,
                     color: Colors.green,
+                    semanticLabel: 'open the example for Button.icon',
                   ),
                   const SizedBox(height: 8),
                   const Text('Button.icon()'),
@@ -117,6 +119,7 @@ class DemoPage extends StatelessWidget {
                     icon: Icons.fingerprint,
                     label: 'PRESS ME',
                     color: Colors.amber,
+                    semanticLabel: 'open the example for Button.iconLabel',
                   ),
                   const SizedBox(height: 8),
                   const Text('Button.iconLabel()'),
@@ -138,6 +141,7 @@ class DemoPage extends StatelessWidget {
                     icon: Icons.fingerprint,
                     label: 'PRESS ME',
                     foregroundColor: Colors.white,
+                    semanticLabel: 'open the example for Button.labelIcon',
                   ),
                   const SizedBox(height: 8),
                   const Text('Button.labelIcon()'),
@@ -157,6 +161,7 @@ class DemoPage extends StatelessWidget {
                       );
                     },
                     color: Colors.lightGreen,
+                    semanticLabel: 'open the example for Button',
                     child: const Column(
                       children: [
                         Row(

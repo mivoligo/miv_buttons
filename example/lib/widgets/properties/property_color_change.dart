@@ -22,10 +22,13 @@ class PropertyColorChange extends StatelessWidget {
             .map(
               (color) => InkWell(
                 onTap: () => onColorChange(color),
-                child: Container(
-                  width: 48,
-                  height: 48,
-                  color: color,
+                child: Semantics(
+                  label: color.value.toRadixString(16),
+                  child: Container(
+                    width: 48,
+                    height: 48,
+                    color: color,
+                  ),
                 ),
               ),
             )

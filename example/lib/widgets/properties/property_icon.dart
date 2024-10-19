@@ -30,7 +30,10 @@ class PropertyIcon extends StatelessWidget {
               child: SizedBox(
                 width: 48,
                 height: 48,
-                child: Icon(e),
+                child: Icon(
+                  e,
+                  semanticLabel: 'change icon',
+                ),
               ),
             );
           },
