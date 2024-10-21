@@ -160,12 +160,12 @@ UI needs. Here are the properties you can set for the `Button` and all the named
 | `onClick`           | `VoidCallback?` | -                  | The callback triggered when the button is pressed. If `null`, the button is disabled. **Required**                                     |
 | `onLongPress`       | `VoidCallback?` | -                  | The callback function triggered when a pointer has remained in contact with the screen at the same location for a long period of time. |
 | `onLongPressUp`     | `VoidCallback?` | -                  | The callback function triggered when a pointer that has triggered a long-press has stopped contacting the screen.                      |
-| `color`             | `Color?`        | `0xFF2196F3`(blue) | The background color of the button.                                                                                                    |
+| `color`             | `Color`         | `0xFF2196F3`(blue) | The background color of the button.                                                                                                    |
 | `borderRadius`      | `double?`       | `8.0`              | The border radius for rounding the corners of the button.                                                                              |
 | `horizontalPadding` | `double?`       | `12.0`             | Defines the horizontal padding between the button's content and its edges.                                                             |
 | `verticalPadding`   | `double?`       | `8.0`              | Defines the vertical padding between the button's content and its edges.                                                               |
-| `elevation`         | `double?`       | `6.0`              | The elevation of the button when in its default state.                                                                                 |
-| `pressedElevation`  | `double?`       | `2.0`              | The elevation of the button when pressed.                                                                                              |
+| `elevation`         | `double`        | `6.0`              | The elevation of the button when in its default state.                                                                                 |
+| `pressedElevation`  | `double`        | `2.0`              | The elevation of the button when pressed.                                                                                              |
 | `semanticLabel`     | `String?`       | -                  | The semantic label for the button that will be announced by screen readers.                                                            |
 | `excludeSemantics`  | `bool?`         | `false`            | Whether to replace all child semantics with this node.                                                                                 |
 
@@ -181,7 +181,7 @@ Additional properties specific to `Button.label()` constructor:
 | Property     | Type         | Default             | Description                                                            |
 |--------------|--------------|---------------------|------------------------------------------------------------------------|
 | `label`      | `String`     | -                   | The text label displayed on the button. **Required**.                  |
-| `labelColor` | `Color?`     | `0xFFFFFFFF`(white) | The color applied to the label. You can override it in `labelStyle`.   |
+| `labelColor` | `Color`      | `0xFFFFFFFF`(white) | The color applied to the label. You can override it in `labelStyle`.   |
 | `labelStyle` | `TextStyle?` | -                   | The text style applied to the label.                                   |
 
 
@@ -190,8 +190,8 @@ Additional properties specific to `Button.icon()` constructor:
 | Property    | Type       | Default             | Description                                     |
 |-------------|------------|---------------------|-------------------------------------------------|
 | `icon`      | `IconData` | -                   | The icon displayed on the button. **Required**. |
-| `iconColor` | `Color?`   | `0xFFFFFFFF`(white) | The color applied to the icon.                  |
-| `iconSize`  | `double?`  | `20.0`              | The size of the icon.                           |
+| `iconColor` | `Color`    | `0xFFFFFFFF`(white) | The color applied to the icon.                  |
+| `iconSize`  | `double`   | `20.0`              | The size of the icon.                           |
 
 
 Additional properties specific to `Button.iconLabel()` and `Button.labelIcon()` constructors:
@@ -199,12 +199,12 @@ Additional properties specific to `Button.iconLabel()` and `Button.labelIcon()` 
 | Property          | Type         | Default             | Description                                                                                                                                                                 |
 |-------------------|--------------|---------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `icon`            | `IconData`   | -                   | The icon displayed on the button. **Required**.                                                                                                                             |
-| `iconSize`        | `double?`    | `20.0`              | The size of the icon.                                                                                                                                                       |
+| `iconSize`        | `double`     | `20.0`              | The size of the icon.                                                                                                                                                       |
 | `label`           | `String`     | -                   | The text label displayed on the button. **Required**.                                                                                                                       |
-| `foregroundColor` | `Color?`     | `0xFFFFFFFF`(white) | The color applied to the icon and the label. You can override label color in `lableStyle`                                                                                   |
+| `foregroundColor` | `Color`      | `0xFFFFFFFF`(white) | The color applied to the icon and the label. You can override label color in `lableStyle`                                                                                   |
 | `labelStyle`      | `TextStyle?` | -                   | The text style applied to the label.                                                                                                                                        |
-| `isHorizontal`    | `bool?`      | `true`              | Determines the layout direction of the icon and the label. If `true` (default), the icon and the label are arranged horizontally; if `false`, they are arranged vertically. |
-| `gap`             | `double?`    | `8.0`               | The space between the icon and the label.                                                                                                                                   |
+| `isHorizontal`    | `bool`       | `true`              | Determines the layout direction of the icon and the label. If `true` (default), the icon and the label are arranged horizontally; if `false`, they are arranged vertically. |
+| `gap`             | `double`     | `8.0`               | The space between the icon and the label.                                                                                                                                   |
 
 
 

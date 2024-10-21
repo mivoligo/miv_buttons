@@ -13,12 +13,12 @@ import 'package:miv_buttons/src/defaults.dart';
 /// * [onLongPress]: The callback function triggered when a pointer has remained in contact with the screen at the same location for a long period of time.
 /// * [onLongPressUp]: The callback function triggered when a pointer that has triggered a long-press has stopped contacting the screen.
 /// * [child]: The widget displayed inside the button. Typically used to display text, icons, or other UI elements.
-/// * [color]: The color of the button. If `null`, the default color ([0xFF2196F3]) will be used.
+/// * [color]: The color of the button. If not specified, the default color ([0xFF2196F3]) will be used.
 /// * [borderRadius]: The border radius of the button, defining the roundness of its corners. If `null`, the default border radius ([8.0]) will be used.
 /// * [horizontalPadding]: The horizontal padding inside the button between its content (icon and label) and its edges. If `null`, the default horizontal padding ([12.0]) will be applied.
 /// * [verticalPadding]: The vertical padding inside the button between its content and its edges. If `null`, the default vertical padding ([8.0]) will be applied.
-/// * [elevation]: The elevation of the button, making it appear raised above the surface. If `null`, the default elevation ([6.0]) will be applied.
-/// * [pressedElevation]: The elevation of the button when pressed. If `null`, the default pressed elevation ([2.0]) will be used.
+/// * [elevation]: The elevation of the button, making it appear raised above the surface. If not specified, the default elevation ([6.0]) will be applied.
+/// * [pressedElevation]: The elevation of the button when pressed. If not specified, the default pressed elevation ([2.0]) will be used.
 /// * [semanticLabel]: The semantic label for the button that will be announced by screen readers. This label does not show in the UI.
 /// * [excludeSemantics]: Whether to replace all child semantics with this node. Defaults to [false].
 ///
@@ -45,12 +45,12 @@ class Button extends StatefulWidget {
     super.key,
     required this.onClick,
     required this.child,
-    this.color,
+    this.color = kColor,
     this.borderRadius,
     this.horizontalPadding,
     this.verticalPadding,
-    this.elevation,
-    this.pressedElevation,
+    this.elevation = kElevation,
+    this.pressedElevation = kPressedElevation,
     this.semanticLabel,
     this.excludeSemantics,
     this.onLongPress,
@@ -64,11 +64,11 @@ class Button extends StatefulWidget {
           'verticalPadding cannot be negative',
         ),
         assert(
-          elevation == null || elevation >= 0,
+          elevation >= 0,
           'elevation cannot be negative',
         ),
         assert(
-          pressedElevation == null || pressedElevation >= 0,
+          pressedElevation >= 0,
           'pressedElevation cannot be negative',
         );
 
@@ -83,14 +83,14 @@ class Button extends StatefulWidget {
   /// * [onLongPress]: The callback function triggered when a pointer has remained in contact with the screen at the same location for a long period of time.
   /// * [onLongPressUp]: The callback function triggered when a pointer that has triggered a long-press has stopped contacting the screen.
   /// * [icon]: The icon displayed on the button. This is required and should be an `IconData` object.
-  /// * [iconSize]: The size of the icon. If `null`, the default size ([20.0]) will be used.
-  /// * [color]: The color of the button. If `null`, the default color ([0xFF2196F3]) will be used.
-  /// * [iconColor]: The color applied to the icon. If `null`, the default icon color ([0xFFFFFFFF]) will be used.
+  /// * [iconSize]: The size of the icon. If not specified, the default size ([20.0]) will be used.
+  /// * [color]: The color of the button. If not specified, the default color ([0xFF2196F3]) will be used.
+  /// * [iconColor]: The color applied to the icon. If not specified, the default icon color ([0xFFFFFFFF]) will be used.
   /// * [borderRadius]: The border radius of the button, defining the roundness of its corners. If `null`, the default border radius ([8.0]) will be used.
   /// * [horizontalPadding]: The horizontal padding inside the button between its content (icon and label) and its edges. If `null`, the default horizontal padding ([12.0]) will be applied.
   /// * [verticalPadding]: The vertical padding inside the button between its content and its edges. If `null`, the default vertical padding ([8.0]) will be applied.
-  /// * [elevation]: The elevation of the button, making it appear raised above the surface. If `null`, the default elevation ([6.0]) will be applied.
-  /// * [pressedElevation]: The elevation of the button when pressed. If `null`, the default pressed elevation ([2.0]) will be used.
+  /// * [elevation]: The elevation of the button, making it appear raised above the surface. If not specified, the default elevation ([6.0]) will be applied.
+  /// * [pressedElevation]: The elevation of the button when pressed. If not specified, the default pressed elevation ([2.0]) will be used.
   /// * [semanticLabel]: The semantic label for the button that will be announced by screen readers. This label does not show in the UI.
   /// * [excludeSemantics]: Whether to replace all child semantics with this node. Defaults to [false].
   ///
@@ -117,14 +117,14 @@ class Button extends StatefulWidget {
   factory Button.icon({
     required VoidCallback? onClick,
     required IconData icon,
-    Color? iconColor,
-    double? iconSize,
-    Color? color,
+    Color iconColor = kForegroundColor,
+    double iconSize = kIconSize,
+    Color color = kColor,
     double? borderRadius,
     double? horizontalPadding,
     double? verticalPadding,
-    double? elevation,
-    double? pressedElevation,
+    double elevation = kElevation,
+    double pressedElevation = kPressedElevation,
     String? semanticLabel,
     bool? excludeSemantics,
     VoidCallback? onLongPress,
@@ -146,8 +146,8 @@ class Button extends StatefulWidget {
       onLongPressUp: onLongPressUp,
       child: Icon(
         icon,
-        color: iconColor ?? kForegroundColor,
-        size: iconSize ?? kIconSize,
+        color: iconColor,
+        size: iconSize,
       ),
     );
   }
@@ -164,13 +164,13 @@ class Button extends StatefulWidget {
   /// * [onLongPressUp]: The callback function triggered when a pointer that has triggered a long-press has stopped contacting the screen.
   /// * [label]: The text label displayed on the button. This is required and should be a string.
   /// * [labelStyle]: The text style applied to the label. If `null`, the default text style will be used.
-  /// * [color]: The color of the button. If `null`, the default color ([0xFF2196F3]) will be used.
-  /// * [labelColor]: The color applied to the label. The color of the label could also be changed by setting the color in [labelStyle].  If `null`, the default foreground color ([0xFFFFFFFF]) will be used.
+  /// * [color]: The color of the button. If not specified, the default color ([0xFF2196F3]) will be used.
+  /// * [labelColor]: The color applied to the label. The color of the label could also be changed by setting the color in [labelStyle].  If not specified, the default foreground color ([0xFFFFFFFF]) will be used.
   /// * [borderRadius]: The border radius of the button, defining the roundness of its corners. If `null`, the default border radius ([8.0]) will be used.
   /// * [horizontalPadding]: The horizontal padding inside the button between its content (icon and label) and its edges. If `null`, the default horizontal padding ([12.0]) will be applied.
   /// * [verticalPadding]: The vertical padding inside the button between its content and its edges. If `null`, the default vertical padding ([8.0]) will be applied.
-  /// * [elevation]: The elevation of the button, making it appear raised above the surface. If `null`, the default elevation ([6.0]) will be applied.
-  /// * [pressedElevation]: The elevation of the button when pressed. If `null`, the default pressed elevation ([2.0]) will be used.
+  /// * [elevation]: The elevation of the button, making it appear raised above the surface. If not specified, the default elevation ([6.0]) will be applied.
+  /// * [pressedElevation]: The elevation of the button when pressed. If not specified, the default pressed elevation ([2.0]) will be used.
   /// * [semanticLabel]: The semantic label for the button that will be announced by screen readers. This label does not show in the UI.
   /// * [excludeSemantics]: Whether to replace all child semantics with this node. Defaults to [false].
   ///
@@ -198,13 +198,13 @@ class Button extends StatefulWidget {
     required VoidCallback? onClick,
     required String label,
     TextStyle? labelStyle,
-    Color? color,
-    Color? labelColor,
+    Color color = kColor,
+    Color labelColor = kForegroundColor,
     double? borderRadius,
     double? horizontalPadding,
     double? verticalPadding,
-    double? elevation,
-    double? pressedElevation,
+    double elevation = kElevation,
+    double pressedElevation = kPressedElevation,
     String? semanticLabel,
     bool? excludeSemantics,
     VoidCallback? onLongPress,
@@ -226,9 +226,7 @@ class Button extends StatefulWidget {
       onLongPressUp: onLongPressUp,
       child: Text(
         label,
-        style: labelStyle ??
-            const TextStyle(color: kForegroundColor)
-                .copyWith(color: labelColor),
+        style: labelStyle ?? const TextStyle().copyWith(color: labelColor),
       ),
     );
   }
@@ -244,18 +242,18 @@ class Button extends StatefulWidget {
   /// * [onLongPress]: The callback function triggered when a pointer has remained in contact with the screen at the same location for a long period of time.
   /// * [onLongPressUp]: The callback function triggered when a pointer that has triggered a long-press has stopped contacting the screen.
   /// * [icon]: The icon displayed on the button. This is required and should be an `IconData` object.
-  /// * [iconSize]: The size of the icon. If `null`, the default size ([20.0]) will be used.
+  /// * [iconSize]: The size of the icon. If not specified, the default size ([20.0]) will be used.
   /// * [label]: The text label displayed next to (or under) the icon. This is required and should be a string.
   /// * [isHorizontal]: Determines the layout direction of the icon and the label. If `true` (default), the icon and the label are arranged horizontally; if `false`, they are arranged vertically.
-  /// * [gap]: The space between the icon and the label. If `null`, the default gap ([8.0]) will be used.
+  /// * [gap]: The space between the icon and the label. If not specified, the default gap ([8.0]) will be used.
   /// * [labelStyle]: The text style applied to the label. If `null`, the default text style will be used.
-  /// * [color]: The color of the button. If `null`, the default color ([0xFF2196F3]) will be used.
-  /// * [foregroundColor]: The color applied to the icon and label. The color of the label could also be changed by setting the color in [labelStyle].  If `null`, the default foreground color ([0xFFFFFFFF]) will be used.
+  /// * [color]: The color of the button. If not specified, the default color ([0xFF2196F3]) will be used.
+  /// * [foregroundColor]: The color applied to the icon and label. The color of the label could also be changed by setting the color in [labelStyle].  If not specified, the default foreground color ([0xFFFFFFFF]) will be used.
   /// * [borderRadius]: The border radius of the button, defining the roundness of its corners. If `null`, the default border radius ([8.0]) will be used.
   /// * [horizontalPadding]: The horizontal padding inside the button between its content (icon and label) and its edges. If `null`, the default horizontal padding ([12.0]) will be applied.
   /// * [verticalPadding]: The vertical padding inside the button between its content and its edges. If `null`, the default vertical padding ([8.0]) will be applied.
-  /// * [elevation]: The elevation of the button, making it appear raised above the surface. If `null`, the default elevation ([6.0]) will be applied.
-  /// * [pressedElevation]: The elevation of the button when pressed. If `null`, the default pressed elevation ([2.0]) will be used.
+  /// * [elevation]: The elevation of the button, making it appear raised above the surface. If not specified, the default elevation ([6.0]) will be applied.
+  /// * [pressedElevation]: The elevation of the button when pressed. If not specified, the default pressed elevation ([2.0]) will be used.
   /// * [semanticLabel]: The semantic label for the button that will be announced by screen readers. This label does not show in the UI.
   /// * [excludeSemantics]: Whether to replace all child semantics with this node. Defaults to [false].
   ///
@@ -289,16 +287,16 @@ class Button extends StatefulWidget {
     required IconData icon,
     required String label,
     bool isHorizontal = true,
-    double? iconSize,
-    double? gap,
+    double iconSize = kIconSize,
+    double gap = kLabelIconGap,
     TextStyle? labelStyle,
-    Color? color,
-    Color? foregroundColor,
+    Color color = kColor,
+    Color foregroundColor = kForegroundColor,
     double? borderRadius,
     double? horizontalPadding,
     double? verticalPadding,
-    double? elevation,
-    double? pressedElevation,
+    double elevation = kElevation,
+    double pressedElevation = kPressedElevation,
     String? semanticLabel,
     bool? excludeSemantics,
     VoidCallback? onLongPress,
@@ -323,12 +321,9 @@ class Button extends StatefulWidget {
           Icon(
             icon,
             color: foregroundColor,
-            size: iconSize ?? kIconSize,
+            size: iconSize,
           ),
-          if (isHorizontal)
-            SizedBox(width: gap ?? kLabelIconGap)
-          else
-            SizedBox(height: gap ?? kLabelIconGap),
+          if (isHorizontal) SizedBox(width: gap) else SizedBox(height: gap),
           Text(
             label,
             style: labelStyle ??
@@ -350,18 +345,18 @@ class Button extends StatefulWidget {
   /// * [onLongPress]: The callback function triggered when a pointer has remained in contact with the screen at the same location for a long period of time.
   /// * [onLongPressUp]: The callback function triggered when a pointer that has triggered a long-press has stopped contacting the screen.
   /// * [icon]: The icon displayed on the button. This is required and should be an `IconData` object.
-  /// * [iconSize]: The size of the icon. If `null`, the default size ([20.0]) will be used.
+  /// * [iconSize]: The size of the icon. If not specified, the default size ([20.0]) will be used.
   /// * [label]: The text label displayed next to (or over) the icon. This is required and should be a string.
   /// * [isHorizontal]: Determines the layout direction of the label and the icon. If `true` (default), the label and the icon are arranged horizontally; if `false`, they are arranged vertically.
-  /// * [gap]: The space between the icon and the label. If `null`, the default gap ([8.0]) will be used.
+  /// * [gap]: The space between the icon and the label. If not specified, the default gap ([8.0]) will be used.
   /// * [labelStyle]: The text style applied to the label. If `null`, the default text style will be used.
-  /// * [color]: The color of the button. If `null`, the default color ([0xFF2196F3]) will be used.
-  /// * [foregroundColor]: The color applied to the icon and label. The color of the label could also be changed by setting the color in [labelStyle].  If `null`, the default foreground color ([0xFFFFFFFF]) will be used.
+  /// * [color]: The color of the button. If not specified, the default color ([0xFF2196F3]) will be used.
+  /// * [foregroundColor]: The color applied to the icon and label. The color of the label could also be changed by setting the color in [labelStyle].  If not specified, the default foreground color ([0xFFFFFFFF]) will be used.
   /// * [borderRadius]: The border radius of the button, defining the roundness of its corners. If `null`, the default border radius ([8.0]) will be used.
   /// * [horizontalPadding]: The horizontal padding inside the button between its content (icon and label) and its edges. If `null`, the default horizontal padding ([12.0]) will be applied.
   /// * [verticalPadding]: The vertical padding inside the button between its content and its edges. If `null`, the default vertical padding ([8.0]) will be applied.
-  /// * [elevation]: The elevation of the button, making it appear raised above the surface. If `null`, the default elevation ([6.0]) will be applied.
-  /// * [pressedElevation]: The elevation of the button when pressed. If `null`, the default pressed elevation ([2.0]) will be used.
+  /// * [elevation]: The elevation of the button, making it appear raised above the surface. If not specified, the default elevation ([6.0]) will be applied.
+  /// * [pressedElevation]: The elevation of the button when pressed. If not specified, the default pressed elevation ([2.0]) will be used.
   /// * [semanticLabel]: The semantic label for the button that will be announced by screen readers. This label does not show in the UI.
   /// * [excludeSemantics]: Whether to replace all child semantics with this node. Defaults to [false].
   ///
@@ -395,16 +390,16 @@ class Button extends StatefulWidget {
     required IconData icon,
     required String label,
     bool isHorizontal = true,
-    double? iconSize,
-    double? gap,
+    double iconSize = kIconSize,
+    double gap = kLabelIconGap,
     TextStyle? labelStyle,
-    Color? color,
-    Color? foregroundColor,
+    Color color = kColor,
+    Color foregroundColor = kForegroundColor,
     double? borderRadius,
     double? horizontalPadding,
     double? verticalPadding,
-    double? elevation,
-    double? pressedElevation,
+    double elevation = kElevation,
+    double pressedElevation = kPressedElevation,
     String? semanticLabel,
     bool? excludeSemantics,
     VoidCallback? onLongPress,
@@ -431,14 +426,11 @@ class Button extends StatefulWidget {
             style: labelStyle ??
                 const TextStyle().copyWith(color: foregroundColor),
           ),
-          if (isHorizontal)
-            SizedBox(width: gap ?? kLabelIconGap)
-          else
-            SizedBox(height: gap ?? kLabelIconGap),
+          if (isHorizontal) SizedBox(width: gap) else SizedBox(height: gap),
           Icon(
             icon,
             color: foregroundColor,
-            size: iconSize ?? kIconSize,
+            size: iconSize,
           ),
         ],
       ),
@@ -479,8 +471,8 @@ class Button extends StatefulWidget {
   /// The color of the button.
   ///
   /// Defines the color of the button, applied to it's surface.
-  /// If `null`, the default color ([0xFF2196F3]) will be used.
-  final Color? color;
+  /// If not specified, the default color ([0xFF2196F3]) will be used.
+  final Color color;
 
   /// The border radius of the button.
   /// {@macro kTemplate}
@@ -505,14 +497,14 @@ class Button extends StatefulWidget {
   /// The elevation of the button.
   ///
   /// Specifies the elevation of the button, making it appear raised above the surface.
-  /// If `null`, the default elevation ([6.0]) for the button will be applied.
-  final double? elevation;
+  /// If not specified, the default elevation ([6.0]) for the button will be applied.
+  final double elevation;
 
   /// The elevation of the button when pressed.
   ///
   /// Specifies the elevation of the button, making it appear raised above the surface.
-  /// If `null`, the default pressed elevation ([2.0]) for the button will be applied.
-  final double? pressedElevation;
+  /// If not specified, the default pressed elevation ([2.0]) for the button will be applied.
+  final double pressedElevation;
 
   /// The semantic label for the button that will be announced by screen readers.
   ///
@@ -566,9 +558,9 @@ class _ButtonState extends State<Button> {
         child: CustomPaint(
           painter: _ButtonPainter(
             borderRadius: widget.borderRadius ?? kBorderRadius,
-            elevation: widget.elevation ?? kElevation,
-            pressedElevation: widget.pressedElevation ?? kPressedElevation,
-            color: widget.color ?? kColor,
+            elevation: widget.elevation,
+            pressedElevation: widget.pressedElevation,
+            color: widget.color,
             isPressed: isPressed,
           ),
           child: Padding(
@@ -577,14 +569,12 @@ class _ButtonState extends State<Button> {
                   vertical: widget.verticalPadding ?? kVerticalPadding,
                 ) +
                 EdgeInsets.only(
-                  bottom: isPressed
-                      ? widget.pressedElevation ?? kPressedElevation
-                      : widget.elevation ?? kElevation,
+                  bottom:
+                      isPressed ? widget.pressedElevation : widget.elevation,
                 ) +
                 EdgeInsets.only(
                   top: isPressed
-                      ? (widget.elevation ?? kElevation) -
-                          (widget.pressedElevation ?? kPressedElevation)
+                      ? widget.elevation - widget.pressedElevation
                       : 0,
                 ),
             child: widget.child,
