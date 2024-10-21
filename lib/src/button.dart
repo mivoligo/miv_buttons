@@ -10,6 +10,8 @@ import 'package:miv_buttons/src/defaults.dart';
 /// Properties:
 ///
 /// * [onClick]: The callback function triggered when the button is pressed. If `null`, the button is disabled and will not respond to tap or click events.
+/// * [onLongPress]: The callback function triggered when a pointer has remained in contact with the screen at the same location for a long period of time.
+/// * [onLongPressUp]: The callback function triggered when a pointer that has triggered a long-press has stopped contacting the screen.
 /// * [child]: The widget displayed inside the button. Typically used to display text, icons, or other UI elements.
 /// * [color]: The color of the button. If `null`, the default color ([0xFF2196F3]) will be used.
 /// * [borderRadius]: The border radius of the button, defining the roundness of its corners. If `null`, the default border radius ([8.0]) will be used.
@@ -51,6 +53,8 @@ class Button extends StatefulWidget {
     this.pressedElevation,
     this.semanticLabel,
     this.excludeSemantics,
+    this.onLongPress,
+    this.onLongPressUp,
   })  : assert(
           horizontalPadding == null || horizontalPadding >= 0,
           'horizontalPadding cannot be negative',
@@ -76,6 +80,8 @@ class Button extends StatefulWidget {
   /// Properties:
   ///
   /// * [onClick]: The callback function triggered when the button is pressed. If `null`, the button is disabled and will not respond to tap or click events.
+  /// * [onLongPress]: The callback function triggered when a pointer has remained in contact with the screen at the same location for a long period of time.
+  /// * [onLongPressUp]: The callback function triggered when a pointer that has triggered a long-press has stopped contacting the screen.
   /// * [icon]: The icon displayed on the button. This is required and should be an `IconData` object.
   /// * [iconSize]: The size of the icon. If `null`, the default size ([20.0]) will be used.
   /// * [color]: The color of the button. If `null`, the default color ([0xFF2196F3]) will be used.
@@ -121,6 +127,8 @@ class Button extends StatefulWidget {
     double? pressedElevation,
     String? semanticLabel,
     bool? excludeSemantics,
+    VoidCallback? onLongPress,
+    VoidCallback? onLongPressUp,
     Key? key,
   }) {
     return Button(
@@ -134,6 +142,8 @@ class Button extends StatefulWidget {
       pressedElevation: pressedElevation,
       semanticLabel: semanticLabel,
       excludeSemantics: excludeSemantics,
+      onLongPress: onLongPress,
+      onLongPressUp: onLongPressUp,
       child: Icon(
         icon,
         color: iconColor ?? kForegroundColor,
@@ -150,6 +160,8 @@ class Button extends StatefulWidget {
   /// Properties:
   ///
   /// * [onClick]: The callback function triggered when the button is pressed. If `null`, the button is disabled and will not respond to tap or click events.
+  /// * [onLongPress]: The callback function triggered when a pointer has remained in contact with the screen at the same location for a long period of time.
+  /// * [onLongPressUp]: The callback function triggered when a pointer that has triggered a long-press has stopped contacting the screen.
   /// * [label]: The text label displayed on the button. This is required and should be a string.
   /// * [labelStyle]: The text style applied to the label. If `null`, the default text style will be used.
   /// * [color]: The color of the button. If `null`, the default color ([0xFF2196F3]) will be used.
@@ -195,6 +207,8 @@ class Button extends StatefulWidget {
     double? pressedElevation,
     String? semanticLabel,
     bool? excludeSemantics,
+    VoidCallback? onLongPress,
+    VoidCallback? onLongPressUp,
     Key? key,
   }) {
     return Button(
@@ -208,6 +222,8 @@ class Button extends StatefulWidget {
       pressedElevation: pressedElevation,
       semanticLabel: semanticLabel,
       excludeSemantics: excludeSemantics,
+      onLongPress: onLongPress,
+      onLongPressUp: onLongPressUp,
       child: Text(
         label,
         style: labelStyle ??
@@ -225,6 +241,8 @@ class Button extends StatefulWidget {
   /// Properties:
   ///
   /// * [onClick]: The callback function triggered when the button is pressed. If `null`, the button is disabled and will not respond to tap or click events.
+  /// * [onLongPress]: The callback function triggered when a pointer has remained in contact with the screen at the same location for a long period of time.
+  /// * [onLongPressUp]: The callback function triggered when a pointer that has triggered a long-press has stopped contacting the screen.
   /// * [icon]: The icon displayed on the button. This is required and should be an `IconData` object.
   /// * [iconSize]: The size of the icon. If `null`, the default size ([20.0]) will be used.
   /// * [label]: The text label displayed next to (or under) the icon. This is required and should be a string.
@@ -283,6 +301,8 @@ class Button extends StatefulWidget {
     double? pressedElevation,
     String? semanticLabel,
     bool? excludeSemantics,
+    VoidCallback? onLongPress,
+    VoidCallback? onLongPressUp,
   }) {
     return Button(
       onClick: onClick,
@@ -294,6 +314,8 @@ class Button extends StatefulWidget {
       pressedElevation: pressedElevation,
       semanticLabel: semanticLabel,
       excludeSemantics: excludeSemantics,
+      onLongPress: onLongPress,
+      onLongPressUp: onLongPressUp,
       child: Flex(
         direction: isHorizontal ? Axis.horizontal : Axis.vertical,
         mainAxisSize: MainAxisSize.min,
@@ -325,6 +347,8 @@ class Button extends StatefulWidget {
   /// Properties:
   ///
   /// * [onClick]: The callback function triggered when the button is pressed. If `null`, the button is disabled and will not respond to tap or click events.
+  /// * [onLongPress]: The callback function triggered when a pointer has remained in contact with the screen at the same location for a long period of time.
+  /// * [onLongPressUp]: The callback function triggered when a pointer that has triggered a long-press has stopped contacting the screen.
   /// * [icon]: The icon displayed on the button. This is required and should be an `IconData` object.
   /// * [iconSize]: The size of the icon. If `null`, the default size ([20.0]) will be used.
   /// * [label]: The text label displayed next to (or over) the icon. This is required and should be a string.
@@ -383,6 +407,8 @@ class Button extends StatefulWidget {
     double? pressedElevation,
     String? semanticLabel,
     bool? excludeSemantics,
+    VoidCallback? onLongPress,
+    VoidCallback? onLongPressUp,
   }) {
     return Button(
       onClick: onClick,
@@ -394,6 +420,8 @@ class Button extends StatefulWidget {
       pressedElevation: pressedElevation,
       semanticLabel: semanticLabel,
       excludeSemantics: excludeSemantics,
+      onLongPress: onLongPress,
+      onLongPressUp: onLongPressUp,
       child: Flex(
         direction: isHorizontal ? Axis.horizontal : Axis.vertical,
         mainAxisSize: MainAxisSize.min,
@@ -434,6 +462,14 @@ class Button extends StatefulWidget {
   ///
   /// See also: [VoidCallback] for more information on the function type.
   final VoidCallback? onClick;
+
+  /// Triggered when a pointer has remained in contact with the screen at the
+  /// same location for a long period of time.
+  final VoidCallback? onLongPress;
+
+  /// Triggered when a pointer that has triggered a long-press has
+  /// stopped contacting the screen
+  final VoidCallback? onLongPressUp;
 
   /// The widget which is inside the button.
   ///
@@ -505,21 +541,23 @@ class _ButtonState extends State<Button> {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: widget.onClick,
-      onTapDown: isDisabled
-          ? null
-          : (_) => setState(() {
-                isPressed = true;
-              }),
+      onTapDown: isDisabled ? null : (_) => setState(() => isPressed = true),
       onTapUp: isDisabled
           ? null
-          : (_) => setState(() {
-                isPressed = false;
-              }),
-      onTapCancel: isDisabled
-          ? null
-          : () => setState(() {
-                isPressed = false;
-              }),
+          : (_) {
+              setState(() => isPressed = true);
+              Future.delayed(
+                const Duration(milliseconds: 100),
+                () => setState(() => isPressed = false),
+              );
+            },
+      onTapCancel: isDisabled ? null : () => setState(() => isPressed = false),
+      onLongPress: isDisabled ? null : widget.onLongPress,
+      onLongPressUp: isDisabled ? null : widget.onLongPressUp,
+      onLongPressStart:
+          isDisabled ? null : (_) => setState(() => isPressed = true),
+      onLongPressEnd:
+          isDisabled ? null : (_) => setState(() => isPressed = false),
       child: Semantics(
         button: true,
         enabled: !isDisabled,
