@@ -1,6 +1,6 @@
 name: miv_buttons
 description: Elegant pseudo 3D buttons. You can use them instead of or in addition to the standard buttons.
-version: 0.1.2
+version: 1.0.0
 homepage: https://github.com/mivoligo/miv_buttons
 
 environment:
