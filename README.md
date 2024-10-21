@@ -155,17 +155,19 @@ Button.labelIcon(
 The `Button` widget in **miv_buttons** comes with several properties that you can tweak to fit your
 UI needs. Here are the properties you can set for the `Button` and all the named constructors:
 
-| Property            | Type            | Default            | Description                                                                                        |
-|---------------------|-----------------|--------------------|----------------------------------------------------------------------------------------------------|
-| `onClick`           | `VoidCallback?` | -                  | The callback triggered when the button is pressed. If `null`, the button is disabled. **Required** |
-| `color`             | `Color?`        | `0xFF2196F3`(blue) | The background color of the button.                                                                |
-| `borderRadius`      | `double?`       | `8.0`              | The border radius for rounding the corners of the button.                                          |
-| `horizontalPadding` | `double?`       | `12.0`             | Defines the horizontal padding between the button's content and its edges.                         |
-| `verticalPadding`   | `double?`       | `8.0`              | Defines the vertical padding between the button's content and its edges.                           |
-| `elevation`         | `double?`       | `6.0`              | The elevation of the button when in its default state.                                             |
-| `pressedElevation`  | `double?`       | `2.0`              | The elevation of the button when pressed.                                                          |
-| `semanticLabel`     | `String?`       | -                  | The semantic label for the button that will be announced by screen readers.                        |
-| `excludeSemantics`  | `bool?`         | `false`            | Whether to replace all child semantics with this node.                                             |
+| Property            | Type            | Default            | Description                                                                                                                            |
+|---------------------|-----------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------|
+| `onClick`           | `VoidCallback?` | -                  | The callback triggered when the button is pressed. If `null`, the button is disabled. **Required**                                     |
+| `onLongPress`       | `VoidCallback?` | -                  | The callback function triggered when a pointer has remained in contact with the screen at the same location for a long period of time. |
+| `onLongPressUp`     | `VoidCallback?` | -                  | The callback function triggered when a pointer that has triggered a long-press has stopped contacting the screen.                      |
+| `color`             | `Color?`        | `0xFF2196F3`(blue) | The background color of the button.                                                                                                    |
+| `borderRadius`      | `double?`       | `8.0`              | The border radius for rounding the corners of the button.                                                                              |
+| `horizontalPadding` | `double?`       | `12.0`             | Defines the horizontal padding between the button's content and its edges.                                                             |
+| `verticalPadding`   | `double?`       | `8.0`              | Defines the vertical padding between the button's content and its edges.                                                               |
+| `elevation`         | `double?`       | `6.0`              | The elevation of the button when in its default state.                                                                                 |
+| `pressedElevation`  | `double?`       | `2.0`              | The elevation of the button when pressed.                                                                                              |
+| `semanticLabel`     | `String?`       | -                  | The semantic label for the button that will be announced by screen readers.                                                            |
+| `excludeSemantics`  | `bool?`         | `false`            | Whether to replace all child semantics with this node.                                                                                 |
 
 Additional properties specific to `Button()` constructor:
 
