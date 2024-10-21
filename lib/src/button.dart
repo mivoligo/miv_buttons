@@ -17,6 +17,8 @@ import 'package:miv_buttons/src/defaults.dart';
 /// * [verticalPadding]: The vertical padding inside the button between its content and its edges. If `null`, the default vertical padding ([8.0]) will be applied.
 /// * [elevation]: The elevation of the button, making it appear raised above the surface. If `null`, the default elevation ([6.0]) will be applied.
 /// * [pressedElevation]: The elevation of the button when pressed. If `null`, the default pressed elevation ([2.0]) will be used.
+/// * [semanticLabel]: The semantic label for the button that will be announced by screen readers. This label does not show in the UI.
+/// * [excludeSemantics]: Whether to replace all child semantics with this node. Defaults to [false].
 ///
 /// Example usage:
 ///
@@ -27,12 +29,13 @@ import 'package:miv_buttons/src/defaults.dart';
 ///   },
 ///   child: Text('Click me'),
 ///   color: Colors.blue,
-///   iconColor: Colors.white,
 ///   borderRadius: 12.0,
 ///   horizontalPadding: 16.0,
 ///   verticalPadding: 12.0,
 ///   elevation: 8.0,
 ///   pressedElevation: 0.0,
+///   semanticLabel: 'I am clickable',
+///   excludeSemantics: true,
 /// );
 /// ```
 class Button extends StatefulWidget {
@@ -46,6 +49,8 @@ class Button extends StatefulWidget {
     this.verticalPadding,
     this.elevation,
     this.pressedElevation,
+    this.semanticLabel,
+    this.excludeSemantics,
   })  : assert(
           horizontalPadding == null || horizontalPadding >= 0,
           'horizontalPadding cannot be negative',
@@ -80,6 +85,8 @@ class Button extends StatefulWidget {
   /// * [verticalPadding]: The vertical padding inside the button between its content and its edges. If `null`, the default vertical padding ([8.0]) will be applied.
   /// * [elevation]: The elevation of the button, making it appear raised above the surface. If `null`, the default elevation ([6.0]) will be applied.
   /// * [pressedElevation]: The elevation of the button when pressed. If `null`, the default pressed elevation ([2.0]) will be used.
+  /// * [semanticLabel]: The semantic label for the button that will be announced by screen readers. This label does not show in the UI.
+  /// * [excludeSemantics]: Whether to replace all child semantics with this node. Defaults to [false].
   ///
   /// Example usage:
   ///
@@ -97,6 +104,8 @@ class Button extends StatefulWidget {
   ///   verticalPadding: 12.0,
   ///   elevation: 8.0,
   ///   pressedElevation: 0.0,
+  ///   semanticLabel: 'Increase value by one',
+  ///   excludeSemantics: true,
   /// );
   /// ```
   factory Button.icon({
@@ -110,6 +119,8 @@ class Button extends StatefulWidget {
     double? verticalPadding,
     double? elevation,
     double? pressedElevation,
+    String? semanticLabel,
+    bool? excludeSemantics,
     Key? key,
   }) {
     return Button(
@@ -121,6 +132,8 @@ class Button extends StatefulWidget {
       verticalPadding: verticalPadding,
       elevation: elevation,
       pressedElevation: pressedElevation,
+      semanticLabel: semanticLabel,
+      excludeSemantics: excludeSemantics,
       child: Icon(
         icon,
         color: iconColor ?? kForegroundColor,
@@ -146,6 +159,8 @@ class Button extends StatefulWidget {
   /// * [verticalPadding]: The vertical padding inside the button between its content and its edges. If `null`, the default vertical padding ([8.0]) will be applied.
   /// * [elevation]: The elevation of the button, making it appear raised above the surface. If `null`, the default elevation ([6.0]) will be applied.
   /// * [pressedElevation]: The elevation of the button when pressed. If `null`, the default pressed elevation ([2.0]) will be used.
+  /// * [semanticLabel]: The semantic label for the button that will be announced by screen readers. This label does not show in the UI.
+  /// * [excludeSemantics]: Whether to replace all child semantics with this node. Defaults to [false].
   ///
   /// Example usage:
   ///
@@ -154,7 +169,7 @@ class Button extends StatefulWidget {
   ///   onClick: () {
   ///     print('Button pressed');
   ///   },
-  ///   label: 'Add',
+  ///   label: 'Submit',
   ///   labelStyle: TextStyle(fontSize: 16, color: Colors.white),
   ///   color: Colors.blue,
   ///   labelColor: Colors.white,
@@ -163,6 +178,8 @@ class Button extends StatefulWidget {
   ///   verticalPadding: 12.0,
   ///   elevation: 8.0,
   ///   pressedElevation: 0.0,
+  ///   semanticLabel: 'submit form',
+  ///   excludeSemantics: true,
   /// );
   /// ```
   factory Button.label({
@@ -176,6 +193,8 @@ class Button extends StatefulWidget {
     double? verticalPadding,
     double? elevation,
     double? pressedElevation,
+    String? semanticLabel,
+    bool? excludeSemantics,
     Key? key,
   }) {
     return Button(
@@ -187,6 +206,8 @@ class Button extends StatefulWidget {
       verticalPadding: verticalPadding,
       elevation: elevation,
       pressedElevation: pressedElevation,
+      semanticLabel: semanticLabel,
+      excludeSemantics: excludeSemantics,
       child: Text(
         label,
         style: labelStyle ??
@@ -217,6 +238,8 @@ class Button extends StatefulWidget {
   /// * [verticalPadding]: The vertical padding inside the button between its content and its edges. If `null`, the default vertical padding ([8.0]) will be applied.
   /// * [elevation]: The elevation of the button, making it appear raised above the surface. If `null`, the default elevation ([6.0]) will be applied.
   /// * [pressedElevation]: The elevation of the button when pressed. If `null`, the default pressed elevation ([2.0]) will be used.
+  /// * [semanticLabel]: The semantic label for the button that will be announced by screen readers. This label does not show in the UI.
+  /// * [excludeSemantics]: Whether to replace all child semantics with this node. Defaults to [false].
   ///
   /// Example usage:
   ///
@@ -238,6 +261,8 @@ class Button extends StatefulWidget {
   ///   verticalPadding: 12.0,
   ///   elevation: 8.0,
   ///   pressedElevation: 0.0,
+  ///   semanticLabel: 'add more llamas',
+  ///   excludeSemantics: true,
   /// );
   /// ```
   /// Check also [Button.labelIcon] widget, which displays the icon on the right to (or under) the label.
@@ -256,6 +281,8 @@ class Button extends StatefulWidget {
     double? verticalPadding,
     double? elevation,
     double? pressedElevation,
+    String? semanticLabel,
+    bool? excludeSemantics,
   }) {
     return Button(
       onClick: onClick,
@@ -265,6 +292,8 @@ class Button extends StatefulWidget {
       verticalPadding: verticalPadding,
       elevation: elevation,
       pressedElevation: pressedElevation,
+      semanticLabel: semanticLabel,
+      excludeSemantics: excludeSemantics,
       child: Flex(
         direction: isHorizontal ? Axis.horizontal : Axis.vertical,
         mainAxisSize: MainAxisSize.min,
@@ -309,6 +338,8 @@ class Button extends StatefulWidget {
   /// * [verticalPadding]: The vertical padding inside the button between its content and its edges. If `null`, the default vertical padding ([8.0]) will be applied.
   /// * [elevation]: The elevation of the button, making it appear raised above the surface. If `null`, the default elevation ([6.0]) will be applied.
   /// * [pressedElevation]: The elevation of the button when pressed. If `null`, the default pressed elevation ([2.0]) will be used.
+  /// * [semanticLabel]: The semantic label for the button that will be announced by screen readers. This label does not show in the UI.
+  /// * [excludeSemantics]: Whether to replace all child semantics with this node. Defaults to [false].
   ///
   /// Example usage:
   ///
@@ -330,6 +361,8 @@ class Button extends StatefulWidget {
   ///   verticalPadding: 12.0,
   ///   elevation: 8.0,
   ///   pressedElevation: 0.0,
+  ///   semanticLabel: 'add more llamas',
+  ///   excludeSemantics: true,
   /// );
   /// ```
   /// Check also [Button.iconLabel] widget which displays the icon on the left to (or over) the label.
@@ -348,6 +381,8 @@ class Button extends StatefulWidget {
     double? verticalPadding,
     double? elevation,
     double? pressedElevation,
+    String? semanticLabel,
+    bool? excludeSemantics,
   }) {
     return Button(
       onClick: onClick,
@@ -357,6 +392,8 @@ class Button extends StatefulWidget {
       verticalPadding: verticalPadding,
       elevation: elevation,
       pressedElevation: pressedElevation,
+      semanticLabel: semanticLabel,
+      excludeSemantics: excludeSemantics,
       child: Flex(
         direction: isHorizontal ? Axis.horizontal : Axis.vertical,
         mainAxisSize: MainAxisSize.min,
@@ -441,6 +478,19 @@ class Button extends StatefulWidget {
   /// If `null`, the default pressed elevation ([2.0]) for the button will be applied.
   final double? pressedElevation;
 
+  /// The semantic label for the button that will be announced by screen readers.
+  ///
+  /// This is announced in accessibility modes (e.g TalkBack/VoiceOver).
+  ///
+  /// This label does not show in the UI.
+  final String? semanticLabel;
+
+  /// Whether to replace all child semantics with this node.
+  /// Using [semanticLabel] is highly recommended when setting this value to `true`.
+  ///
+  /// Defaults to [false].
+  final bool? excludeSemantics;
+
   @override
   State<Button> createState() => _ButtonState();
 }
@@ -453,6 +503,7 @@ class _ButtonState extends State<Button> {
     bool isDisabled = widget.onClick == null;
 
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: widget.onClick,
       onTapDown: isDisabled
           ? null
@@ -469,31 +520,37 @@ class _ButtonState extends State<Button> {
           : () => setState(() {
                 isPressed = false;
               }),
-      child: CustomPaint(
-        painter: _ButtonPainter(
-          borderRadius: widget.borderRadius ?? kBorderRadius,
-          elevation: widget.elevation ?? kElevation,
-          pressedElevation: widget.pressedElevation ?? kPressedElevation,
-          color: widget.color ?? kColor,
-          isPressed: isPressed,
-        ),
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-                horizontal: widget.horizontalPadding ?? kHorizontalPadding,
-                vertical: widget.verticalPadding ?? kVerticalPadding,
-              ) +
-              EdgeInsets.only(
-                bottom: isPressed
-                    ? widget.pressedElevation ?? kPressedElevation
-                    : widget.elevation ?? kElevation,
-              ) +
-              EdgeInsets.only(
-                top: isPressed
-                    ? (widget.elevation ?? kElevation) -
-                        (widget.pressedElevation ?? kPressedElevation)
-                    : 0,
-              ),
-          child: widget.child,
+      child: Semantics(
+        button: true,
+        enabled: !isDisabled,
+        label: widget.semanticLabel,
+        excludeSemantics: widget.excludeSemantics ?? kExcludeSemantics,
+        child: CustomPaint(
+          painter: _ButtonPainter(
+            borderRadius: widget.borderRadius ?? kBorderRadius,
+            elevation: widget.elevation ?? kElevation,
+            pressedElevation: widget.pressedElevation ?? kPressedElevation,
+            color: widget.color ?? kColor,
+            isPressed: isPressed,
+          ),
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+                  horizontal: widget.horizontalPadding ?? kHorizontalPadding,
+                  vertical: widget.verticalPadding ?? kVerticalPadding,
+                ) +
+                EdgeInsets.only(
+                  bottom: isPressed
+                      ? widget.pressedElevation ?? kPressedElevation
+                      : widget.elevation ?? kElevation,
+                ) +
+                EdgeInsets.only(
+                  top: isPressed
+                      ? (widget.elevation ?? kElevation) -
+                          (widget.pressedElevation ?? kPressedElevation)
+                      : 0,
+                ),
+            child: widget.child,
+          ),
         ),
       ),
     );

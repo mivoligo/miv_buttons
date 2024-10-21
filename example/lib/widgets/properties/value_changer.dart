@@ -42,6 +42,7 @@ class _ValueChangerState extends State<ValueChanger> {
             }
           },
           icon: Icons.remove,
+          semanticLabel: 'decrease value',
         ),
         const SizedBox(width: 16),
         SizedBox(
@@ -64,6 +65,7 @@ class _ValueChangerState extends State<ValueChanger> {
             }
           },
           icon: Icons.add,
+          semanticLabel: 'increase value',
         ),
       ],
     );

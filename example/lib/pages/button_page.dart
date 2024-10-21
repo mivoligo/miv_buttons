@@ -60,6 +60,7 @@ class _ButtonState extends State<_Button> {
               verticalPadding: verticalPadding,
               elevation: elevation,
               pressedElevation: pressedElevation,
+              semanticLabel: 'An example button with a child',
               child: child,
             ),
           ),
