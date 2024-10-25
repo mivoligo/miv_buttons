@@ -36,6 +36,7 @@ class _ButtonWithLabelIconState extends State<_ButtonWithLabelIcon> {
   double pressedElevation = 2;
   bool isHorizontal = true;
   double gap = 8;
+  Shape shape = Shape.rectangle;
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +60,7 @@ class _ButtonWithLabelIconState extends State<_ButtonWithLabelIcon> {
               verticalPadding: verticalPadding,
               elevation: elevation,
               pressedElevation: pressedElevation,
+              shape: shape,
               semanticLabel: 'An example button with a label and an icon',
             ),
           ),
@@ -128,38 +130,40 @@ class _ButtonWithLabelIconState extends State<_ButtonWithLabelIcon> {
                     },
                   ),
                   const Divider(height: 16),
-                  PropertyValueChange(
-                    propertyName: 'borderRadius',
-                    initialValue: borderRadius,
-                    onValueChanged: (value) {
-                      setState(() {
-                        borderRadius = value;
-                      });
-                    },
-                  ),
-                  const Divider(height: 16),
-                  PropertyValueChange(
-                    propertyName: 'horizontalPadding',
-                    initialValue: horizontalPadding,
-                    maxValue: 64,
-                    onValueChanged: (value) {
-                      setState(() {
-                        horizontalPadding = value;
-                      });
-                    },
-                  ),
-                  const Divider(height: 16),
-                  PropertyValueChange(
-                    propertyName: 'verticalPadding',
-                    initialValue: verticalPadding,
-                    maxValue: 64,
-                    onValueChanged: (value) {
-                      setState(() {
-                        verticalPadding = value;
-                      });
-                    },
-                  ),
-                  const Divider(height: 16),
+                  if (shape != Shape.circle) ...[
+                    PropertyValueChange(
+                      propertyName: 'borderRadius',
+                      initialValue: borderRadius,
+                      onValueChanged: (value) {
+                        setState(() {
+                          borderRadius = value;
+                        });
+                      },
+                    ),
+                    const Divider(height: 16),
+                    PropertyValueChange(
+                      propertyName: 'horizontalPadding',
+                      initialValue: horizontalPadding,
+                      maxValue: 64,
+                      onValueChanged: (value) {
+                        setState(() {
+                          horizontalPadding = value;
+                        });
+                      },
+                    ),
+                    const Divider(height: 16),
+                    PropertyValueChange(
+                      propertyName: 'verticalPadding',
+                      initialValue: verticalPadding,
+                      maxValue: 64,
+                      onValueChanged: (value) {
+                        setState(() {
+                          verticalPadding = value;
+                        });
+                      },
+                    ),
+                    const Divider(height: 16),
+                  ],
                   PropertyValueChange(
                     propertyName: 'elevation',
                     initialValue: elevation,
@@ -178,6 +182,15 @@ class _ButtonWithLabelIconState extends State<_ButtonWithLabelIcon> {
                     onValueChanged: (value) {
                       setState(() {
                         pressedElevation = value;
+                      });
+                    },
+                  ),
+                  const Divider(height: 16),
+                  PropertyShape(
+                    shape: shape,
+                    onShapeChange: (value) {
+                      setState(() {
+                        shape = value;
                       });
                     },
                   ),

@@ -30,6 +30,7 @@ class _ButtonState extends State<_Button> {
   double verticalPadding = 8;
   double elevation = 6;
   double pressedElevation = 2;
+  Shape shape = Shape.rectangle;
   Widget child = const Column(
     children: [
       Row(
@@ -60,6 +61,7 @@ class _ButtonState extends State<_Button> {
               verticalPadding: verticalPadding,
               elevation: elevation,
               pressedElevation: pressedElevation,
+              shape: shape,
               semanticLabel: 'An example button with a child',
               child: child,
             ),
@@ -87,38 +89,40 @@ class _ButtonState extends State<_Button> {
                     }),
                   ),
                   const Divider(height: 16),
-                  PropertyValueChange(
-                    propertyName: 'borderRadius',
-                    initialValue: borderRadius,
-                    onValueChanged: (value) {
-                      setState(() {
-                        borderRadius = value;
-                      });
-                    },
-                  ),
-                  const Divider(height: 16),
-                  PropertyValueChange(
-                    propertyName: 'horizontalPadding',
-                    initialValue: horizontalPadding,
-                    maxValue: 64,
-                    onValueChanged: (value) {
-                      setState(() {
-                        horizontalPadding = value;
-                      });
-                    },
-                  ),
-                  const Divider(height: 16),
-                  PropertyValueChange(
-                    propertyName: 'verticalPadding',
-                    initialValue: verticalPadding,
-                    maxValue: 64,
-                    onValueChanged: (value) {
-                      setState(() {
-                        verticalPadding = value;
-                      });
-                    },
-                  ),
-                  const Divider(height: 16),
+                  if (shape != Shape.circle) ...[
+                    PropertyValueChange(
+                      propertyName: 'borderRadius',
+                      initialValue: borderRadius,
+                      onValueChanged: (value) {
+                        setState(() {
+                          borderRadius = value;
+                        });
+                      },
+                    ),
+                    const Divider(height: 16),
+                    PropertyValueChange(
+                      propertyName: 'horizontalPadding',
+                      initialValue: horizontalPadding,
+                      maxValue: 64,
+                      onValueChanged: (value) {
+                        setState(() {
+                          horizontalPadding = value;
+                        });
+                      },
+                    ),
+                    const Divider(height: 16),
+                    PropertyValueChange(
+                      propertyName: 'verticalPadding',
+                      initialValue: verticalPadding,
+                      maxValue: 64,
+                      onValueChanged: (value) {
+                        setState(() {
+                          verticalPadding = value;
+                        });
+                      },
+                    ),
+                    const Divider(height: 16),
+                  ],
                   PropertyValueChange(
                     propertyName: 'elevation',
                     initialValue: elevation,
@@ -137,6 +141,15 @@ class _ButtonState extends State<_Button> {
                     onValueChanged: (value) {
                       setState(() {
                         pressedElevation = value;
+                      });
+                    },
+                  ),
+                  const Divider(height: 16),
+                  PropertyShape(
+                    shape: shape,
+                    onShapeChange: (value) {
+                      setState(() {
+                        shape = value;
                       });
                     },
                   ),
