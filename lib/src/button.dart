@@ -3,6 +3,11 @@ import 'dart:math';
 import 'package:flutter/widgets.dart';
 import 'package:miv_buttons/src/defaults.dart';
 
+enum Shape {
+  circle,
+  rectangle,
+}
+
 /// A customizable button widget with padding, elevation, color and other options.
 ///
 /// This button widget is flexible and allows for easy customization of layout, colors, padding, and elevations.
@@ -53,6 +58,7 @@ class Button extends StatefulWidget {
     this.verticalPadding,
     this.elevation = kElevation,
     this.pressedElevation = kPressedElevation,
+    this.shape = Shape.rectangle,
     this.semanticLabel,
     this.excludeSemantics,
     this.onLongPress,
@@ -127,6 +133,7 @@ class Button extends StatefulWidget {
     double? verticalPadding,
     double elevation = kElevation,
     double pressedElevation = kPressedElevation,
+    Shape shape = Shape.rectangle,
     String? semanticLabel,
     bool? excludeSemantics,
     VoidCallback? onLongPress,
@@ -142,6 +149,7 @@ class Button extends StatefulWidget {
       verticalPadding: verticalPadding,
       elevation: elevation,
       pressedElevation: pressedElevation,
+      shape: shape,
       semanticLabel: semanticLabel,
       excludeSemantics: excludeSemantics,
       onLongPress: onLongPress,
@@ -207,6 +215,7 @@ class Button extends StatefulWidget {
     double? verticalPadding,
     double elevation = kElevation,
     double pressedElevation = kPressedElevation,
+    Shape shape = Shape.rectangle,
     String? semanticLabel,
     bool? excludeSemantics,
     VoidCallback? onLongPress,
@@ -222,6 +231,7 @@ class Button extends StatefulWidget {
       verticalPadding: verticalPadding,
       elevation: elevation,
       pressedElevation: pressedElevation,
+      shape: shape,
       semanticLabel: semanticLabel,
       excludeSemantics: excludeSemantics,
       onLongPress: onLongPress,
@@ -299,6 +309,7 @@ class Button extends StatefulWidget {
     double? verticalPadding,
     double elevation = kElevation,
     double pressedElevation = kPressedElevation,
+    Shape shape = Shape.rectangle,
     String? semanticLabel,
     bool? excludeSemantics,
     VoidCallback? onLongPress,
@@ -312,6 +323,7 @@ class Button extends StatefulWidget {
       verticalPadding: verticalPadding,
       elevation: elevation,
       pressedElevation: pressedElevation,
+      shape: shape,
       semanticLabel: semanticLabel,
       excludeSemantics: excludeSemantics,
       onLongPress: onLongPress,
@@ -402,6 +414,7 @@ class Button extends StatefulWidget {
     double? verticalPadding,
     double elevation = kElevation,
     double pressedElevation = kPressedElevation,
+    Shape shape = Shape.rectangle,
     String? semanticLabel,
     bool? excludeSemantics,
     VoidCallback? onLongPress,
@@ -415,6 +428,7 @@ class Button extends StatefulWidget {
       verticalPadding: verticalPadding,
       elevation: elevation,
       pressedElevation: pressedElevation,
+      shape: shape,
       semanticLabel: semanticLabel,
       excludeSemantics: excludeSemantics,
       onLongPress: onLongPress,
@@ -521,6 +535,8 @@ class Button extends StatefulWidget {
   /// Defaults to [false].
   final bool? excludeSemantics;
 
+  final Shape shape;
+
   @override
   State<Button> createState() => _ButtonState();
 }
@@ -531,6 +547,29 @@ class _ButtonState extends State<Button> {
   @override
   Widget build(BuildContext context) {
     bool isDisabled = widget.onClick == null;
+
+    Widget shapeBasedButton(Shape shape) {
+      return switch (shape) {
+        Shape.circle => _RoundButton(
+            elevation: widget.elevation,
+            pressedElevation: widget.pressedElevation,
+            color: widget.color,
+            isPressed: isPressed,
+            padding: widget.horizontalPadding ?? kHorizontalPadding,
+            child: widget.child,
+          ),
+        Shape.rectangle => _RectButton(
+            borderRadius: widget.borderRadius ?? kBorderRadius,
+            elevation: widget.elevation,
+            pressedElevation: widget.pressedElevation,
+            horizontalPadding: widget.horizontalPadding ?? kHorizontalPadding,
+            verticalPadding: widget.verticalPadding ?? kVerticalPadding,
+            color: widget.color,
+            isPressed: isPressed,
+            child: widget.child,
+          ),
+      };
+    }
 
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
@@ -557,38 +596,55 @@ class _ButtonState extends State<Button> {
         enabled: !isDisabled,
         label: widget.semanticLabel,
         excludeSemantics: widget.excludeSemantics ?? kExcludeSemantics,
-        child: _RoundButton(
-            elevation: widget.elevation,
-            pressedElevation: widget.pressedElevation,
-            color: widget.color,
-            isPressed: isPressed,
-            padding: widget.horizontalPadding ?? 8,
-            child: widget.child),
-        // child: CustomPaint(
-        //   painter: _ButtonPainter(
-        //     borderRadius: widget.borderRadius ?? kBorderRadius,
-        //     elevation: widget.elevation,
-        //     pressedElevation: widget.pressedElevation,
-        //     color: widget.color,
-        //     isPressed: isPressed,
-        //   ),
-        //   child: Padding(
-        //     padding: EdgeInsets.symmetric(
-        //           horizontal: widget.horizontalPadding ?? kHorizontalPadding,
-        //           vertical: widget.verticalPadding ?? kVerticalPadding,
-        //         ) +
-        //         EdgeInsets.only(
-        //           bottom:
-        //               isPressed ? widget.pressedElevation : widget.elevation,
-        //         ) +
-        //         EdgeInsets.only(
-        //           top: isPressed
-        //               ? widget.elevation - widget.pressedElevation
-        //               : 0,
-        //         ),
-        //     child: widget.child,
-        //   ),
-        // ),
+        child: shapeBasedButton(widget.shape),
+      ),
+    );
+  }
+}
+
+class _RectButton extends StatelessWidget {
+  const _RectButton({
+    required this.borderRadius,
+    required this.elevation,
+    required this.pressedElevation,
+    required this.horizontalPadding,
+    required this.verticalPadding,
+    required this.color,
+    required this.isPressed,
+    required this.child,
+  });
+
+  final double borderRadius;
+  final double elevation;
+  final double pressedElevation;
+  final double horizontalPadding;
+  final double verticalPadding;
+  final Color color;
+  final bool isPressed;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomPaint(
+      painter: _RectButtonPainter(
+        borderRadius: borderRadius,
+        elevation: elevation,
+        pressedElevation: pressedElevation,
+        color: color,
+        isPressed: isPressed,
+      ),
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+              horizontal: horizontalPadding,
+              vertical: verticalPadding,
+            ) +
+            EdgeInsets.only(
+              bottom: isPressed ? pressedElevation : elevation,
+            ) +
+            EdgeInsets.only(
+              top: isPressed ? elevation - pressedElevation : 0,
+            ),
+        child: child,
       ),
     );
   }
@@ -630,8 +686,8 @@ class _RoundButton extends StatelessWidget {
   }
 }
 
-class _ButtonPainter extends CustomPainter {
-  _ButtonPainter({
+class _RectButtonPainter extends CustomPainter {
+  _RectButtonPainter({
     required this.borderRadius,
     required this.elevation,
     required this.pressedElevation,
@@ -695,7 +751,7 @@ class _ButtonPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant _ButtonPainter oldDelegate) {
+  bool shouldRepaint(covariant _RectButtonPainter oldDelegate) {
     return oldDelegate.isPressed != isPressed ||
         oldDelegate.color != color ||
         oldDelegate.borderRadius != borderRadius ||
