@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/widgets.dart';
 import 'package:miv_buttons/src/defaults.dart';
 
@@ -555,31 +557,74 @@ class _ButtonState extends State<Button> {
         enabled: !isDisabled,
         label: widget.semanticLabel,
         excludeSemantics: widget.excludeSemantics ?? kExcludeSemantics,
-        child: CustomPaint(
-          painter: _ButtonPainter(
-            borderRadius: widget.borderRadius ?? kBorderRadius,
+        child: _RoundButton(
             elevation: widget.elevation,
             pressedElevation: widget.pressedElevation,
             color: widget.color,
             isPressed: isPressed,
-          ),
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-                  horizontal: widget.horizontalPadding ?? kHorizontalPadding,
-                  vertical: widget.verticalPadding ?? kVerticalPadding,
-                ) +
-                EdgeInsets.only(
-                  bottom:
-                      isPressed ? widget.pressedElevation : widget.elevation,
-                ) +
-                EdgeInsets.only(
-                  top: isPressed
-                      ? widget.elevation - widget.pressedElevation
-                      : 0,
-                ),
-            child: widget.child,
-          ),
-        ),
+            padding: widget.horizontalPadding ?? 8,
+            child: widget.child),
+        // child: CustomPaint(
+        //   painter: _ButtonPainter(
+        //     borderRadius: widget.borderRadius ?? kBorderRadius,
+        //     elevation: widget.elevation,
+        //     pressedElevation: widget.pressedElevation,
+        //     color: widget.color,
+        //     isPressed: isPressed,
+        //   ),
+        //   child: Padding(
+        //     padding: EdgeInsets.symmetric(
+        //           horizontal: widget.horizontalPadding ?? kHorizontalPadding,
+        //           vertical: widget.verticalPadding ?? kVerticalPadding,
+        //         ) +
+        //         EdgeInsets.only(
+        //           bottom:
+        //               isPressed ? widget.pressedElevation : widget.elevation,
+        //         ) +
+        //         EdgeInsets.only(
+        //           top: isPressed
+        //               ? widget.elevation - widget.pressedElevation
+        //               : 0,
+        //         ),
+        //     child: widget.child,
+        //   ),
+        // ),
+      ),
+    );
+  }
+}
+
+class _RoundButton extends StatelessWidget {
+  const _RoundButton({
+    required this.elevation,
+    required this.pressedElevation,
+    required this.color,
+    required this.isPressed,
+    required this.padding,
+    required this.child,
+  });
+
+  final double elevation;
+  final double pressedElevation;
+  final Color color;
+  final bool isPressed;
+  final double padding;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomPaint(
+      painter: _RoundButtonPainter(
+        elevation: elevation,
+        pressedElevation: pressedElevation,
+        color: color,
+        isPressed: isPressed,
+      ),
+      child: Padding(
+        padding: EdgeInsets.all(padding) +
+            EdgeInsets.only(bottom: isPressed ? pressedElevation : elevation) +
+            EdgeInsets.only(top: isPressed ? elevation - pressedElevation : 0),
+        child: child,
       ),
     );
   }
@@ -654,6 +699,80 @@ class _ButtonPainter extends CustomPainter {
     return oldDelegate.isPressed != isPressed ||
         oldDelegate.color != color ||
         oldDelegate.borderRadius != borderRadius ||
+        oldDelegate.elevation != elevation ||
+        oldDelegate.pressedElevation != pressedElevation;
+  }
+}
+
+class _RoundButtonPainter extends CustomPainter {
+  _RoundButtonPainter({
+    required this.elevation,
+    required this.pressedElevation,
+    required this.color,
+    required this.isPressed,
+  });
+
+  final double elevation;
+  final double pressedElevation;
+  final Color color;
+  final bool isPressed;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    const sideDarkerColor = Color(0x45222222);
+    const shadowColor = kShadowColor;
+
+    final surfaceRect = Rect.fromCenter(
+      center: Offset(
+        size.width / 2,
+        isPressed
+            ? (size.height + elevation) / 2 - pressedElevation
+            : (size.height - elevation) / 2,
+      ),
+      width: max(size.height - elevation, size.width),
+      height: max(size.height - elevation, size.width),
+    );
+
+    final sidePath = Path()
+      ..moveTo(surfaceRect.centerLeft.dx, surfaceRect.centerLeft.dy)
+      ..lineTo(surfaceRect.centerRight.dx, surfaceRect.centerRight.dy)
+      ..lineTo(
+        surfaceRect.centerRight.dx,
+        surfaceRect.centerRight.dy + (isPressed ? pressedElevation : elevation),
+      )
+      ..arcToPoint(
+        Offset(
+          surfaceRect.centerLeft.dx,
+          surfaceRect.centerLeft.dy +
+              (isPressed ? pressedElevation : elevation),
+        ),
+        radius: Radius.circular((size.longestSide - elevation) / 2),
+      );
+
+    final shadowPath = Path()..addPath(sidePath, Offset.zero);
+
+    final surfacePaint = Paint()..color = color;
+    final sidePaint = Paint()..color = sideDarkerColor;
+
+    if (isPressed && pressedElevation > 0 || !isPressed && elevation > 0) {
+      canvas.drawShadow(
+        shadowPath,
+        shadowColor,
+        isPressed ? pressedElevation : elevation,
+        true,
+      );
+
+      canvas.drawPath(sidePath, surfacePaint);
+      canvas.drawPath(sidePath, sidePaint);
+    }
+
+    canvas.drawOval(surfaceRect, surfacePaint);
+  }
+
+  @override
+  bool shouldRepaint(covariant _RoundButtonPainter oldDelegate) {
+    return oldDelegate.isPressed != isPressed ||
+        oldDelegate.color != color ||
         oldDelegate.elevation != elevation ||
         oldDelegate.pressedElevation != pressedElevation;
   }
