@@ -91,6 +91,7 @@ class _ButtonState extends State<_Button> {
                   const Divider(height: 16),
                   if (shape != Shape.circle) ...[
                     PropertyValueChange(
+                      key: const Key('borderRadius'),
                       propertyName: 'borderRadius',
                       initialValue: borderRadius,
                       onValueChanged: (value) {
@@ -101,6 +102,7 @@ class _ButtonState extends State<_Button> {
                     ),
                     const Divider(height: 16),
                     PropertyValueChange(
+                      key: const Key('horizontalPadding'),
                       propertyName: 'horizontalPadding',
                       initialValue: horizontalPadding,
                       maxValue: 64,
@@ -112,6 +114,7 @@ class _ButtonState extends State<_Button> {
                     ),
                     const Divider(height: 16),
                     PropertyValueChange(
+                      key: const Key('verticalPadding'),
                       propertyName: 'verticalPadding',
                       initialValue: verticalPadding,
                       maxValue: 64,
@@ -124,6 +127,7 @@ class _ButtonState extends State<_Button> {
                     const Divider(height: 16),
                   ],
                   PropertyValueChange(
+                    key: const Key('elevation'),
                     propertyName: 'elevation',
                     initialValue: elevation,
                     maxValue: 24,
@@ -135,6 +139,7 @@ class _ButtonState extends State<_Button> {
                   ),
                   const Divider(height: 16),
                   PropertyValueChange(
+                    key: const Key('pressedElevation'),
                     propertyName: 'pressedElevation',
                     initialValue: pressedElevation,
                     maxValue: 24,
