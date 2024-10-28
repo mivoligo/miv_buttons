@@ -3,8 +3,12 @@ import 'dart:math';
 import 'package:flutter/widgets.dart';
 import 'package:miv_buttons/src/defaults.dart';
 
+/// Enumeration of possible button shapes
 enum Shape {
+  /// Circular shape
   circle,
+
+  /// Rectangular shape
   rectangle,
 }
 
@@ -26,6 +30,7 @@ enum Shape {
 /// * [verticalPadding]: The vertical padding inside the button between its content and its edges. If `null`, the default vertical padding ([8.0]) will be applied.
 /// * [elevation]: The elevation of the button, making it appear raised above the surface. If not specified, the default elevation ([6.0]) will be applied.
 /// * [pressedElevation]: The elevation of the button when pressed. If not specified, the default pressed elevation ([2.0]) will be used.
+/// * [shape]: The shape of the button. If not specified, the default shape ([Shape.rectangle]) will be used.
 /// * [semanticLabel]: The semantic label for the button that will be announced by screen readers. This label does not show in the UI.
 /// * [excludeSemantics]: Whether to replace all child semantics with this node. Defaults to [false].
 ///
@@ -99,6 +104,7 @@ class Button extends StatefulWidget {
   /// * [verticalPadding]: The vertical padding inside the button between its content and its edges. If `null`, the default vertical padding ([8.0]) will be applied.
   /// * [elevation]: The elevation of the button, making it appear raised above the surface. If not specified, the default elevation ([6.0]) will be applied.
   /// * [pressedElevation]: The elevation of the button when pressed. If not specified, the default pressed elevation ([2.0]) will be used.
+  /// * [shape]: The shape of the button. If not specified, the default shape ([Shape.rectangle]) will be used.
   /// * [semanticLabel]: The semantic label for the button that will be announced by screen readers. This label does not show in the UI.
   /// * [excludeSemantics]: Whether to replace all child semantics with this node. Defaults to [false].
   ///
@@ -181,6 +187,7 @@ class Button extends StatefulWidget {
   /// * [verticalPadding]: The vertical padding inside the button between its content and its edges. If `null`, the default vertical padding ([8.0]) will be applied.
   /// * [elevation]: The elevation of the button, making it appear raised above the surface. If not specified, the default elevation ([6.0]) will be applied.
   /// * [pressedElevation]: The elevation of the button when pressed. If not specified, the default pressed elevation ([2.0]) will be used.
+  /// * [shape]: The shape of the button. If not specified, the default shape ([Shape.rectangle]) will be used.
   /// * [semanticLabel]: The semantic label for the button that will be announced by screen readers. This label does not show in the UI.
   /// * [excludeSemantics]: Whether to replace all child semantics with this node. Defaults to [false].
   ///
@@ -266,6 +273,7 @@ class Button extends StatefulWidget {
   /// * [verticalPadding]: The vertical padding inside the button between its content and its edges. If `null`, the default vertical padding ([8.0]) will be applied.
   /// * [elevation]: The elevation of the button, making it appear raised above the surface. If not specified, the default elevation ([6.0]) will be applied.
   /// * [pressedElevation]: The elevation of the button when pressed. If not specified, the default pressed elevation ([2.0]) will be used.
+  /// * [shape]: The shape of the button. If not specified, the default shape ([Shape.rectangle]) will be used.
   /// * [semanticLabel]: The semantic label for the button that will be announced by screen readers. This label does not show in the UI.
   /// * [excludeSemantics]: Whether to replace all child semantics with this node. Defaults to [false].
   ///
@@ -371,6 +379,7 @@ class Button extends StatefulWidget {
   /// * [verticalPadding]: The vertical padding inside the button between its content and its edges. If `null`, the default vertical padding ([8.0]) will be applied.
   /// * [elevation]: The elevation of the button, making it appear raised above the surface. If not specified, the default elevation ([6.0]) will be applied.
   /// * [pressedElevation]: The elevation of the button when pressed. If not specified, the default pressed elevation ([2.0]) will be used.
+  /// * [shape]: The shape of the button. If not specified, the default shape ([Shape.rectangle]) will be used.
   /// * [semanticLabel]: The semantic label for the button that will be announced by screen readers. This label does not show in the UI.
   /// * [excludeSemantics]: Whether to replace all child semantics with this node. Defaults to [false].
   ///
@@ -535,6 +544,9 @@ class Button extends StatefulWidget {
   /// Defaults to [false].
   final bool? excludeSemantics;
 
+  /// The shape of the button.
+  ///
+  /// Defaults to [Shape.rectangle].
   final Shape shape;
 
   @override

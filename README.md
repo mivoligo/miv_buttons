@@ -166,6 +166,7 @@ UI needs. Here are the properties you can set for the `Button` and all the named
 | `verticalPadding`   | `double?`       | `8.0`              | Defines the vertical padding between the button's content and its edges.                                                               |
 | `elevation`         | `double`        | `6.0`              | The elevation of the button when in its default state.                                                                                 |
 | `pressedElevation`  | `double`        | `2.0`              | The elevation of the button when pressed.                                                                                              |
+| `shape`             | `Shape`         | `Shape.rectangle`  | Shape of the button.                                                                                                                   |
 | `semanticLabel`     | `String?`       | -                  | The semantic label for the button that will be announced by screen readers.                                                            |
 | `excludeSemantics`  | `bool?`         | `false`            | Whether to replace all child semantics with this node.                                                                                 |
 
