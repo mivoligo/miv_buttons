@@ -31,6 +31,7 @@ class PropertyChild extends StatelessWidget {
 
 const widgets = <Widget>[
   Column(
+    mainAxisSize: MainAxisSize.min,
     children: [
       Row(
         mainAxisSize: MainAxisSize.min,

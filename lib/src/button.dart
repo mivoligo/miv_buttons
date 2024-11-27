@@ -711,18 +711,34 @@ class _RoundButton extends StatelessWidget {
         width: diameter,
         height: diameter + elevation,
         child: Padding(
-          padding: // EdgeInsets.all(padding) +
+          padding: EdgeInsets.only(
+                bottom: isPressed ? pressedElevation : elevation,
+              ) +
               EdgeInsets.only(
-                    bottom: isPressed ? pressedElevation : elevation,
-                  ) +
-                  EdgeInsets.only(
-                    top: isPressed ? elevation - pressedElevation : 0,
-                  ),
-          child: Center(child: child),
+                top: isPressed ? elevation - pressedElevation : 0,
+              ),
+          child: ClipOval(
+            clipper: _CircleClipper(),
+            child: Center(
+              child: OverflowBox(
+                maxWidth: double.maxFinite,
+                maxHeight: double.maxFinite,
+                child: child,
+              ),
+            ),
+          ),
         ),
       ),
     );
   }
+}
+
+class _CircleClipper extends CustomClipper<Rect> {
+  @override
+  Rect getClip(Size size) => Rect.fromLTWH(0, 0, size.width, size.height);
+
+  @override
+  bool shouldReclip(covariant CustomClipper oldClipper) => false;
 }
 
 class _RectButtonPainter extends CustomPainter {
@@ -812,8 +828,6 @@ class _RoundButtonPainter extends CustomPainter {
   final Color color;
   final bool isPressed;
 
-  Path clickablePath = Path();
-
   @override
   void paint(Canvas canvas, Size size) {
     const sideDarkerColor = Color(0x45222222);
@@ -847,8 +861,6 @@ class _RoundButtonPainter extends CustomPainter {
         ),
         radius: Radius.circular(radius),
       );
-
-    clickablePath = sidePath;
 
     final shadowPath = Path()..addPath(sidePath, Offset.zero);
 
