@@ -832,17 +832,17 @@ class _RoundButtonPainter extends CustomPainter {
     const sideDarkerColor = Color(0x45222222);
     const shadowColor = kShadowColor;
 
-    final radius = size.width / 2;
+    final diameter = size.width;
 
     final surfaceRect = Rect.fromCenter(
       center: Offset(
-        size.width / 2,
+        diameter / 2,
         isPressed
             ? (size.height + elevation) / 2 - pressedElevation
             : (size.height - elevation) / 2,
       ),
-      width: 2 * radius,
-      height: 2 * radius - elevation,
+      width: diameter,
+      height: diameter - elevation,
     );
 
     final sidePath = Path()
@@ -858,7 +858,7 @@ class _RoundButtonPainter extends CustomPainter {
           surfaceRect.centerLeft.dy +
               (isPressed ? pressedElevation : elevation),
         ),
-        radius: Radius.circular(radius),
+        radius: Radius.circular(diameter / 2),
       );
 
     final shadowPath = Path()..addPath(sidePath, Offset.zero);
@@ -878,7 +878,7 @@ class _RoundButtonPainter extends CustomPainter {
       canvas.drawPath(sidePath, sidePaint);
     }
 
-    canvas.drawCircle(surfaceRect.center, radius, surfacePaint);
+    canvas.drawCircle(surfaceRect.center, diameter / 2, surfacePaint);
   }
 
   @override
