@@ -248,6 +248,45 @@ void main() {
   );
 
   testWidgets(
+    'Button.icon sets correct properties when using Shape.circle',
+    (WidgetTester tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Center(
+            child: Button.icon(
+              onClick: () {},
+              icon: Icons.remove,
+              color: Colors.white,
+              iconSize: 24,
+              elevation: 8,
+              pressedElevation: 0,
+              iconColor: Colors.black,
+              shape: Shape.circle,
+              diameter: 42,
+            ),
+          ),
+        ),
+      );
+
+      final buttonFinder = find.byType(Button);
+
+      Button button = tester.widget(buttonFinder);
+
+      expect(button.color, Colors.white);
+      expect(button.elevation, 8);
+      expect(button.pressedElevation, 0);
+      expect(button.shape, Shape.circle);
+      expect(button.diameter, 42);
+
+      final icon = button.child as Icon;
+
+      expect(icon.color, Colors.black);
+      expect(icon.size, 24);
+      expect(icon.icon, Icons.remove);
+    },
+  );
+
+  testWidgets(
     'Button.label sets correct properties',
     (WidgetTester tester) async {
       await tester.pumpWidget(
@@ -278,6 +317,43 @@ void main() {
       expect(button.verticalPadding, 20);
       expect(button.elevation, 8);
       expect(button.pressedElevation, 0);
+
+      final label = button.child as Text;
+
+      expect(label.style?.color, Colors.black);
+      expect(label.data, 'button');
+    },
+  );
+
+  testWidgets(
+    'Button.label sets correct properties when using Shape.circle',
+    (WidgetTester tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Center(
+            child: Button.label(
+              label: 'button',
+              onClick: () {},
+              color: Colors.white,
+              elevation: 8,
+              pressedElevation: 0,
+              labelColor: Colors.black,
+              shape: Shape.circle,
+              diameter: 42,
+            ),
+          ),
+        ),
+      );
+
+      final buttonFinder = find.byType(Button);
+
+      Button button = tester.widget(buttonFinder);
+
+      expect(button.color, Colors.white);
+      expect(button.elevation, 8);
+      expect(button.pressedElevation, 0);
+      expect(button.shape, Shape.circle);
+      expect(button.diameter, 42);
 
       final label = button.child as Text;
 
@@ -344,6 +420,61 @@ void main() {
   );
 
   testWidgets(
+    'Button.iconLabel sets correct properties  when using Shape.circle',
+    (WidgetTester tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Center(
+            child: Button.iconLabel(
+              label: 'button',
+              onClick: () {},
+              icon: Icons.remove,
+              color: Colors.white,
+              foregroundColor: Colors.black,
+              iconSize: 24,
+              gap: 10,
+              isHorizontal: false,
+              elevation: 8,
+              pressedElevation: 0,
+              diameter: 42,
+              shape: Shape.circle,
+            ),
+          ),
+        ),
+      );
+
+      final buttonFinder = find.byType(Button);
+
+      Button button = tester.widget(buttonFinder);
+
+      expect(button.color, Colors.white);
+      expect(button.elevation, 8);
+      expect(button.pressedElevation, 0);
+      expect(button.shape, Shape.circle);
+      expect(button.diameter, 42);
+
+      final child = button.child as Flex;
+
+      expect(child.direction, Axis.vertical);
+
+      final icon = child.children.first as Icon;
+
+      expect(icon.color, Colors.black);
+      expect(icon.size, 24);
+      expect(icon.icon, Icons.remove);
+
+      final gap = child.children[1] as SizedBox;
+
+      expect(gap.height, 10);
+
+      final label = child.children.last as Text;
+
+      expect(label.style?.color, Colors.black);
+      expect(label.data, 'button');
+    },
+  );
+
+  testWidgets(
     'Button.labelIcon sets correct properties',
     (WidgetTester tester) async {
       await tester.pumpWidget(
@@ -378,6 +509,61 @@ void main() {
       expect(button.verticalPadding, 20);
       expect(button.elevation, 8);
       expect(button.pressedElevation, 0);
+
+      final child = button.child as Flex;
+
+      expect(child.direction, Axis.vertical);
+
+      final label = child.children.first as Text;
+
+      expect(label.style?.color, Colors.black);
+      expect(label.data, 'button');
+
+      final gap = child.children[1] as SizedBox;
+
+      expect(gap.height, 10);
+
+      final icon = child.children.last as Icon;
+
+      expect(icon.color, Colors.black);
+      expect(icon.size, 24);
+      expect(icon.icon, Icons.remove);
+    },
+  );
+
+  testWidgets(
+    'Button.labelIcon sets correct properties when using Shape.circle',
+    (WidgetTester tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Center(
+            child: Button.labelIcon(
+              label: 'button',
+              onClick: () {},
+              icon: Icons.remove,
+              color: Colors.white,
+              foregroundColor: Colors.black,
+              iconSize: 24,
+              gap: 10,
+              isHorizontal: false,
+              elevation: 8,
+              pressedElevation: 0,
+              diameter: 42,
+              shape: Shape.circle,
+            ),
+          ),
+        ),
+      );
+
+      final buttonFinder = find.byType(Button);
+
+      Button button = tester.widget(buttonFinder);
+
+      expect(button.color, Colors.white);
+      expect(button.elevation, 8);
+      expect(button.pressedElevation, 0);
+      expect(button.shape, Shape.circle);
+      expect(button.diameter, 42);
 
       final child = button.child as Flex;
 
