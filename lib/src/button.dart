@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/widgets.dart';
 import 'package:miv_buttons/src/defaults.dart';
 
@@ -31,6 +29,7 @@ enum Shape {
 /// * [elevation]: The elevation of the button, making it appear raised above the surface. If not specified, the default elevation ([6.0]) will be applied.
 /// * [pressedElevation]: The elevation of the button when pressed. If not specified, the default pressed elevation ([2.0]) will be used.
 /// * [shape]: The shape of the button. If not specified, the default shape ([Shape.rectangle]) will be used.
+/// * [diameter]: The diameter of the button when using [Shape.circle]. Ignored for other shapes. If not specified, the default diameter ([40.0]) will be used.
 /// * [semanticLabel]: The semantic label for the button that will be announced by screen readers. This label does not show in the UI.
 /// * [excludeSemantics]: Whether to replace all child semantics with this node. Defaults to [false].
 ///
@@ -64,6 +63,7 @@ class Button extends StatefulWidget {
     this.elevation = kElevation,
     this.pressedElevation = kPressedElevation,
     this.shape = Shape.rectangle,
+    this.diameter,
     this.semanticLabel,
     this.excludeSemantics,
     this.onLongPress,
@@ -105,6 +105,7 @@ class Button extends StatefulWidget {
   /// * [elevation]: The elevation of the button, making it appear raised above the surface. If not specified, the default elevation ([6.0]) will be applied.
   /// * [pressedElevation]: The elevation of the button when pressed. If not specified, the default pressed elevation ([2.0]) will be used.
   /// * [shape]: The shape of the button. If not specified, the default shape ([Shape.rectangle]) will be used.
+  /// * [diameter]: The diameter of the button when using [Shape.circle]. Ignored for other shapes. If not specified, the default diameter ([40.0]) will be used.
   /// * [semanticLabel]: The semantic label for the button that will be announced by screen readers. This label does not show in the UI.
   /// * [excludeSemantics]: Whether to replace all child semantics with this node. Defaults to [false].
   ///
@@ -187,7 +188,9 @@ class Button extends StatefulWidget {
   /// * [verticalPadding]: The vertical padding inside the button between its content and its edges. If `null`, the default vertical padding ([8.0]) will be applied.
   /// * [elevation]: The elevation of the button, making it appear raised above the surface. If not specified, the default elevation ([6.0]) will be applied.
   /// * [pressedElevation]: The elevation of the button when pressed. If not specified, the default pressed elevation ([2.0]) will be used.
+  /// * [diameter]: The diameter of the button when using [Shape.circle]. Ignored for other shapes. If not specified, the default diameter ([40.0]) will be used.
   /// * [shape]: The shape of the button. If not specified, the default shape ([Shape.rectangle]) will be used.
+  /// * [diameter]: The diameter of the button when using [Shape.circle]. Ignored for other shapes. If not specified, the default diameter ([40.0]) will be used.
   /// * [semanticLabel]: The semantic label for the button that will be announced by screen readers. This label does not show in the UI.
   /// * [excludeSemantics]: Whether to replace all child semantics with this node. Defaults to [false].
   ///
@@ -274,6 +277,7 @@ class Button extends StatefulWidget {
   /// * [elevation]: The elevation of the button, making it appear raised above the surface. If not specified, the default elevation ([6.0]) will be applied.
   /// * [pressedElevation]: The elevation of the button when pressed. If not specified, the default pressed elevation ([2.0]) will be used.
   /// * [shape]: The shape of the button. If not specified, the default shape ([Shape.rectangle]) will be used.
+  /// * [diameter]: The diameter of the button when using [Shape.circle]. Ignored for other shapes. If not specified, the default diameter ([40.0]) will be used.
   /// * [semanticLabel]: The semantic label for the button that will be announced by screen readers. This label does not show in the UI.
   /// * [excludeSemantics]: Whether to replace all child semantics with this node. Defaults to [false].
   ///
@@ -380,6 +384,7 @@ class Button extends StatefulWidget {
   /// * [elevation]: The elevation of the button, making it appear raised above the surface. If not specified, the default elevation ([6.0]) will be applied.
   /// * [pressedElevation]: The elevation of the button when pressed. If not specified, the default pressed elevation ([2.0]) will be used.
   /// * [shape]: The shape of the button. If not specified, the default shape ([Shape.rectangle]) will be used.
+  /// * [diameter]: The diameter of the button when using [Shape.circle]. Ignored for other shapes. If not specified, the default diameter ([40.0]) will be used.
   /// * [semanticLabel]: The semantic label for the button that will be announced by screen readers. This label does not show in the UI.
   /// * [excludeSemantics]: Whether to replace all child semantics with this node. Defaults to [false].
   ///
@@ -531,6 +536,12 @@ class Button extends StatefulWidget {
   /// If not specified, the default pressed elevation ([2.0]) for the button will be applied.
   final double pressedElevation;
 
+  /// The diameter of the button when using [Shape.circle].
+  ///
+  /// Specifies the size of the circle, has no effect for buttons with other `shape` settings.
+  /// If not specified, the default diameter ([40.0]) will be applied.
+  final double? diameter;
+
   /// The semantic label for the button that will be announced by screen readers.
   ///
   /// This is announced in accessibility modes (e.g TalkBack/VoiceOver).
@@ -567,7 +578,7 @@ class _ButtonState extends State<Button> {
             pressedElevation: widget.pressedElevation,
             color: widget.color,
             isPressed: isPressed,
-            padding: widget.horizontalPadding ?? kHorizontalPadding,
+            diameter: widget.diameter ?? kDiameter,
             child: widget.child,
           ),
         Shape.rectangle => _RectButton(
@@ -668,7 +679,7 @@ class _RoundButton extends StatelessWidget {
     required this.pressedElevation,
     required this.color,
     required this.isPressed,
-    required this.padding,
+    required this.diameter,
     required this.child,
   });
 
@@ -676,7 +687,7 @@ class _RoundButton extends StatelessWidget {
   final double pressedElevation;
   final Color color;
   final bool isPressed;
-  final double padding;
+  final double diameter;
   final Widget child;
 
   @override
@@ -688,11 +699,19 @@ class _RoundButton extends StatelessWidget {
         color: color,
         isPressed: isPressed,
       ),
-      child: Padding(
-        padding: EdgeInsets.all(padding) +
-            EdgeInsets.only(bottom: isPressed ? pressedElevation : elevation) +
-            EdgeInsets.only(top: isPressed ? elevation - pressedElevation : 0),
-        child: child,
+      child: SizedBox(
+        width: diameter,
+        height: diameter + elevation,
+        child: Padding(
+          padding: // EdgeInsets.all(padding) +
+              EdgeInsets.only(
+                    bottom: isPressed ? pressedElevation : elevation,
+                  ) +
+                  EdgeInsets.only(
+                    top: isPressed ? elevation - pressedElevation : 0,
+                  ),
+          child: Center(child: child),
+        ),
       ),
     );
   }
@@ -785,10 +804,14 @@ class _RoundButtonPainter extends CustomPainter {
   final Color color;
   final bool isPressed;
 
+  Path clickablePath = Path();
+
   @override
   void paint(Canvas canvas, Size size) {
     const sideDarkerColor = Color(0x45222222);
     const shadowColor = kShadowColor;
+
+    final radius = size.width / 2;
 
     final surfaceRect = Rect.fromCenter(
       center: Offset(
@@ -797,8 +820,8 @@ class _RoundButtonPainter extends CustomPainter {
             ? (size.height + elevation) / 2 - pressedElevation
             : (size.height - elevation) / 2,
       ),
-      width: max(size.height - elevation, size.width),
-      height: max(size.height - elevation, size.width),
+      width: 2 * radius,
+      height: 2 * radius - elevation,
     );
 
     final sidePath = Path()
@@ -814,8 +837,10 @@ class _RoundButtonPainter extends CustomPainter {
           surfaceRect.centerLeft.dy +
               (isPressed ? pressedElevation : elevation),
         ),
-        radius: Radius.circular((size.longestSide - elevation) / 2),
+        radius: Radius.circular(radius),
       );
+
+    clickablePath = sidePath;
 
     final shadowPath = Path()..addPath(sidePath, Offset.zero);
 
@@ -834,7 +859,7 @@ class _RoundButtonPainter extends CustomPainter {
       canvas.drawPath(sidePath, sidePaint);
     }
 
-    canvas.drawOval(surfaceRect, surfacePaint);
+    canvas.drawCircle(surfaceRect.center, radius, surfacePaint);
   }
 
   @override
@@ -843,5 +868,12 @@ class _RoundButtonPainter extends CustomPainter {
         oldDelegate.color != color ||
         oldDelegate.elevation != elevation ||
         oldDelegate.pressedElevation != pressedElevation;
+  }
+
+  @override
+  bool? hitTest(Offset position) {
+    print('position=$position');
+    print('clickablePath=${clickablePath.contains(position)}');
+    return true;
   }
 }
