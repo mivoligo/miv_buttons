@@ -140,6 +140,7 @@ class Button extends StatefulWidget {
     double? verticalPadding,
     double elevation = kElevation,
     double pressedElevation = kPressedElevation,
+    double? diameter,
     Shape shape = Shape.rectangle,
     String? semanticLabel,
     bool? excludeSemantics,
@@ -156,6 +157,7 @@ class Button extends StatefulWidget {
       verticalPadding: verticalPadding,
       elevation: elevation,
       pressedElevation: pressedElevation,
+      diameter: diameter,
       shape: shape,
       semanticLabel: semanticLabel,
       excludeSemantics: excludeSemantics,
@@ -225,6 +227,7 @@ class Button extends StatefulWidget {
     double? verticalPadding,
     double elevation = kElevation,
     double pressedElevation = kPressedElevation,
+    double? diameter,
     Shape shape = Shape.rectangle,
     String? semanticLabel,
     bool? excludeSemantics,
@@ -241,6 +244,7 @@ class Button extends StatefulWidget {
       verticalPadding: verticalPadding,
       elevation: elevation,
       pressedElevation: pressedElevation,
+      diameter: diameter,
       shape: shape,
       semanticLabel: semanticLabel,
       excludeSemantics: excludeSemantics,
@@ -321,6 +325,7 @@ class Button extends StatefulWidget {
     double? verticalPadding,
     double elevation = kElevation,
     double pressedElevation = kPressedElevation,
+    double? diameter,
     Shape shape = Shape.rectangle,
     String? semanticLabel,
     bool? excludeSemantics,
@@ -335,6 +340,7 @@ class Button extends StatefulWidget {
       verticalPadding: verticalPadding,
       elevation: elevation,
       pressedElevation: pressedElevation,
+      diameter: diameter,
       shape: shape,
       semanticLabel: semanticLabel,
       excludeSemantics: excludeSemantics,
@@ -428,6 +434,7 @@ class Button extends StatefulWidget {
     double? verticalPadding,
     double elevation = kElevation,
     double pressedElevation = kPressedElevation,
+    double? diameter,
     Shape shape = Shape.rectangle,
     String? semanticLabel,
     bool? excludeSemantics,
@@ -442,6 +449,7 @@ class Button extends StatefulWidget {
       verticalPadding: verticalPadding,
       elevation: elevation,
       pressedElevation: pressedElevation,
+      diameter: diameter,
       shape: shape,
       semanticLabel: semanticLabel,
       excludeSemantics: excludeSemantics,
@@ -868,12 +876,5 @@ class _RoundButtonPainter extends CustomPainter {
         oldDelegate.color != color ||
         oldDelegate.elevation != elevation ||
         oldDelegate.pressedElevation != pressedElevation;
-  }
-
-  @override
-  bool? hitTest(Offset position) {
-    print('position=$position');
-    print('clickablePath=${clickablePath.contains(position)}');
-    return true;
   }
 }
