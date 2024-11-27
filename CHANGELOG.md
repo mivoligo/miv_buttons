@@ -1,3 +1,7 @@
+## 1.0.1
+
+* Added `shape` parameter
+
 ## 1.0.0
 
 * Added semantics (thanks to @Luckey-Elijah)
