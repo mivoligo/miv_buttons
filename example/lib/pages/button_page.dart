@@ -30,6 +30,7 @@ class _ButtonState extends State<_Button> {
   double verticalPadding = 8;
   double elevation = 6;
   double pressedElevation = 2;
+  double diameter = 40;
   Shape shape = Shape.rectangle;
   Widget child = const Column(
     children: [
@@ -61,6 +62,7 @@ class _ButtonState extends State<_Button> {
               verticalPadding: verticalPadding,
               elevation: elevation,
               pressedElevation: pressedElevation,
+              diameter: diameter,
               shape: shape,
               semanticLabel: 'An example button with a child',
               child: child,
@@ -150,6 +152,20 @@ class _ButtonState extends State<_Button> {
                     },
                   ),
                   const Divider(height: 16),
+                  if (shape == Shape.circle) ...[
+                    PropertyValueChange(
+                      key: const Key('diameter'),
+                      propertyName: 'diameter',
+                      initialValue: diameter,
+                      maxValue: 200,
+                      onValueChanged: (value) {
+                        setState(() {
+                          diameter = value;
+                        });
+                      },
+                    ),
+                    const Divider(height: 16),
+                  ],
                   PropertyShape(
                     shape: shape,
                     onShapeChange: (value) {

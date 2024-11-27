@@ -33,6 +33,7 @@ class _ButtonWithIconState extends State<_ButtonWithIcon> {
   double verticalPadding = 8;
   double elevation = 6;
   double pressedElevation = 2;
+  double diameter = 40;
   Shape shape = Shape.rectangle;
 
   @override
@@ -54,6 +55,7 @@ class _ButtonWithIconState extends State<_ButtonWithIcon> {
               verticalPadding: verticalPadding,
               elevation: elevation,
               pressedElevation: pressedElevation,
+              diameter: diameter,
               shape: shape,
               semanticLabel: 'An example button with an icon',
             ),
@@ -161,6 +163,20 @@ class _ButtonWithIconState extends State<_ButtonWithIcon> {
                     },
                   ),
                   const Divider(height: 16),
+                  if (shape == Shape.circle) ...[
+                    PropertyValueChange(
+                      key: const Key('diameter'),
+                      propertyName: 'diameter',
+                      initialValue: diameter,
+                      maxValue: 200,
+                      onValueChanged: (value) {
+                        setState(() {
+                          diameter = value;
+                        });
+                      },
+                    ),
+                    const Divider(height: 16),
+                  ],
                   PropertyShape(
                     shape: shape,
                     onShapeChange: (value) {

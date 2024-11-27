@@ -36,6 +36,7 @@ class _ButtonWithLabelIconState extends State<_ButtonWithLabelIcon> {
   double pressedElevation = 2;
   bool isHorizontal = true;
   double gap = 8;
+  double diameter = 40;
   Shape shape = Shape.rectangle;
 
   @override
@@ -60,6 +61,7 @@ class _ButtonWithLabelIconState extends State<_ButtonWithLabelIcon> {
               verticalPadding: verticalPadding,
               elevation: elevation,
               pressedElevation: pressedElevation,
+              diameter: diameter,
               shape: shape,
               semanticLabel: 'An example button with a label and an icon',
             ),
@@ -193,6 +195,20 @@ class _ButtonWithLabelIconState extends State<_ButtonWithLabelIcon> {
                     },
                   ),
                   const Divider(height: 16),
+                  if (shape == Shape.circle) ...[
+                    PropertyValueChange(
+                      key: const Key('diameter'),
+                      propertyName: 'diameter',
+                      initialValue: diameter,
+                      maxValue: 200,
+                      onValueChanged: (value) {
+                        setState(() {
+                          diameter = value;
+                        });
+                      },
+                    ),
+                    const Divider(height: 16),
+                  ],
                   PropertyShape(
                     shape: shape,
                     onShapeChange: (value) {
