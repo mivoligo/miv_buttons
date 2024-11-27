@@ -32,6 +32,8 @@ class _ButtonWithLabelState extends State<_ButtonWithLabel> {
   double verticalPadding = 8;
   double elevation = 6;
   double pressedElevation = 2;
+  double diameter = 40;
+  Shape shape = Shape.rectangle;
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +53,8 @@ class _ButtonWithLabelState extends State<_ButtonWithLabel> {
               verticalPadding: verticalPadding,
               elevation: elevation,
               pressedElevation: pressedElevation,
+              diameter: diameter,
+              shape: shape,
               semanticLabel: 'An example button with a label',
             ),
           ),
@@ -86,39 +90,45 @@ class _ButtonWithLabelState extends State<_ButtonWithLabel> {
                     }),
                   ),
                   const Divider(height: 16),
+                  if (shape != Shape.circle) ...[
+                    PropertyValueChange(
+                      key: const Key('borderRadius'),
+                      propertyName: 'borderRadius',
+                      initialValue: borderRadius,
+                      onValueChanged: (value) {
+                        setState(() {
+                          borderRadius = value;
+                        });
+                      },
+                    ),
+                    const Divider(height: 16),
+                    PropertyValueChange(
+                      key: const Key('horizontalPadding'),
+                      propertyName: 'horizontalPadding',
+                      initialValue: horizontalPadding,
+                      maxValue: 64,
+                      onValueChanged: (value) {
+                        setState(() {
+                          horizontalPadding = value;
+                        });
+                      },
+                    ),
+                    const Divider(height: 16),
+                    PropertyValueChange(
+                      key: const Key('verticalPadding'),
+                      propertyName: 'verticalPadding',
+                      initialValue: verticalPadding,
+                      maxValue: 64,
+                      onValueChanged: (value) {
+                        setState(() {
+                          verticalPadding = value;
+                        });
+                      },
+                    ),
+                    const Divider(height: 16),
+                  ],
                   PropertyValueChange(
-                    propertyName: 'borderRadius',
-                    initialValue: borderRadius,
-                    onValueChanged: (value) {
-                      setState(() {
-                        borderRadius = value;
-                      });
-                    },
-                  ),
-                  const Divider(height: 16),
-                  PropertyValueChange(
-                    propertyName: 'horizontalPadding',
-                    initialValue: horizontalPadding,
-                    maxValue: 64,
-                    onValueChanged: (value) {
-                      setState(() {
-                        horizontalPadding = value;
-                      });
-                    },
-                  ),
-                  const Divider(height: 16),
-                  PropertyValueChange(
-                    propertyName: 'verticalPadding',
-                    initialValue: verticalPadding,
-                    maxValue: 64,
-                    onValueChanged: (value) {
-                      setState(() {
-                        verticalPadding = value;
-                      });
-                    },
-                  ),
-                  const Divider(height: 16),
-                  PropertyValueChange(
+                    key: const Key('elevation'),
                     propertyName: 'elevation',
                     initialValue: elevation,
                     maxValue: 24,
@@ -130,12 +140,36 @@ class _ButtonWithLabelState extends State<_ButtonWithLabel> {
                   ),
                   const Divider(height: 16),
                   PropertyValueChange(
+                    key: const Key('pressedElevation'),
                     propertyName: 'pressedElevation',
                     initialValue: pressedElevation,
                     maxValue: 24,
                     onValueChanged: (value) {
                       setState(() {
                         pressedElevation = value;
+                      });
+                    },
+                  ),
+                  const Divider(height: 16),
+                  if (shape == Shape.circle) ...[
+                    PropertyValueChange(
+                      key: const Key('diameter'),
+                      propertyName: 'diameter',
+                      initialValue: diameter,
+                      maxValue: 200,
+                      onValueChanged: (value) {
+                        setState(() {
+                          diameter = value;
+                        });
+                      },
+                    ),
+                    const Divider(height: 16),
+                  ],
+                  PropertyShape(
+                    shape: shape,
+                    onShapeChange: (value) {
+                      setState(() {
+                        shape = value;
                       });
                     },
                   ),

@@ -11,3 +11,4 @@ const kPressedElevation = 2.0;
 const kLabelIconGap = 8.0;
 const kIconSize = 20.0;
 const kExcludeSemantics = false;
+const kDiameter = 40.0;
