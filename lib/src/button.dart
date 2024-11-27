@@ -140,8 +140,8 @@ class Button extends StatefulWidget {
     double? verticalPadding,
     double elevation = kElevation,
     double pressedElevation = kPressedElevation,
-    double? diameter,
     Shape shape = Shape.rectangle,
+    double? diameter,
     String? semanticLabel,
     bool? excludeSemantics,
     VoidCallback? onLongPress,
@@ -157,8 +157,8 @@ class Button extends StatefulWidget {
       verticalPadding: verticalPadding,
       elevation: elevation,
       pressedElevation: pressedElevation,
-      diameter: diameter,
       shape: shape,
+      diameter: diameter,
       semanticLabel: semanticLabel,
       excludeSemantics: excludeSemantics,
       onLongPress: onLongPress,
@@ -190,7 +190,6 @@ class Button extends StatefulWidget {
   /// * [verticalPadding]: The vertical padding inside the button between its content and its edges. If `null`, the default vertical padding ([8.0]) will be applied.
   /// * [elevation]: The elevation of the button, making it appear raised above the surface. If not specified, the default elevation ([6.0]) will be applied.
   /// * [pressedElevation]: The elevation of the button when pressed. If not specified, the default pressed elevation ([2.0]) will be used.
-  /// * [diameter]: The diameter of the button when using [Shape.circle]. Ignored for other shapes. If not specified, the default diameter ([40.0]) will be used.
   /// * [shape]: The shape of the button. If not specified, the default shape ([Shape.rectangle]) will be used.
   /// * [diameter]: The diameter of the button when using [Shape.circle]. Ignored for other shapes. If not specified, the default diameter ([40.0]) will be used.
   /// * [semanticLabel]: The semantic label for the button that will be announced by screen readers. This label does not show in the UI.
@@ -227,8 +226,8 @@ class Button extends StatefulWidget {
     double? verticalPadding,
     double elevation = kElevation,
     double pressedElevation = kPressedElevation,
-    double? diameter,
     Shape shape = Shape.rectangle,
+    double? diameter,
     String? semanticLabel,
     bool? excludeSemantics,
     VoidCallback? onLongPress,
@@ -244,8 +243,8 @@ class Button extends StatefulWidget {
       verticalPadding: verticalPadding,
       elevation: elevation,
       pressedElevation: pressedElevation,
-      diameter: diameter,
       shape: shape,
+      diameter: diameter,
       semanticLabel: semanticLabel,
       excludeSemantics: excludeSemantics,
       onLongPress: onLongPress,
@@ -325,8 +324,8 @@ class Button extends StatefulWidget {
     double? verticalPadding,
     double elevation = kElevation,
     double pressedElevation = kPressedElevation,
-    double? diameter,
     Shape shape = Shape.rectangle,
+    double? diameter,
     String? semanticLabel,
     bool? excludeSemantics,
     VoidCallback? onLongPress,
@@ -340,8 +339,8 @@ class Button extends StatefulWidget {
       verticalPadding: verticalPadding,
       elevation: elevation,
       pressedElevation: pressedElevation,
-      diameter: diameter,
       shape: shape,
+      diameter: diameter,
       semanticLabel: semanticLabel,
       excludeSemantics: excludeSemantics,
       onLongPress: onLongPress,
@@ -434,8 +433,8 @@ class Button extends StatefulWidget {
     double? verticalPadding,
     double elevation = kElevation,
     double pressedElevation = kPressedElevation,
-    double? diameter,
     Shape shape = Shape.rectangle,
+    double? diameter,
     String? semanticLabel,
     bool? excludeSemantics,
     VoidCallback? onLongPress,
@@ -449,8 +448,8 @@ class Button extends StatefulWidget {
       verticalPadding: verticalPadding,
       elevation: elevation,
       pressedElevation: pressedElevation,
-      diameter: diameter,
       shape: shape,
+      diameter: diameter,
       semanticLabel: semanticLabel,
       excludeSemantics: excludeSemantics,
       onLongPress: onLongPress,
@@ -544,6 +543,11 @@ class Button extends StatefulWidget {
   /// If not specified, the default pressed elevation ([2.0]) for the button will be applied.
   final double pressedElevation;
 
+  /// The shape of the button.
+  ///
+  /// Defaults to [Shape.rectangle].
+  final Shape shape;
+
   /// The diameter of the button when using [Shape.circle].
   ///
   /// Specifies the size of the circle, has no effect for buttons with other `shape` settings.
@@ -562,11 +566,6 @@ class Button extends StatefulWidget {
   ///
   /// Defaults to [false].
   final bool? excludeSemantics;
-
-  /// The shape of the button.
-  ///
-  /// Defaults to [Shape.rectangle].
-  final Shape shape;
 
   @override
   State<Button> createState() => _ButtonState();
